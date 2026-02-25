@@ -1,0 +1,207 @@
+
+SUMMARISING RUN PARAMETERS
+==========================
+Input filename: /storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/XC174_YL_2.fq.gz
+Trimming mode: paired-end
+Trim Galore version: 0.6.2
+Cutadapt version: 2.3
+Python version: 3.4.1
+Number of cores used for trimming: 4
+Quality Phred score cutoff: 20
+Quality encoding type selected: ASCII+33
+Adapter sequence: 'AGATCGGAAGAGC' (Illumina TruSeq, Sanger iPCR; auto-detected)
+Maximum trimming error rate: 0.1 (default)
+Minimum required adapter overlap (stringency): 1 bp
+Minimum required sequence length for both reads before a sequence pair gets removed: 20 bp
+Output file will be GZIP compressed
+
+
+This is cutadapt 2.3 with Python 3.4.1
+Command line parameters: -j 4 -e 0.1 -q 20 -O 1 -a AGATCGGAAGAGC /storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/XC174_YL_2.fq.gz
+Processing reads on 4 cores in single-end mode ...
+Finished in 141.28 s (7 us/read; 8.16 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:              19,223,304
+Reads with adapters:                 6,787,614 (35.3%)
+Reads written (passing filters):    19,223,304 (100.0%)
+
+Total basepairs processed: 2,883,495,600 bp
+Quality-trimmed:               2,953,766 bp (0.1%)
+Total written (filtered):  2,869,009,927 bp (99.5%)
+
+=== Adapter 1 ===
+
+Sequence: AGATCGGAAGAGC; Type: regular 3'; Length: 13; Trimmed: 6787614 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-13 bp: 1
+
+Bases preceding removed adapters:
+  A: 33.6%
+  C: 26.6%
+  G: 23.0%
+  T: 16.8%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+1	4781736	4805826.0	0	4781736
+2	1328729	1201456.5	0	1328729
+3	475878	300364.1	0	475878
+4	110991	75091.0	0	110991
+5	31767	18772.8	0	31767
+6	5604	4693.2	0	5604
+7	2249	1173.3	0	2249
+8	1843	293.3	0	1843
+9	2091	73.3	0	1322 769
+10	2513	18.3	1	981 1532
+11	1649	4.6	1	949 700
+12	1203	1.1	1	948 255
+13	1080	0.3	1	900 180
+14	1091	0.3	1	943 148
+15	883	0.3	1	800 83
+16	909	0.3	1	797 112
+17	1053	0.3	1	949 104
+18	888	0.3	1	789 99
+19	1093	0.3	1	1007 86
+20	799	0.3	1	682 117
+21	791	0.3	1	693 98
+22	805	0.3	1	698 107
+23	750	0.3	1	657 93
+24	853	0.3	1	745 108
+25	758	0.3	1	680 78
+26	776	0.3	1	660 116
+27	827	0.3	1	671 156
+28	748	0.3	1	641 107
+29	725	0.3	1	605 120
+30	676	0.3	1	583 93
+31	642	0.3	1	559 83
+32	619	0.3	1	529 90
+33	633	0.3	1	543 90
+34	673	0.3	1	567 106
+35	549	0.3	1	486 63
+36	660	0.3	1	576 84
+37	628	0.3	1	523 105
+38	590	0.3	1	513 77
+39	563	0.3	1	476 87
+40	579	0.3	1	483 96
+41	527	0.3	1	457 70
+42	484	0.3	1	429 55
+43	488	0.3	1	403 85
+44	511	0.3	1	434 77
+45	451	0.3	1	378 73
+46	427	0.3	1	359 68
+47	477	0.3	1	424 53
+48	571	0.3	1	477 94
+49	422	0.3	1	357 65
+50	453	0.3	1	341 112
+51	537	0.3	1	428 109
+52	428	0.3	1	326 102
+53	449	0.3	1	369 80
+54	419	0.3	1	337 82
+55	364	0.3	1	301 63
+56	387	0.3	1	322 65
+57	306	0.3	1	261 45
+58	372	0.3	1	306 66
+59	411	0.3	1	333 78
+60	279	0.3	1	233 46
+61	278	0.3	1	219 59
+62	377	0.3	1	303 74
+63	264	0.3	1	215 49
+64	307	0.3	1	238 69
+65	430	0.3	1	371 59
+66	262	0.3	1	200 62
+67	252	0.3	1	166 86
+68	288	0.3	1	202 86
+69	300	0.3	1	228 72
+70	336	0.3	1	262 74
+71	261	0.3	1	207 54
+72	296	0.3	1	235 61
+73	234	0.3	1	199 35
+74	267	0.3	1	188 79
+75	417	0.3	1	307 110
+76	304	0.3	1	235 69
+77	300	0.3	1	257 43
+78	163	0.3	1	122 41
+79	125	0.3	1	85 40
+80	192	0.3	1	112 80
+81	153	0.3	1	115 38
+82	154	0.3	1	123 31
+83	162	0.3	1	96 66
+84	173	0.3	1	104 69
+85	196	0.3	1	129 67
+86	152	0.3	1	97 55
+87	188	0.3	1	135 53
+88	191	0.3	1	134 57
+89	188	0.3	1	145 43
+90	165	0.3	1	133 32
+91	173	0.3	1	120 53
+92	141	0.3	1	97 44
+93	157	0.3	1	103 54
+94	131	0.3	1	86 45
+95	113	0.3	1	70 43
+96	113	0.3	1	65 48
+97	101	0.3	1	61 40
+98	108	0.3	1	72 36
+99	96	0.3	1	63 33
+100	119	0.3	1	75 44
+101	112	0.3	1	61 51
+102	104	0.3	1	60 44
+103	74	0.3	1	38 36
+104	74	0.3	1	35 39
+105	60	0.3	1	26 34
+106	61	0.3	1	11 50
+107	54	0.3	1	19 35
+108	40	0.3	1	16 24
+109	58	0.3	1	23 35
+110	38	0.3	1	10 28
+111	63	0.3	1	18 45
+112	49	0.3	1	15 34
+113	36	0.3	1	15 21
+114	41	0.3	1	11 30
+115	45	0.3	1	11 34
+116	42	0.3	1	10 32
+117	24	0.3	1	4 20
+118	46	0.3	1	10 36
+119	31	0.3	1	3 28
+120	27	0.3	1	2 25
+121	66	0.3	1	3 63
+122	69	0.3	1	5 64
+123	93	0.3	1	4 89
+124	26	0.3	1	4 22
+125	70	0.3	1	1 69
+126	58	0.3	1	3 55
+127	54	0.3	1	2 52
+128	45	0.3	1	2 43
+129	46	0.3	1	3 43
+130	32	0.3	1	1 31
+131	52	0.3	1	0 52
+132	36	0.3	1	1 35
+133	35	0.3	1	1 34
+134	28	0.3	1	1 27
+135	26	0.3	1	1 25
+136	62	0.3	1	0 62
+137	44	0.3	1	7 37
+138	45	0.3	1	5 40
+139	21	0.3	1	0 21
+140	31	0.3	1	0 31
+141	53	0.3	1	2 51
+142	29	0.3	1	1 28
+143	34	0.3	1	1 33
+144	21	0.3	1	0 21
+145	19	0.3	1	0 19
+146	14	0.3	1	0 14
+147	84	0.3	1	5 79
+148	26	0.3	1	0 26
+149	12	0.3	1	1 11
+150	20	0.3	1	5 15
+
+RUN STATISTICS FOR INPUT FILE: /storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/XC174_YL_2.fq.gz
+=============================================
+19223304 sequences processed in total
+
+Total number of sequences analysed for the sequence pair length validation: 19223304
+
+Number of sequence pairs removed because at least one read was shorter than the length cutoff (20 bp): 3237 (0.02%)

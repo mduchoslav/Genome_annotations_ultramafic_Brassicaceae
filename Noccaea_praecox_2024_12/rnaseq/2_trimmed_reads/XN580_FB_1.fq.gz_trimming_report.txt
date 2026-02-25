@@ -1,0 +1,205 @@
+
+SUMMARISING RUN PARAMETERS
+==========================
+Input filename: /storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/1_raw_reads/XN580_FB/XN580_FB_1.fq.gz
+Trimming mode: paired-end
+Trim Galore version: 0.6.2
+Cutadapt version: 2.3
+Python version: 3.4.1
+Number of cores used for trimming: 4
+Quality Phred score cutoff: 20
+Quality encoding type selected: ASCII+33
+Adapter sequence: 'TGGAATTCTCGG' (Illumina small RNA adapter; auto-detected)
+Maximum trimming error rate: 0.1 (default)
+Optional adapter 2 sequence (only used for read 2 of paired-end files): 'GATCGTCGGACT'
+Minimum required adapter overlap (stringency): 1 bp
+Minimum required sequence length for both reads before a sequence pair gets removed: 18 bp
+Output file will be GZIP compressed
+
+
+This is cutadapt 2.3 with Python 3.4.1
+Command line parameters: -j 4 -e 0.1 -q 20 -O 1 -a TGGAATTCTCGG /storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/1_raw_reads/XN580_FB/XN580_FB_1.fq.gz
+Processing reads on 4 cores in single-end mode ...
+Finished in 181.82 s (9 us/read; 6.66 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:              20,195,959
+Reads with adapters:                 7,188,656 (35.6%)
+Reads written (passing filters):    20,195,959 (100.0%)
+
+Total basepairs processed: 3,029,393,850 bp
+Quality-trimmed:               5,314,544 bp (0.2%)
+Total written (filtered):  3,012,934,714 bp (99.5%)
+
+=== Adapter 1 ===
+
+Sequence: TGGAATTCTCGG; Type: regular 3'; Length: 12; Trimmed: 7188656 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-12 bp: 1
+
+Bases preceding removed adapters:
+  A: 23.0%
+  C: 25.2%
+  G: 20.8%
+  T: 30.9%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+1	5309537	5048989.8	0	5309537
+2	1342803	1262247.4	0	1342803
+3	358914	315561.9	0	358914
+4	120337	78890.5	0	120337
+5	30655	19722.6	0	30655
+6	6098	4930.7	0	6098
+7	1314	1232.7	0	1314
+8	243	308.2	0	243
+9	668	77.0	0	72 596
+10	1369	19.3	1	45 1324
+11	513	4.8	1	4 509
+12	186	1.2	1	3 183
+13	128	1.2	1	3 125
+14	101	1.2	1	3 98
+15	99	1.2	1	0 99
+16	87	1.2	1	0 87
+17	118	1.2	1	2 116
+18	96	1.2	1	1 95
+19	103	1.2	1	4 99
+20	94	1.2	1	4 90
+21	85	1.2	1	5 80
+22	87	1.2	1	4 83
+23	131	1.2	1	1 130
+24	103	1.2	1	7 96
+25	82	1.2	1	18 64
+26	79	1.2	1	0 79
+27	118	1.2	1	4 114
+28	117	1.2	1	0 117
+29	166	1.2	1	2 164
+30	134	1.2	1	11 123
+31	122	1.2	1	14 108
+32	91	1.2	1	1 90
+33	107	1.2	1	9 98
+34	96	1.2	1	2 94
+35	105	1.2	1	1 104
+36	111	1.2	1	1 110
+37	100	1.2	1	0 100
+38	66	1.2	1	0 66
+39	88	1.2	1	4 84
+40	54	1.2	1	1 53
+41	90	1.2	1	4 86
+42	85	1.2	1	1 84
+43	143	1.2	1	0 143
+44	81	1.2	1	8 73
+45	134	1.2	1	6 128
+46	88	1.2	1	0 88
+47	113	1.2	1	1 112
+48	96	1.2	1	1 95
+49	83	1.2	1	1 82
+50	78	1.2	1	3 75
+51	126	1.2	1	1 125
+52	111	1.2	1	2 109
+53	103	1.2	1	3 100
+54	80	1.2	1	13 67
+55	127	1.2	1	9 118
+56	189	1.2	1	1 188
+57	73	1.2	1	1 72
+58	95	1.2	1	0 95
+59	122	1.2	1	2 120
+60	116	1.2	1	6 110
+61	149	1.2	1	2 147
+62	88	1.2	1	1 87
+63	119	1.2	1	0 119
+64	71	1.2	1	1 70
+65	99	1.2	1	3 96
+66	88	1.2	1	2 86
+67	89	1.2	1	2 87
+68	107	1.2	1	2 105
+69	97	1.2	1	3 94
+70	133	1.2	1	5 128
+71	139	1.2	1	2 137
+72	115	1.2	1	3 112
+73	67	1.2	1	1 66
+74	121	1.2	1	0 121
+75	109	1.2	1	3 106
+76	95	1.2	1	0 95
+77	123	1.2	1	0 123
+78	119	1.2	1	1 118
+79	111	1.2	1	3 108
+80	60	1.2	1	1 59
+81	107	1.2	1	0 107
+82	93	1.2	1	1 92
+83	141	1.2	1	4 137
+84	131	1.2	1	6 125
+85	182	1.2	1	3 179
+86	118	1.2	1	4 114
+87	142	1.2	1	9 133
+88	137	1.2	1	4 133
+89	119	1.2	1	6 113
+90	132	1.2	1	1 131
+91	133	1.2	1	0 133
+92	119	1.2	1	1 118
+93	122	1.2	1	2 120
+94	140	1.2	1	1 139
+95	131	1.2	1	2 129
+96	129	1.2	1	0 129
+97	108	1.2	1	3 105
+98	119	1.2	1	5 114
+99	88	1.2	1	1 87
+100	153	1.2	1	7 146
+101	142	1.2	1	1 141
+102	136	1.2	1	6 130
+103	101	1.2	1	3 98
+104	153	1.2	1	3 150
+105	138	1.2	1	3 135
+106	153	1.2	1	4 149
+107	116	1.2	1	3 113
+108	142	1.2	1	0 142
+109	121	1.2	1	6 115
+110	127	1.2	1	0 127
+111	131	1.2	1	15 116
+112	97	1.2	1	7 90
+113	136	1.2	1	2 134
+114	157	1.2	1	7 150
+115	107	1.2	1	0 107
+116	106	1.2	1	0 106
+117	115	1.2	1	0 115
+118	97	1.2	1	1 96
+119	118	1.2	1	12 106
+120	141	1.2	1	3 138
+121	103	1.2	1	1 102
+122	142	1.2	1	0 142
+123	126	1.2	1	0 126
+124	152	1.2	1	0 152
+125	78	1.2	1	10 68
+126	111	1.2	1	0 111
+127	149	1.2	1	3 146
+128	112	1.2	1	2 110
+129	131	1.2	1	4 127
+130	177	1.2	1	1 176
+131	98	1.2	1	4 94
+132	121	1.2	1	3 118
+133	172	1.2	1	7 165
+134	84	1.2	1	7 77
+135	108	1.2	1	2 106
+136	114	1.2	1	2 112
+137	169	1.2	1	0 169
+138	168	1.2	1	4 164
+139	135	1.2	1	4 131
+140	74	1.2	1	0 74
+141	121	1.2	1	0 121
+142	73	1.2	1	0 73
+143	117	1.2	1	5 112
+144	169	1.2	1	0 169
+145	33	1.2	1	0 33
+146	59	1.2	1	0 59
+147	65	1.2	1	2 63
+148	143	1.2	1	1 142
+149	388	1.2	1	6 382
+150	149	1.2	1	4 145
+
+RUN STATISTICS FOR INPUT FILE: /storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/1_raw_reads/XN580_FB/XN580_FB_1.fq.gz
+=============================================
+20195959 sequences processed in total
+

@@ -1,0 +1,208 @@
+
+SUMMARISING RUN PARAMETERS
+==========================
+Input filename: /storage/brno12-cerit/home/duchmil/annotations/Aethionema_saxatile_2025_06/rnaseq/1_raw_reads/XA472L_Macrogen_2.fastq.gz
+Trimming mode: paired-end
+Trim Galore version: 0.6.2
+Cutadapt version: 2.3
+Python version: 3.4.1
+Number of cores used for trimming: 4
+Quality Phred score cutoff: 20
+Quality encoding type selected: ASCII+33
+Adapter sequence: 'AGATCGGAAGAGC' (Illumina TruSeq, Sanger iPCR; auto-detected)
+Maximum trimming error rate: 0.1 (default)
+Minimum required adapter overlap (stringency): 1 bp
+Minimum required sequence length for both reads before a sequence pair gets removed: 20 bp
+Output file will be GZIP compressed
+
+
+This is cutadapt 2.3 with Python 3.4.1
+Command line parameters: -j 4 -e 0.1 -q 20 -O 1 -a AGATCGGAAGAGC /storage/brno12-cerit/home/duchmil/annotations/Aethionema_saxatile_2025_06/rnaseq/1_raw_reads/XA472L_Macrogen_2.fastq.gz
+Processing reads on 4 cores in single-end mode ...
+Finished in 120.75 s (6 us/read; 9.26 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:              18,637,074
+Reads with adapters:                 8,228,743 (44.2%)
+Reads written (passing filters):    18,637,074 (100.0%)
+
+Total basepairs processed: 2,814,198,174 bp
+Quality-trimmed:               8,212,530 bp (0.3%)
+Total written (filtered):  2,755,138,742 bp (97.9%)
+
+=== Adapter 1 ===
+
+Sequence: AGATCGGAAGAGC; Type: regular 3'; Length: 13; Trimmed: 8228743 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-13 bp: 1
+
+Bases preceding removed adapters:
+  A: 27.9%
+  C: 25.4%
+  G: 31.2%
+  T: 15.5%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+1	4141382	4659268.5	0	4141382
+2	1337387	1164817.1	0	1337387
+3	496634	291204.3	0	496634
+4	192083	72801.1	0	192083
+5	111863	18200.3	0	111863
+6	89356	4550.1	0	89356
+7	85577	1137.5	0	85577
+8	83795	284.4	0	83795
+9	85840	71.1	0	85104 736
+10	77103	17.8	1	74255 2848
+11	77409	4.4	1	74932 2477
+12	75814	1.1	1	73161 2653
+13	69116	0.3	1	67555 1561
+14	68883	0.3	1	67267 1616
+15	66921	0.3	1	65461 1460
+16	64574	0.3	1	63108 1466
+17	64289	0.3	1	62830 1459
+18	61210	0.3	1	59624 1586
+19	127211	0.3	1	124979 2232
+20	34093	0.3	1	33197 896
+21	12836	0.3	1	12222 614
+22	45403	0.3	1	44578 825
+23	49357	0.3	1	48248 1109
+24	77624	0.3	1	76277 1347
+25	18741	0.3	1	18053 688
+26	41534	0.3	1	40653 881
+27	82506	0.3	1	81292 1214
+28	16523	0.3	1	15902 621
+29	50451	0.3	1	49666 785
+30	32235	0.3	1	31587 648
+31	18639	0.3	1	18170 469
+32	28730	0.3	1	28123 607
+33	52571	0.3	1	51898 673
+34	6661	0.3	1	6298 363
+35	34127	0.3	1	33569 558
+36	15359	0.3	1	14850 509
+37	35383	0.3	1	34926 457
+38	3703	0.3	1	3441 262
+39	17107	0.3	1	16652 455
+40	42990	0.3	1	42395 595
+41	15459	0.3	1	15111 348
+42	5354	0.3	1	5116 238
+43	9119	0.3	1	8951 168
+44	4545	0.3	1	4347 198
+45	22923	0.3	1	22588 335
+46	2589	0.3	1	2430 159
+47	4585	0.3	1	4435 150
+48	12199	0.3	1	11989 210
+49	3494	0.3	1	3326 168
+50	6362	0.3	1	6182 180
+51	4021	0.3	1	3878 143
+52	6460	0.3	1	6298 162
+53	692	0.3	1	618 74
+54	3670	0.3	1	3564 106
+55	5027	0.3	1	4920 107
+56	1288	0.3	1	1214 74
+57	4084	0.3	1	3984 100
+58	4010	0.3	1	3935 75
+59	1229	0.3	1	1163 66
+60	640	0.3	1	596 44
+61	967	0.3	1	932 35
+62	3028	0.3	1	2983 45
+63	352	0.3	1	313 39
+64	1546	0.3	1	1516 30
+65	385	0.3	1	334 51
+66	793	0.3	1	759 34
+67	1176	0.3	1	1116 60
+68	491	0.3	1	444 47
+69	332	0.3	1	306 26
+70	1017	0.3	1	990 27
+71	236	0.3	1	195 41
+72	577	0.3	1	552 25
+73	785	0.3	1	760 25
+74	802	0.3	1	750 52
+75	436	0.3	1	403 33
+76	121	0.3	1	80 41
+77	117	0.3	1	91 26
+78	195	0.3	1	172 23
+79	260	0.3	1	213 47
+80	237	0.3	1	215 22
+81	238	0.3	1	217 21
+82	200	0.3	1	170 30
+83	196	0.3	1	173 23
+84	184	0.3	1	166 18
+85	182	0.3	1	167 15
+86	160	0.3	1	151 9
+87	162	0.3	1	147 15
+88	200	0.3	1	168 32
+89	131	0.3	1	116 15
+90	125	0.3	1	99 26
+91	120	0.3	1	105 15
+92	117	0.3	1	97 20
+93	124	0.3	1	92 32
+94	99	0.3	1	64 35
+95	88	0.3	1	62 26
+96	89	0.3	1	60 29
+97	106	0.3	1	70 36
+98	59	0.3	1	49 10
+99	91	0.3	1	69 22
+100	56	0.3	1	38 18
+101	64	0.3	1	44 20
+102	63	0.3	1	40 23
+103	63	0.3	1	43 20
+104	60	0.3	1	40 20
+105	52	0.3	1	34 18
+106	70	0.3	1	34 36
+107	39	0.3	1	25 14
+108	47	0.3	1	28 19
+109	33	0.3	1	16 17
+110	35	0.3	1	13 22
+111	26	0.3	1	16 10
+112	38	0.3	1	23 15
+113	33	0.3	1	4 29
+114	43	0.3	1	10 33
+115	22	0.3	1	8 14
+116	22	0.3	1	9 13
+117	29	0.3	1	6 23
+118	26	0.3	1	4 22
+119	47	0.3	1	11 36
+120	19	0.3	1	2 17
+121	26	0.3	1	5 21
+122	23	0.3	1	5 18
+123	24	0.3	1	5 19
+124	27	0.3	1	1 26
+125	24	0.3	1	3 21
+126	23	0.3	1	3 20
+127	14	0.3	1	2 12
+128	18	0.3	1	2 16
+129	18	0.3	1	0 18
+130	27	0.3	1	0 27
+131	34	0.3	1	3 31
+132	21	0.3	1	4 17
+133	25	0.3	1	1 24
+134	24	0.3	1	0 24
+135	15	0.3	1	1 14
+136	23	0.3	1	2 21
+137	9	0.3	1	2 7
+138	14	0.3	1	2 12
+139	22	0.3	1	2 20
+140	16	0.3	1	1 15
+141	12	0.3	1	1 11
+142	13	0.3	1	0 13
+143	23	0.3	1	0 23
+144	11	0.3	1	2 9
+145	10	0.3	1	0 10
+146	10	0.3	1	0 10
+147	4	0.3	1	0 4
+148	15	0.3	1	1 14
+149	8	0.3	1	0 8
+150	14	0.3	1	0 14
+151	15	0.3	1	0 15
+
+RUN STATISTICS FOR INPUT FILE: /storage/brno12-cerit/home/duchmil/annotations/Aethionema_saxatile_2025_06/rnaseq/1_raw_reads/XA472L_Macrogen_2.fastq.gz
+=============================================
+18637074 sequences processed in total
+
+Total number of sequences analysed for the sequence pair length validation: 18637074
+
+Number of sequence pairs removed because at least one read was shorter than the length cutoff (20 bp): 18791 (0.10%)

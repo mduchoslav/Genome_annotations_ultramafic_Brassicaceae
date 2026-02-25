@@ -1,0 +1,207 @@
+
+SUMMARISING RUN PARAMETERS
+==========================
+Input filename: /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/1_raw_reads/XE263_R_2.fq.gz
+Trimming mode: paired-end
+Trim Galore version: 0.6.2
+Cutadapt version: 2.3
+Python version: 3.4.1
+Number of cores used for trimming: 4
+Quality Phred score cutoff: 20
+Quality encoding type selected: ASCII+33
+Adapter sequence: 'AGATCGGAAGAGC' (Illumina TruSeq, Sanger iPCR; auto-detected)
+Maximum trimming error rate: 0.1 (default)
+Minimum required adapter overlap (stringency): 1 bp
+Minimum required sequence length for both reads before a sequence pair gets removed: 20 bp
+Output file will be GZIP compressed
+
+
+This is cutadapt 2.3 with Python 3.4.1
+Command line parameters: -j 4 -e 0.1 -q 20 -O 1 -a AGATCGGAAGAGC /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/1_raw_reads/XE263_R_2.fq.gz
+Processing reads on 4 cores in single-end mode ...
+Finished in 213.40 s (12 us/read; 4.86 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:              17,278,074
+Reads with adapters:                 6,106,985 (35.3%)
+Reads written (passing filters):    17,278,074 (100.0%)
+
+Total basepairs processed: 2,591,711,100 bp
+Quality-trimmed:               2,551,525 bp (0.1%)
+Total written (filtered):  2,577,905,531 bp (99.5%)
+
+=== Adapter 1 ===
+
+Sequence: AGATCGGAAGAGC; Type: regular 3'; Length: 13; Trimmed: 6106985 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-13 bp: 1
+
+Bases preceding removed adapters:
+  A: 33.5%
+  C: 26.6%
+  G: 23.3%
+  T: 16.5%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+1	4278500	4319518.5	0	4278500
+2	1183440	1079879.6	0	1183440
+3	432048	269969.9	0	432048
+4	108169	67492.5	0	108169
+5	31299	16873.1	0	31299
+6	6164	4218.3	0	6164
+7	2598	1054.6	0	2598
+8	1890	263.6	0	1890
+9	2142	65.9	0	1337 805
+10	2964	16.5	1	1213 1751
+11	2014	4.1	1	1253 761
+12	1534	1.0	1	1247 287
+13	1476	0.3	1	1258 218
+14	1362	0.3	1	1248 114
+15	1218	0.3	1	1098 120
+16	1311	0.3	1	1187 124
+17	1375	0.3	1	1232 143
+18	995	0.3	1	885 110
+19	1352	0.3	1	1217 135
+20	948	0.3	1	831 117
+21	950	0.3	1	855 95
+22	972	0.3	1	864 108
+23	1053	0.3	1	935 118
+24	1143	0.3	1	1007 136
+25	988	0.3	1	880 108
+26	823	0.3	1	741 82
+27	966	0.3	1	843 123
+28	875	0.3	1	781 94
+29	985	0.3	1	876 109
+30	892	0.3	1	791 101
+31	793	0.3	1	714 79
+32	874	0.3	1	760 114
+33	804	0.3	1	694 110
+34	832	0.3	1	727 105
+35	861	0.3	1	740 121
+36	867	0.3	1	762 105
+37	833	0.3	1	730 103
+38	791	0.3	1	700 91
+39	710	0.3	1	608 102
+40	687	0.3	1	600 87
+41	637	0.3	1	532 105
+42	667	0.3	1	545 122
+43	651	0.3	1	557 94
+44	695	0.3	1	575 120
+45	606	0.3	1	506 100
+46	611	0.3	1	526 85
+47	623	0.3	1	534 89
+48	722	0.3	1	585 137
+49	507	0.3	1	435 72
+50	561	0.3	1	459 102
+51	571	0.3	1	481 90
+52	509	0.3	1	432 77
+53	534	0.3	1	440 94
+54	465	0.3	1	373 92
+55	530	0.3	1	427 103
+56	549	0.3	1	475 74
+57	443	0.3	1	371 72
+58	513	0.3	1	400 113
+59	571	0.3	1	466 105
+60	530	0.3	1	375 155
+61	386	0.3	1	298 88
+62	527	0.3	1	421 106
+63	386	0.3	1	322 64
+64	359	0.3	1	283 76
+65	566	0.3	1	462 104
+66	356	0.3	1	288 68
+67	403	0.3	1	265 138
+68	430	0.3	1	307 123
+69	392	0.3	1	326 66
+70	395	0.3	1	312 83
+71	314	0.3	1	259 55
+72	385	0.3	1	273 112
+73	336	0.3	1	253 83
+74	347	0.3	1	256 91
+75	569	0.3	1	438 131
+76	365	0.3	1	304 61
+77	388	0.3	1	318 70
+78	194	0.3	1	138 56
+79	158	0.3	1	96 62
+80	207	0.3	1	139 68
+81	223	0.3	1	151 72
+82	254	0.3	1	180 74
+83	242	0.3	1	160 82
+84	186	0.3	1	136 50
+85	244	0.3	1	167 77
+86	227	0.3	1	162 65
+87	225	0.3	1	163 62
+88	241	0.3	1	167 74
+89	226	0.3	1	145 81
+90	246	0.3	1	167 79
+91	248	0.3	1	154 94
+92	221	0.3	1	146 75
+93	200	0.3	1	138 62
+94	207	0.3	1	137 70
+95	192	0.3	1	112 80
+96	170	0.3	1	95 75
+97	164	0.3	1	83 81
+98	160	0.3	1	106 54
+99	149	0.3	1	91 58
+100	169	0.3	1	102 67
+101	133	0.3	1	77 56
+102	149	0.3	1	86 63
+103	102	0.3	1	50 52
+104	110	0.3	1	54 56
+105	115	0.3	1	55 60
+106	87	0.3	1	50 37
+107	91	0.3	1	49 42
+108	87	0.3	1	47 40
+109	84	0.3	1	26 58
+110	135	0.3	1	38 97
+111	119	0.3	1	37 82
+112	125	0.3	1	38 87
+113	93	0.3	1	36 57
+114	61	0.3	1	26 35
+115	63	0.3	1	17 46
+116	96	0.3	1	18 78
+117	63	0.3	1	21 42
+118	69	0.3	1	26 43
+119	49	0.3	1	11 38
+120	68	0.3	1	16 52
+121	61	0.3	1	16 45
+122	65	0.3	1	8 57
+123	47	0.3	1	12 35
+124	76	0.3	1	11 65
+125	53	0.3	1	9 44
+126	59	0.3	1	16 43
+127	45	0.3	1	3 42
+128	57	0.3	1	7 50
+129	46	0.3	1	4 42
+130	39	0.3	1	5 34
+131	82	0.3	1	2 80
+132	41	0.3	1	5 36
+133	37	0.3	1	1 36
+134	51	0.3	1	2 49
+135	59	0.3	1	2 57
+136	51	0.3	1	0 51
+137	33	0.3	1	0 33
+138	47	0.3	1	2 45
+139	26	0.3	1	0 26
+140	51	0.3	1	1 50
+141	81	0.3	1	2 79
+142	58	0.3	1	0 58
+143	46	0.3	1	1 45
+144	21	0.3	1	0 21
+145	45	0.3	1	2 43
+146	11	0.3	1	0 11
+147	78	0.3	1	2 76
+148	33	0.3	1	0 33
+149	14	0.3	1	0 14
+150	23	0.3	1	3 20
+
+RUN STATISTICS FOR INPUT FILE: /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/1_raw_reads/XE263_R_2.fq.gz
+=============================================
+17278074 sequences processed in total
+
+Total number of sequences analysed for the sequence pair length validation: 17278074
+
+Number of sequence pairs removed because at least one read was shorter than the length cutoff (20 bp): 3875 (0.02%)

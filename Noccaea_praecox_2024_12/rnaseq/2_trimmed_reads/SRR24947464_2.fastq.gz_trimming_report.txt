@@ -1,0 +1,209 @@
+
+SUMMARISING RUN PARAMETERS
+==========================
+Input filename: /storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/1_raw_reads/Bocaj_et_al_2023/SRR24947464_2.fastq.gz
+Trimming mode: paired-end
+Trim Galore version: 0.6.2
+Cutadapt version: 2.3
+Python version: 3.4.1
+Number of cores used for trimming: 4
+Quality Phred score cutoff: 20
+Quality encoding type selected: ASCII+33
+Adapter sequence: 'TGGAATTCTCGG' (Illumina small RNA adapter; auto-detected)
+Maximum trimming error rate: 0.1 (default)
+Optional adapter 2 sequence (only used for read 2 of paired-end files): 'GATCGTCGGACT'
+Minimum required adapter overlap (stringency): 1 bp
+Minimum required sequence length for both reads before a sequence pair gets removed: 18 bp
+Output file will be GZIP compressed
+
+
+This is cutadapt 2.3 with Python 3.4.1
+Command line parameters: -j 4 -e 0.1 -q 20 -O 1 -a GATCGTCGGACT /storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/1_raw_reads/Bocaj_et_al_2023/SRR24947464_2.fastq.gz
+Processing reads on 4 cores in single-end mode ...
+Finished in 842.61 s (7 us/read; 8.15 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:             114,498,350
+Reads with adapters:                44,518,318 (38.9%)
+Reads written (passing filters):   114,498,350 (100.0%)
+
+Total basepairs processed: 16,618,242,362 bp
+Quality-trimmed:                       0 bp (0.0%)
+Total written (filtered):  16,558,288,765 bp (99.6%)
+
+=== Adapter 1 ===
+
+Sequence: GATCGTCGGACT; Type: regular 3'; Length: 12; Trimmed: 44518318 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-12 bp: 1
+
+Bases preceding removed adapters:
+  A: 18.3%
+  C: 17.6%
+  G: 35.6%
+  T: 28.5%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+1	37196924	28624587.5	0	37196924
+2	4486530	7156146.9	0	4486530
+3	2152097	1789036.7	0	2152097
+4	495027	447259.2	0	495027
+5	94733	111814.8	0	94733
+6	19713	27953.7	0	19713
+7	6894	6988.4	0	6894
+8	2922	1747.1	0	2922
+9	1729	436.8	0	588 1141
+10	2580	109.2	1	45 2535
+11	681	27.3	1	0 681
+12	842	6.8	1	0 842
+13	165	6.8	1	0 165
+14	276	6.8	1	0 276
+15	140	6.8	1	0 140
+16	624	6.8	1	0 624
+17	238	6.8	1	0 238
+18	502	6.8	1	0 502
+19	164	6.8	1	0 164
+20	435	6.8	1	0 435
+21	502	6.8	1	0 502
+22	413	6.8	1	0 413
+23	737	6.8	1	0 737
+24	248	6.8	1	0 248
+25	502	6.8	1	0 502
+26	392	6.8	1	0 392
+27	242	6.8	1	0 242
+28	330	6.8	1	0 330
+29	262	6.8	1	0 262
+30	294	6.8	1	0 294
+31	352	6.8	1	0 352
+32	359	6.8	1	0 359
+33	216	6.8	1	0 216
+34	359	6.8	1	0 359
+35	270	6.8	1	3 267
+36	215	6.8	1	0 215
+37	231	6.8	1	0 231
+38	464	6.8	1	0 464
+39	258	6.8	1	0 258
+40	399	6.8	1	0 399
+41	256	6.8	1	0 256
+42	255	6.8	1	0 255
+43	798	6.8	1	0 798
+44	403	6.8	1	0 403
+45	640	6.8	1	0 640
+46	673	6.8	1	0 673
+47	307	6.8	1	0 307
+48	501	6.8	1	0 501
+49	830	6.8	1	0 830
+50	259	6.8	1	0 259
+51	251	6.8	1	0 251
+52	399	6.8	1	0 399
+53	126	6.8	1	0 126
+54	1167	6.8	1	0 1167
+55	805	6.8	1	0 805
+56	194	6.8	1	0 194
+57	239	6.8	1	0 239
+58	181	6.8	1	0 181
+59	249	6.8	1	0 249
+60	516	6.8	1	0 516
+61	606	6.8	1	0 606
+62	362	6.8	1	0 362
+63	1107	6.8	1	0 1107
+64	249	6.8	1	0 249
+65	503	6.8	1	0 503
+66	126	6.8	1	0 126
+67	485	6.8	1	0 485
+68	532	6.8	1	0 532
+69	662	6.8	1	0 662
+70	225	6.8	1	0 225
+71	1140	6.8	1	0 1140
+72	239	6.8	1	0 239
+73	278	6.8	1	0 278
+74	270	6.8	1	0 270
+75	1920	6.8	1	0 1920
+76	318	6.8	1	0 318
+77	581	6.8	1	0 581
+78	544	6.8	1	0 544
+79	139	6.8	1	0 139
+80	488	6.8	1	0 488
+81	978	6.8	1	0 978
+82	405	6.8	1	0 405
+83	525	6.8	1	0 525
+84	306	6.8	1	0 306
+85	974	6.8	1	0 974
+86	172	6.8	1	0 172
+87	331	6.8	1	0 331
+88	516	6.8	1	0 516
+89	437	6.8	1	0 437
+90	446	6.8	1	0 446
+91	365	6.8	1	0 365
+92	451	6.8	1	0 451
+93	275	6.8	1	0 275
+94	608	6.8	1	0 608
+95	514	6.8	1	0 514
+96	971	6.8	1	0 971
+97	460	6.8	1	0 460
+98	404	6.8	1	0 404
+99	240	6.8	1	0 240
+100	379	6.8	1	0 379
+101	634	6.8	1	0 634
+102	491	6.8	1	0 491
+103	304	6.8	1	0 304
+104	715	6.8	1	0 715
+105	476	6.8	1	0 476
+106	218	6.8	1	0 218
+107	360	6.8	1	0 360
+108	504	6.8	1	0 504
+109	312	6.8	1	0 312
+110	717	6.8	1	1 716
+111	435	6.8	1	0 435
+112	259	6.8	1	0 259
+113	687	6.8	1	0 687
+114	251	6.8	1	0 251
+115	438	6.8	1	0 438
+116	434	6.8	1	0 434
+117	124	6.8	1	1 123
+118	410	6.8	1	0 410
+119	271	6.8	1	0 271
+120	191	6.8	1	0 191
+121	645	6.8	1	0 645
+122	209	6.8	1	0 209
+123	269	6.8	1	0 269
+124	797	6.8	1	0 797
+125	275	6.8	1	0 275
+126	557	6.8	1	0 557
+127	395	6.8	1	0 395
+128	183	6.8	1	0 183
+129	770	6.8	1	0 770
+130	225	6.8	1	0 225
+131	142	6.8	1	0 142
+132	234	6.8	1	0 234
+133	201	6.8	1	0 201
+134	454	6.8	1	0 454
+135	105	6.8	1	0 105
+136	203	6.8	1	0 203
+137	475	6.8	1	0 475
+138	179	6.8	1	0 179
+139	302	6.8	1	0 302
+140	33	6.8	1	0 33
+141	90	6.8	1	0 90
+142	669	6.8	1	0 669
+143	104	6.8	1	0 104
+144	207	6.8	1	0 207
+145	437	6.8	1	0 437
+146	570	6.8	1	0 570
+147	565	6.8	1	0 565
+148	523	6.8	1	0 523
+149	132	6.8	1	0 132
+150	211	6.8	1	0 211
+151	85	6.8	1	0 85
+
+RUN STATISTICS FOR INPUT FILE: /storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/1_raw_reads/Bocaj_et_al_2023/SRR24947464_2.fastq.gz
+=============================================
+114498350 sequences processed in total
+
+Total number of sequences analysed for the sequence pair length validation: 114498350
+
+Number of sequence pairs removed because at least one read was shorter than the length cutoff (18 bp): 15706 (0.01%)
