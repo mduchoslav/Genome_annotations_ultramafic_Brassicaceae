@@ -1,0 +1,221 @@
+/cvmfs/software.metacentrum.cz/spack1/software/hisat2/linux-debian10-x86_64/2.1.0-intel-itifoz/bin/hisat2-align-s version 2.1.0
+64-bit
+Built on metasw11.grid.cesnet.cz
+Thu Oct 27 11:46:07 CEST 2022
+Compiler: gcc version 8.3.0 (Debian 8.3.0-6) 
+Options: -O3 -m64 -msse2 -funroll-loops -g3 -DPOPCNT_CAPABILITY
+Sizeof {int, long, long long, void*, size_t, off_t}: {4, 8, 8, 8, 8, 8}
+samtools 1.14
+Using htslib 1.14
+Copyright (C) 2021 Genome Research Ltd.
+
+Samtools compilation details:
+    Features:       build=configure curses=yes 
+    CC:             /cvmfs/software.metacentrum.cz/software_basics/spack/0.15/lib/spack/env/intel/icc
+    CPPFLAGS:       
+    CFLAGS:         -Wall -g -O2
+    LDFLAGS:        
+    HTSDIR:         
+    LIBS:           
+    CURSES_LIB:     -lncursesw -ltinfow
+
+HTSlib compilation details:
+    Features:       build=configure plugins=no libcurl=yes S3=yes GCS=yes libdeflate=no lzma=yes bzip2=yes htscodecs=1.1.1-1-ged325d7
+    CC:             /cvmfs/software.metacentrum.cz/software_basics/spack/0.15/lib/spack/env/intel/icc
+    CPPFLAGS:       
+    CFLAGS:         -Wall -g -O2 -fvisibility=hidden
+    LDFLAGS:        -fvisibility=hidden 
+
+HTSlib URL scheme handlers present:
+    built-in:	 preload, data, file
+    S3 Multipart Upload:	 s3w, s3w+https, s3w+http
+    Amazon S3:	 s3+https, s3+http, s3
+    Google Cloud Storage:	 gs+http, gs+https, gs
+    libcurl:	 imaps, pop3, http, smb, gopher, sftp, ftps, imap, smtp, smtps, rtsp, scp, ftp, telnet, https, smbs, tftp, pop3s, dict
+    crypt4gh-needed:	 crypt4gh
+    mem:	 mem
+[2024-12-28 12:11:42] Modules loaded
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/genome_assembly/Noccaea_polished_2024_10_Mahnaz.masked.fa' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/Noccaea_polished_2024_10_Mahnaz.masked.fa'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/SRR24947461_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/SRR24947461_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/SRR24947461_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/SRR24947461_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/SRR24947462_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/SRR24947462_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/SRR24947462_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/SRR24947462_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/SRR24947463_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/SRR24947463_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/SRR24947463_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/SRR24947463_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/SRR24947464_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/SRR24947464_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/SRR24947464_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/SRR24947464_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/SRR24947465_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/SRR24947465_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/SRR24947465_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/SRR24947465_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/SRR24947466_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/SRR24947466_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/SRR24947466_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/SRR24947466_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/XN580_FB_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/XN580_FB_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/XN580_FB_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/XN580_FB_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/XN580_F_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/XN580_F_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/XN580_F_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/XN580_F_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/XN580_L_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/XN580_L_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/XN580_L_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/XN580_L_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/XN580_R_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/XN580_R_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/XN580_R_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/XN580_R_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/XN580_S_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/XN580_S_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/2_trimmed_reads/XN580_S_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_7797814.pbs-m1.metacentrum.cz/XN580_S_2_val_2.fq.gz'
+[2024-12-28 12:16:45] Input files copied.
+Building DifferenceCoverSample
+  Building sPrime
+  Building sPrimeOrder
+  V-Sorting samples
+  V-Sorting samples time: 00:00:11
+  Allocating rank array
+  Ranking v-sort output
+  Ranking v-sort output time: 00:00:03
+  Invoking Larsson-Sadakane on ranks
+  Invoking Larsson-Sadakane on ranks time: 00:00:01
+  Sanity-checking and returning
+Building samples
+Reserving space for 12 sample suffixes
+Generating random suffixes
+QSorting 12 sample offsets, eliminating duplicates
+QSorting sample offsets, eliminating duplicates time: 00:00:00
+Multikey QSorting 12 samples
+  (Using difference cover)
+  Multikey QSorting samples time: 00:00:00
+Calculating bucket sizes
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Split 3, merged 7; iterating...
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Avg bucket size: 3.62189e+07 (target: 47537250)
+Getting block 1 of 7
+  Reserving size (47537251) for bucket 1
+Getting block 2 of 7
+  Reserving size (47537251) for bucket 2
+Getting block 4 of 7
+  Reserving size (47537251) for bucket 4
+Getting block 5 of 7
+  Reserving size (47537251) for bucket 5
+Getting block 3 of 7
+  Reserving size (47537251) for bucket 3
+  Calculating Z arrays for bucket 5
+Getting block 7 of 7
+  Reserving size (47537251) for bucket 7
+  Calculating Z arrays for bucket 1
+  Entering block accumulator loop for bucket 5:
+  Calculating Z arrays for bucket 3
+Getting block 6 of 7
+  Reserving size (47537251) for bucket 6
+  Entering block accumulator loop for bucket 3:
+  Entering block accumulator loop for bucket 1:
+  Calculating Z arrays for bucket 2
+  Calculating Z arrays for bucket 7
+  Calculating Z arrays for bucket 4
+  Entering block accumulator loop for bucket 7:
+  Entering block accumulator loop for bucket 2:
+  Calculating Z arrays for bucket 6
+  Entering block accumulator loop for bucket 6:
+  Entering block accumulator loop for bucket 4:
+  bucket 7: 10%
+  bucket 3: 10%
+  bucket 5: 10%
+  bucket 1: 10%
+  bucket 7: 20%
+  bucket 4: 10%
+  bucket 6: 10%
+  bucket 3: 20%
+  bucket 2: 10%
+  bucket 7: 30%
+  bucket 1: 20%
+  bucket 5: 20%
+  bucket 4: 20%
+  bucket 3: 30%
+  bucket 6: 20%
+  bucket 7: 40%
+  bucket 2: 20%
+  bucket 1: 30%
+  bucket 7: 50%
+  bucket 6: 30%
+  bucket 4: 30%
+  bucket 3: 40%
+  bucket 5: 30%
+  bucket 7: 60%
+  bucket 6: 40%
+  bucket 1: 40%
+  bucket 4: 40%
+  bucket 3: 50%
+  bucket 2: 30%
+  bucket 7: 70%
+  bucket 5: 40%
+  bucket 6: 50%
+  bucket 4: 50%
+  bucket 7: 80%
+  bucket 3: 60%
+  bucket 1: 50%
+  bucket 7: 90%
+  bucket 5: 50%
+  bucket 4: 60%
+  bucket 6: 60%
+  bucket 2: 40%
+  bucket 3: 70%
+  bucket 7: 100%
+  Sorting block of length 38536862 for bucket 7
+  (Using difference cover)
+  bucket 1: 60%
+  bucket 4: 70%
+  bucket 5: 60%
+  bucket 3: 80%
+  bucket 6: 70%
+  bucket 1: 70%
+  bucket 2: 50%
+  bucket 3: 90%
+  bucket 4: 80%
+  bucket 6: 80%
+  bucket 5: 70%
+  bucket 3: 100%
+  Sorting block of length 40175459 for bucket 3
+  (Using difference cover)
+  bucket 1: 80%
+  bucket 4: 90%
+  bucket 6: 90%
+  bucket 5: 80%
+  bucket 2: 60%
+  bucket 4: 100%
+  Sorting block of length 45187440 for bucket 4
+  (Using difference cover)
+  bucket 6: 100%
+  Sorting block of length 17137362 for bucket 6
+  (Using difference cover)
+  bucket 1: 90%
+  bucket 5: 90%
+  bucket 2: 70%
+  bucket 1: 100%
+  Sorting block of length 34304175 for bucket 1
+  (Using difference cover)
+  bucket 5: 100%
+  Sorting block of length 36926202 for bucket 5
+  (Using difference cover)
+  bucket 2: 80%
+  bucket 2: 90%
+  bucket 2: 100%
+  Sorting block of length 41264498 for bucket 2
+  (Using difference cover)
+  Sorting block time: 00:00:09
+Returning block of 17137363 for bucket 6
+  Sorting block time: 00:00:16
+Returning block of 34304176 for bucket 1
+  Sorting block time: 00:00:19
+Returning block of 38536863 for bucket 7
+  Sorting block time: 00:00:19
+Returning block of 36926203 for bucket 5
+  Sorting block time: 00:00:21
+Returning block of 40175460 for bucket 3
+  Sorting block time: 00:00:22
+Returning block of 41264499 for bucket 2
+  Sorting block time: 00:00:26
+Returning block of 45187441 for bucket 4
+[2024-12-28 12:18:23] Hisat2 index done.
+[2024-12-28 12:42:33] Alignment for SRR24947461 done.
+[2024-12-28 12:49:41] Samtools conversion to bam, sorting and indexing for SRR24947461 done.
+'SRR24947461_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/3_aligned_reads/SRR24947461_trimmed_sorted.bam'
+'SRR24947461_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Noccaea_praecox_2024_12/rnaseq/3_aligned_reads/SRR24947461_trimmed_sorted.bam.bai'
+[2024-12-28 12:49:55] Copying output files for SRR24947461 done.
+[2024-12-28 13:19:26] Alignment for SRR24947462 done.
+[2024-12-28 13:27:39] Samtools conversion to bam, sorting and indexing for SRR24947462 done.

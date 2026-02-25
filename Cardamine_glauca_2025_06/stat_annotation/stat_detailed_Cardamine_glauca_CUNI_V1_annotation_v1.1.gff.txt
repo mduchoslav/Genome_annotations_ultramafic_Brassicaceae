@@ -1,0 +1,326 @@
+
+ ------------------------------------------------------------------------------
+|   Another GFF Analysis Toolkit (AGAT) - Version: v1.4.0                      |
+|   https://github.com/NBISweden/AGAT                                          |
+|   National Bioinformatics Infrastructure Sweden (NBIS) - www.nbis.se         |
+ ------------------------------------------------------------------------------
+=> Using standard /usr/local/lib/perl5/site_perl/auto/share/dist/AGAT/agat_config.yaml config file
+Reading file ../annot_processing/Cardamine_glauca_CUNI_V1_annotation_v1.1.gff
+                                        
+                                       
+                          ------ Start parsing ------                           
+-------------------------- parse options and metadata --------------------------
+=> Accessing the feature_levels YAML file
+Using standard /usr/local/lib/perl5/site_perl/auto/share/dist/AGAT/feature_levels.yaml file
+=> Attribute used to group features when no Parent/ID relationship exists (i.e common tag):
+	* locus_tag
+	* gene_id
+=> merge_loci option deactivated
+=> Machine information:
+	This script is being run by perl v5.32.1
+	Bioperl location being used: /usr/local/lib/perl5/site_perl/Bio/
+	Operating system being used: linux 
+=> Accessing Ontology
+	No ontology accessible from the gff file header!
+	We use the SOFA ontology distributed with AGAT:
+		/usr/local/lib/perl5/site_perl/auto/share/dist/AGAT/so.obo
+	Read ontology /usr/local/lib/perl5/site_perl/auto/share/dist/AGAT/so.obo:
+		4 root terms, and 2596 total terms, and 1516 leaf terms
+	Filtering ontology:
+		We found 1861 terms that are sequence_feature or is_a child of it.
+--------------------------------- parsing file ---------------------------------
+=> Number of line in file: 587947
+=> Number of comment lines: 78
+=> Fasta included: No
+=> Number of features lines: 587869
+=> Number of feature type (3rd column): 9
+	* Level1: 2 => gene ncRNA_gene
+	* level2: 2 => transcript ncRNA
+	* level3: 5 => exon intron stop_codon start_codon CDS
+	* unknown: 0 => 
+=> Version of the Bioperl GFF parser selected by AGAT: 3
+
+                  ------ End parsing (done in 77 second) ------                 
+
+
+                           ------ Start checks ------                           
+---------------------------- Check1: feature types -----------------------------
+----------------------------------- ontology -----------------------------------
+All feature types in agreement with the Ontology.
+------------------------------------- agat -------------------------------------
+AGAT can deal with all the encountered feature types (3rd column)
+------------------------------ done in 0 seconds -------------------------------
+
+------------------------------ Check2: duplicates ------------------------------
+None found
+------------------------------ done in 0 seconds -------------------------------
+
+-------------------------- Check3: sequential bucket ---------------------------
+Nothing to check as sequential bucket!
+------------------------------ done in 0 seconds -------------------------------
+
+--------------------------- Check4: l2 linked to l3 ----------------------------
+No problem found
+------------------------------ done in 0 seconds -------------------------------
+
+--------------------------- Check5: l1 linked to l2 ----------------------------
+No problem found
+------------------------------ done in 1 seconds -------------------------------
+
+--------------------------- Check6: remove orphan l1 ---------------------------
+We remove only those not supposed to be orphan
+None found
+------------------------------ done in 0 seconds -------------------------------
+
+------------------------- Check7: all level3 locations -------------------------
+------------------------------ done in 9 seconds -------------------------------
+
+------------------------------ Check8: check cds -------------------------------
+No problem found
+------------------------------ done in 1 seconds -------------------------------
+
+----------------------------- Check9: check exons ------------------------------
+No exons created
+No exons locations modified
+No supernumerary exons removed
+No level2 locations modified
+------------------------------ done in 4 seconds -------------------------------
+
+----------------------------- Check10: check utrs ------------------------------
+No UTRs created
+No UTRs locations modified
+No supernumerary UTRs removed
+------------------------------ done in 2 seconds -------------------------------
+
+------------------------ Check11: all level2 locations -------------------------
+No problem found
+------------------------------ done in 7 seconds -------------------------------
+
+------------------------ Check12: all level1 locations -------------------------
+No problem found
+------------------------------ done in 1 seconds -------------------------------
+
+---------------------- Check13: remove identical isoforms ----------------------
+None found
+------------------------------ done in 1 seconds -------------------------------
+                  ------ End checks (done in 26 second) ------                  
+
+
+Parsing Finished
+Compute statistics
+Total sequence length (bp)                   301015024
+--------------------------------------------------------------------------------
+
+------------------------------------ ncrna -------------------------------------
+Number of ncrna_gene                         8901
+Number of ncrna                              10991
+Number of exon                               26512
+Number of intron in exon                     15521
+Number ncrna_gene overlapping                247
+Number of single exon ncrna_gene             4517
+Number of single exon ncrna                  4550
+mean ncrnas per ncrna_gene                   1.2
+mean exons per ncrna                         2.4
+mean introns in exons per ncrna              1.4
+Total ncrna_gene length (bp)                 20901717
+Total ncrna length (bp)                      29818570
+Total exon length (bp)                       9985133
+Total intron length per exon (bp)            19833437
+mean ncrna_gene length (bp)                  2348
+mean ncrna length (bp)                       2712
+mean exon length (bp)                        376
+mean intron in exon length (bp)              1277
+% of genome covered by ncrna_gene            6.9
+% of genome covered by ncrna                 9.9
+% of genome covered by exon                  3.3
+% of genome covered by intron from exon      6.6
+Longest ncrna_gene (bp)                      538805
+Longest ncrna (bp)                           292757
+Longest exon (bp)                            27722
+Longest intron into exon part (bp)           290154
+Shortest ncrna_gene (bp)                     200
+Shortest ncrna (bp)                          200
+Shortest intron into exon part (bp)          20
+
+ncrna have isoforms! Here are the statistics without isoforms shortest isoforms excluded):
+
+Number of ncrna_gene                         8901
+Number of ncrna                              8901
+Number of exon                               17319
+Number of intron in exon                     8418
+Number ncrna_gene overlapping                230
+Number of single exon ncrna_gene             4546
+Number of single exon ncrna                  4546
+mean ncrnas per ncrna_gene                   1.0
+mean exons per ncrna                         1.9
+mean introns in exons per ncrna              0.9
+Total ncrna_gene length (bp)                 20901717
+Total ncrna length (bp)                      18727694
+Total exon length (bp)                       7253230
+Total intron length per exon (bp)            11474464
+mean ncrna_gene length (bp)                  2348
+mean ncrna length (bp)                       2103
+mean exon length (bp)                        418
+mean intron in exon length (bp)              1363
+% of genome covered by ncrna_gene            6.9
+% of genome covered by ncrna                 6.2
+% of genome covered by exon                  2.4
+% of genome covered by intron from exon      3.8
+Longest ncrna_gene (bp)                      538805
+Longest ncrna (bp)                           224115
+Longest exon (bp)                            27722
+Longest intron into exon part (bp)           221458
+Shortest ncrna_gene (bp)                     200
+Shortest ncrna (bp)                          200
+Shortest intron into exon part (bp)          20
+
+---------------------------------- transcript ----------------------------------
+Number of gene                               24828
+Number of transcript                         27873
+Number of cds                                27873
+Number of exon                               153637
+Number of intron                             125764
+Number of start_codon                        27865
+Number of stop_codon                         27861
+Number of exon in cds                        153637
+Number of intron in cds                      125764
+Number of intron in exon                     125764
+Number of intron in intron                   104132
+Number gene overlapping                      66
+Number of single exon gene                   5708
+Number of single exon transcript             6241
+mean transcripts per gene                    1.1
+mean cdss per transcript                     1.0
+mean exons per transcript                    5.5
+mean introns per transcript                  4.5
+mean start_codons per transcript             1.0
+mean stop_codons per transcript              1.0
+mean exons per cds                           5.5
+mean introns in cdss per transcript          4.5
+mean introns in exons per transcript         4.5
+mean introns in introns per transcript       3.7
+Total gene length (bp)                       53008899
+Total transcript length (bp)                 62470682
+Total cds length (bp)                        36170645
+Total exon length (bp)                       36170645
+Total intron length (bp)                     26300037
+Total start_codon length (bp)                83571
+Total stop_codon length (bp)                 83568
+Total intron length per cds (bp)             26300037
+Total intron length per exon (bp)            26300037
+Total intron length per intron (bp)          17015218
+mean gene length (bp)                        2135
+mean transcript length (bp)                  2241
+mean cds length (bp)                         1297
+mean exon length (bp)                        235
+mean intron length (bp)                      209
+mean start_codon length (bp)                 2
+mean stop_codon length (bp)                  2
+mean cds piece length (bp)                   235
+mean intron in cds length (bp)               209
+mean intron in exon length (bp)              209
+mean intron in intron length (bp)            163
+% of genome covered by gene                  17.6
+% of genome covered by transcript            20.8
+% of genome covered by cds                   12.0
+% of genome covered by exon                  12.0
+% of genome covered by intron                8.7
+% of genome covered by start_codon           0.0
+% of genome covered by stop_codon            0.0
+% of genome covered by intron from cds       8.7
+% of genome covered by intron from exon      8.7
+% of genome covered by intron from intron    5.7
+Longest gene (bp)                            490967
+Longest transcript (bp)                      490967
+Longest cds (bp)                             16125
+Longest exon (bp)                            7713
+Longest intron (bp)                          410629
+Longest start_codon (bp)                     3
+Longest stop_codon (bp)                      3
+Longest cds piece (bp)                       7713
+Longest intron into cds part (bp)            410629
+Longest intron into exon part (bp)           410629
+Longest intron into intron part (bp)         7713
+Shortest gene (bp)                           6
+Shortest transcript (bp)                     6
+Shortest cds piece (bp)                      1
+Shortest intron into cds part (bp)           20
+Shortest intron into exon part (bp)          20
+Shortest intron into intron part (bp)        5
+
+transcript have isoforms! Here are the statistics without isoforms shortest isoforms excluded):
+
+Number of gene                               24828
+Number of transcript                         24828
+Number of cds                                24828
+Number of exon                               132073
+Number of intron                             107245
+Number of start_codon                        24820
+Number of stop_codon                         24821
+Number of exon in cds                        132073
+Number of intron in cds                      107245
+Number of intron in exon                     107245
+Number of intron in intron                   88215
+Number gene overlapping                      54
+Number of single exon gene                   5798
+Number of single exon transcript             5798
+mean transcripts per gene                    1.0
+mean cdss per transcript                     1.0
+mean exons per transcript                    5.3
+mean introns per transcript                  4.3
+mean start_codons per transcript             1.0
+mean stop_codons per transcript              1.0
+mean exons per cds                           5.3
+mean introns in cdss per transcript          4.3
+mean introns in exons per transcript         4.3
+mean introns in introns per transcript       3.6
+Total gene length (bp)                       53008899
+Total transcript length (bp)                 51929823
+Total cds length (bp)                        31619100
+Total exon length (bp)                       31619100
+Total intron length (bp)                     20310723
+Total start_codon length (bp)                74439
+Total stop_codon length (bp)                 74454
+Total intron length per cds (bp)             20310723
+Total intron length per exon (bp)            20310723
+Total intron length per intron (bp)          14315764
+mean gene length (bp)                        2135
+mean transcript length (bp)                  2091
+mean cds length (bp)                         1273
+mean exon length (bp)                        239
+mean intron length (bp)                      189
+mean start_codon length (bp)                 2
+mean stop_codon length (bp)                  2
+mean cds piece length (bp)                   239
+mean intron in cds length (bp)               189
+mean intron in exon length (bp)              189
+mean intron in intron length (bp)            162
+% of genome covered by gene                  17.6
+% of genome covered by transcript            17.3
+% of genome covered by cds                   10.5
+% of genome covered by exon                  10.5
+% of genome covered by intron                6.7
+% of genome covered by start_codon           0.0
+% of genome covered by stop_codon            0.0
+% of genome covered by intron from cds       6.7
+% of genome covered by intron from exon      6.7
+% of genome covered by intron from intron    4.8
+Longest gene (bp)                            490967
+Longest transcript (bp)                      490967
+Longest cds (bp)                             16125
+Longest exon (bp)                            7713
+Longest intron (bp)                          410629
+Longest start_codon (bp)                     3
+Longest stop_codon (bp)                      3
+Longest cds piece (bp)                       7713
+Longest intron into cds part (bp)            410629
+Longest intron into exon part (bp)           410629
+Longest intron into intron part (bp)         7713
+Shortest gene (bp)                           6
+Shortest transcript (bp)                     6
+Shortest cds piece (bp)                      1
+Shortest intron into cds part (bp)           20
+Shortest intron into exon part (bp)          20
+Shortest intron into intron part (bp)        5
+
+Bye Bye.

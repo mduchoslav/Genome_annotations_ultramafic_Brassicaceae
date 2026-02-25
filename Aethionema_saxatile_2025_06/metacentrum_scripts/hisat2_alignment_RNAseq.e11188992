@@ -1,0 +1,194 @@
+Loading samtools/1.14-intel-19.0.4-nlgg3wv
+  Loading requirement: bzip2/1.0.8-intel-19.0.4-m3g3uba
+    krb5/1.16.1-intel-19.0.4-vwr4xry libssh/0.8.5-intel-19.0.4-nzv5x46
+    libssh2/1.8.0-intel-19.0.4-aep2y4j python/3.7.7-intel-19.0.4-mgiwa7z
+    py-cython/0.29.16-intel-19.0.4-r7ip4qx nghttp2/1.26.0-intel-19.0.4-h2wnklc
+    openssl/1.1.1g-intel-19.0.4-pchs7lg zlib/1.2.11-intel-19.0.4-73hpask
+    curl/7.68.0-intel-19.0.4-bsdbasn xz/5.2.5-intel-19.0.4-refcw6s
+    htslib/1.14-intel-19.0.4-3fnio77 ncurses/6.2-intel-19.0.4-hbeh6ew
+    perl/5.30.3-intel-19.0.4-ww4zelp
+Settings:
+  Output files: "hisat2_index.*.ht2"
+  Line rate: 6 (line is 64 bytes)
+  Lines per side: 1 (side is 64 bytes)
+  Offset rate: 4 (one in 16)
+  FTable chars: 10
+  Strings: unpacked
+  Local offset rate: 3 (one in 8)
+  Local fTable chars: 6
+  Local sequence length: 57344
+  Local sequence overlap between two consecutive indexes: 1024
+  Endianness: little
+  Actual local endianness: little
+  Sanity checking: disabled
+  Assertions: disabled
+  Random seed: 0
+  Sizeofs: void*:8, int:4, long:8, size_t:8
+Input files DNA, FASTA:
+  Aethionema_saxatile_CUNI_V1_2025_05_masked.fa
+Reading reference sizes
+  Time reading reference sizes: 00:00:01
+Calculating joined length
+Writing header
+Reserving space for joined string
+Joining reference sequences
+  Time to join reference sequences: 00:00:00
+  Time to read SNPs and splice sites: 00:00:00
+Using parameters --bmax 51427465 --dcv 1024
+  Doing ahead-of-time memory usage test
+  Passed!  Constructing with these parameters: --bmax 51427465 --dcv 1024
+Constructing suffix-array element generator
+Converting suffix-array elements to index image
+Allocating ftab, absorbFtab
+Entering GFM loop
+Exited GFM loop
+fchr[A]: 0
+fchr[C]: 87765927
+fchr[G]: 137358650
+fchr[T]: 187321508
+fchr[$]: 274279812
+Exiting GFM::buildToDisk()
+Returning from initFromVector
+Wrote 95626251 bytes to primary GFM file: hisat2_index.1.ht2
+Wrote 68569960 bytes to secondary GFM file: hisat2_index.2.ht2
+Re-opening _in1 and _in2 as input streams
+Returning from GFM constructor
+Returning from initFromVector
+Wrote 121048899 bytes to primary GFM file: hisat2_index.5.ht2
+Wrote 69803310 bytes to secondary GFM file: hisat2_index.6.ht2
+Re-opening _in5 and _in5 as input streams
+Returning from HierEbwt constructor
+Headers:
+    len: 274279812
+    gbwtLen: 274279813
+    nodes: 274279813
+    sz: 68569953
+    gbwtSz: 68569954
+    lineRate: 6
+    offRate: 4
+    offMask: 0xfffffff0
+    ftabChars: 10
+    eftabLen: 0
+    eftabSz: 0
+    ftabLen: 1048577
+    ftabSz: 4194308
+    offsLen: 17142489
+    offsSz: 68569956
+    lineSz: 64
+    sideSz: 64
+    sideGbwtSz: 48
+    sideGbwtLen: 192
+    numSides: 1428541
+    numLines: 1428541
+    gbwtTotLen: 91426624
+    gbwtTotSz: 91426624
+    reverse: 0
+    linearFM: Yes
+Total time for call to driver() for forward index: 00:00:58
+Time loading forward index: 00:00:01
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:02:31
+18618283 reads; of these:
+  18618283 (100.00%) were paired; of these:
+    4419152 (23.74%) aligned concordantly 0 times
+    12409818 (66.65%) aligned concordantly exactly 1 time
+    1789313 (9.61%) aligned concordantly >1 times
+    ----
+    4419152 pairs aligned concordantly 0 times; of these:
+      108929 (2.46%) aligned discordantly 1 time
+    ----
+    4310223 pairs aligned 0 times concordantly or discordantly; of these:
+      8620446 mates make up the pairs; of these:
+        8126662 (94.27%) aligned 0 times
+        411869 (4.78%) aligned exactly 1 time
+        81915 (0.95%) aligned >1 times
+78.18% overall alignment rate
+Time searching: 00:02:31
+Overall time: 00:02:32
+[bam_sort_core] merging from 16 files and 16 in-memory blocks...
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:02:36
+18770292 reads; of these:
+  18770292 (100.00%) were paired; of these:
+    4308682 (22.95%) aligned concordantly 0 times
+    13906675 (74.09%) aligned concordantly exactly 1 time
+    554935 (2.96%) aligned concordantly >1 times
+    ----
+    4308682 pairs aligned concordantly 0 times; of these:
+      413083 (9.59%) aligned discordantly 1 time
+    ----
+    3895599 pairs aligned 0 times concordantly or discordantly; of these:
+      7791198 mates make up the pairs; of these:
+        4884588 (62.69%) aligned 0 times
+        2590799 (33.25%) aligned exactly 1 time
+        315811 (4.05%) aligned >1 times
+86.99% overall alignment rate
+Time searching: 00:02:36
+Overall time: 00:02:36
+[bam_sort_core] merging from 16 files and 16 in-memory blocks...
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:02:55
+19943575 reads; of these:
+  19943575 (100.00%) were paired; of these:
+    1782683 (8.94%) aligned concordantly 0 times
+    17728627 (88.89%) aligned concordantly exactly 1 time
+    432265 (2.17%) aligned concordantly >1 times
+    ----
+    1782683 pairs aligned concordantly 0 times; of these:
+      279893 (15.70%) aligned discordantly 1 time
+    ----
+    1502790 pairs aligned 0 times concordantly or discordantly; of these:
+      3005580 mates make up the pairs; of these:
+        1872819 (62.31%) aligned 0 times
+        1094063 (36.40%) aligned exactly 1 time
+        38698 (1.29%) aligned >1 times
+95.30% overall alignment rate
+Time searching: 00:02:55
+Overall time: 00:02:55
+[bam_sort_core] merging from 16 files and 16 in-memory blocks...
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:03:01
+20754386 reads; of these:
+  20754386 (100.00%) were paired; of these:
+    1842447 (8.88%) aligned concordantly 0 times
+    18433102 (88.82%) aligned concordantly exactly 1 time
+    478837 (2.31%) aligned concordantly >1 times
+    ----
+    1842447 pairs aligned concordantly 0 times; of these:
+      410615 (22.29%) aligned discordantly 1 time
+    ----
+    1431832 pairs aligned 0 times concordantly or discordantly; of these:
+      2863664 mates make up the pairs; of these:
+        1568644 (54.78%) aligned 0 times
+        1234633 (43.11%) aligned exactly 1 time
+        60387 (2.11%) aligned >1 times
+96.22% overall alignment rate
+Time searching: 00:03:01
+Overall time: 00:03:01
+[bam_sort_core] merging from 16 files and 16 in-memory blocks...
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:12:59
+91681930 reads; of these:
+  91681930 (100.00%) were paired; of these:
+    27831775 (30.36%) aligned concordantly 0 times
+    60022344 (65.47%) aligned concordantly exactly 1 time
+    3827811 (4.18%) aligned concordantly >1 times
+    ----
+    27831775 pairs aligned concordantly 0 times; of these:
+      486352 (1.75%) aligned discordantly 1 time
+    ----
+    27345423 pairs aligned 0 times concordantly or discordantly; of these:
+      54690846 mates make up the pairs; of these:
+        49125007 (89.82%) aligned 0 times
+        5134350 (9.39%) aligned exactly 1 time
+        431489 (0.79%) aligned >1 times
+73.21% overall alignment rate
+Time searching: 00:13:00
+Overall time: 00:13:00
+[bam_sort_core] merging from 96 files and 16 in-memory blocks...
+Cgroup mem limit exceeded: 
+Cgroup memsw limit exceeded: 

@@ -1,0 +1,13 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	XO467_YL_1	/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/1_raw_reads/fastqc/XO467_YL_1_fastqc.zip
+FastQC	all_sections	XO467_R_1	/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/1_raw_reads/fastqc/XO467_R_1_fastqc.zip
+FastQC	all_sections	XO467_R_2	/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/1_raw_reads/fastqc/XO467_R_2_fastqc.zip
+FastQC	all_sections	XO467R_Macrogen_2	/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/1_raw_reads/fastqc/XO467R_Macrogen_2_fastqc.zip
+FastQC	all_sections	XO467_OL_1	/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/1_raw_reads/fastqc/XO467_OL_1_fastqc.zip
+FastQC	all_sections	XO772_F_MKRN250017683-1A_22VTVNLT4_L4_2	/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/1_raw_reads/fastqc/XO772_F_MKRN250017683-1A_22VTVNLT4_L4_2_fastqc.zip
+FastQC	all_sections	XO467R_Macrogen_1	/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/1_raw_reads/fastqc/XO467R_Macrogen_1_fastqc.zip
+FastQC	all_sections	XO467_OL_2	/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/1_raw_reads/fastqc/XO467_OL_2_fastqc.zip
+FastQC	all_sections	XO467_S_2	/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/1_raw_reads/fastqc/XO467_S_2_fastqc.zip
+FastQC	all_sections	XO772_F_MKRN250017683-1A_22VTVNLT4_L4_1	/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/1_raw_reads/fastqc/XO772_F_MKRN250017683-1A_22VTVNLT4_L4_1_fastqc.zip
+FastQC	all_sections	XO467_YL_2	/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/1_raw_reads/fastqc/XO467_YL_2_fastqc.zip
+FastQC	all_sections	XO467_S_1	/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/1_raw_reads/fastqc/XO467_S_1_fastqc.zip

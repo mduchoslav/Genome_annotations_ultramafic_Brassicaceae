@@ -1,0 +1,263 @@
+/cvmfs/software.metacentrum.cz/spack1/software/hisat2/linux-debian10-x86_64/2.1.0-intel-itifoz/bin/hisat2-align-s version 2.1.0
+64-bit
+Built on metasw11.grid.cesnet.cz
+Thu Oct 27 11:46:07 CEST 2022
+Compiler: gcc version 8.3.0 (Debian 8.3.0-6) 
+Options: -O3 -m64 -msse2 -funroll-loops -g3 -DPOPCNT_CAPABILITY
+Sizeof {int, long, long long, void*, size_t, off_t}: {4, 8, 8, 8, 8, 8}
+samtools 1.14
+Using htslib 1.14
+Copyright (C) 2021 Genome Research Ltd.
+
+Samtools compilation details:
+    Features:       build=configure curses=yes 
+    CC:             /cvmfs/software.metacentrum.cz/software_basics/spack/0.15/lib/spack/env/intel/icc
+    CPPFLAGS:       
+    CFLAGS:         -Wall -g -O2
+    LDFLAGS:        
+    HTSDIR:         
+    LIBS:           
+    CURSES_LIB:     -lncursesw -ltinfow
+
+HTSlib compilation details:
+    Features:       build=configure plugins=no libcurl=yes S3=yes GCS=yes libdeflate=no lzma=yes bzip2=yes htscodecs=1.1.1-1-ged325d7
+    CC:             /cvmfs/software.metacentrum.cz/software_basics/spack/0.15/lib/spack/env/intel/icc
+    CPPFLAGS:       
+    CFLAGS:         -Wall -g -O2 -fvisibility=hidden
+    LDFLAGS:        -fvisibility=hidden 
+
+HTSlib URL scheme handlers present:
+    built-in:	 preload, data, file
+    S3 Multipart Upload:	 s3w, s3w+https, s3w+http
+    Amazon S3:	 s3+https, s3+http, s3
+    Google Cloud Storage:	 gs+http, gs+https, gs
+    libcurl:	 imaps, pop3, http, smb, gopher, sftp, ftps, imap, smtp, smtps, rtsp, scp, ftp, telnet, https, smbs, tftp, pop3s, dict
+    crypt4gh-needed:	 crypt4gh
+    mem:	 mem
+[2025-06-06 08:51:05] Modules loaded
+'/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/genome_assembly/Cardamine_glauca_CUNI_V1_2024_10_masked.fa' -> '/scratch.ssd/duchmil/job_11116576.pbs-m1/Cardamine_glauca_CUNI_V1_2024_10_masked.fa'
+'/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/2_trimmed_reads/XC174YL_Macrogen_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_11116576.pbs-m1/XC174YL_Macrogen_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/2_trimmed_reads/XC174YL_Macrogen_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_11116576.pbs-m1/XC174YL_Macrogen_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/2_trimmed_reads/XC174_OL_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_11116576.pbs-m1/XC174_OL_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/2_trimmed_reads/XC174_OL_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_11116576.pbs-m1/XC174_OL_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/2_trimmed_reads/XC174_R_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_11116576.pbs-m1/XC174_R_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/2_trimmed_reads/XC174_R_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_11116576.pbs-m1/XC174_R_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/2_trimmed_reads/XC174_S_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_11116576.pbs-m1/XC174_S_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/2_trimmed_reads/XC174_S_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_11116576.pbs-m1/XC174_S_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/2_trimmed_reads/XC174_YL_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_11116576.pbs-m1/XC174_YL_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/2_trimmed_reads/XC174_YL_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_11116576.pbs-m1/XC174_YL_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/2_trimmed_reads/XC618_FB_MKRN250017681-1A_22VTVNLT4_L6_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_11116576.pbs-m1/XC618_FB_MKRN250017681-1A_22VTVNLT4_L6_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/2_trimmed_reads/XC618_FB_MKRN250017681-1A_22VTVNLT4_L6_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_11116576.pbs-m1/XC618_FB_MKRN250017681-1A_22VTVNLT4_L6_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/2_trimmed_reads/XC618_F_MKRN250017680-1A_22VTVNLT4_L4_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_11116576.pbs-m1/XC618_F_MKRN250017680-1A_22VTVNLT4_L4_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/2_trimmed_reads/XC618_F_MKRN250017680-1A_22VTVNLT4_L4_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_11116576.pbs-m1/XC618_F_MKRN250017680-1A_22VTVNLT4_L4_2_val_2.fq.gz'
+[2025-06-06 09:23:07] Input files copied.
+Building DifferenceCoverSample
+  Building sPrime
+  Building sPrimeOrder
+  V-Sorting samples
+  V-Sorting samples time: 00:00:02
+  Allocating rank array
+  Ranking v-sort output
+  Ranking v-sort output time: 00:00:01
+  Invoking Larsson-Sadakane on ranks
+  Invoking Larsson-Sadakane on ranks time: 00:00:02
+  Sanity-checking and returning
+Building samples
+Reserving space for 12 sample suffixes
+Generating random suffixes
+QSorting 12 sample offsets, eliminating duplicates
+QSorting sample offsets, eliminating duplicates time: 00:00:00
+Multikey QSorting 12 samples
+  (Using difference cover)
+  Multikey QSorting samples time: 00:00:00
+Calculating bucket sizes
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Avg bucket size: 3.76266e+07 (target: 56439866)
+Getting block 1 of 8
+  Reserving size (56439867) for bucket 1
+Getting block 2 of 8
+  Reserving size (56439867) for bucket 2
+Getting block 3 of 8
+  Reserving size (56439867) for bucket 3
+  Calculating Z arrays for bucket 1
+Getting block 4 of 8
+  Reserving size (56439867) for bucket 4
+  Calculating Z arrays for bucket 2
+  Calculating Z arrays for bucket 3
+  Entering block accumulator loop for bucket 1:
+  Entering block accumulator loop for bucket 2:
+  Calculating Z arrays for bucket 4
+Getting block 5 of 8
+  Reserving size (56439867) for bucket 5
+  Entering block accumulator loop for bucket 3:
+  Entering block accumulator loop for bucket 4:
+Getting block 6 of 8
+  Reserving size (56439867) for bucket 6
+  Calculating Z arrays for bucket 5
+  Calculating Z arrays for bucket 6
+Getting block 7 of 8
+  Reserving size (56439867) for bucket 7
+Getting block 8 of 8
+  Reserving size (56439867) for bucket 8
+  Entering block accumulator loop for bucket 5:
+  Entering block accumulator loop for bucket 6:
+  Calculating Z arrays for bucket 7
+  Calculating Z arrays for bucket 8
+  Entering block accumulator loop for bucket 7:
+  Entering block accumulator loop for bucket 8:
+  bucket 8: 10%
+  bucket 1: 10%
+  bucket 8: 20%
+  bucket 2: 10%
+  bucket 6: 10%
+  bucket 7: 10%
+  bucket 4: 10%
+  bucket 8: 30%
+  bucket 1: 20%
+  bucket 8: 40%
+  bucket 5: 10%
+  bucket 3: 10%
+  bucket 2: 20%
+  bucket 8: 50%
+  bucket 7: 20%
+  bucket 6: 20%
+  bucket 8: 60%
+  bucket 1: 30%
+  bucket 4: 20%
+  bucket 8: 70%
+  bucket 2: 30%
+  bucket 8: 80%
+  bucket 7: 30%
+  bucket 6: 30%
+  bucket 1: 40%
+  bucket 8: 90%
+  bucket 2: 40%
+  bucket 8: 100%
+  Sorting block of length 12301924 for bucket 8
+  (Using difference cover)
+  bucket 5: 20%
+  bucket 4: 30%
+  bucket 7: 40%
+  bucket 1: 50%
+  bucket 3: 20%
+  bucket 6: 40%
+  bucket 2: 50%
+  bucket 1: 60%
+  bucket 7: 50%
+  bucket 6: 50%
+  bucket 2: 60%
+  bucket 1: 70%
+  bucket 4: 40%
+  bucket 7: 60%
+  bucket 5: 30%
+  bucket 1: 80%
+  bucket 2: 70%
+  bucket 3: 30%
+  bucket 7: 70%
+  bucket 6: 60%
+  bucket 1: 90%
+  bucket 2: 80%
+  bucket 4: 50%
+  bucket 7: 80%
+  bucket 5: 40%
+  bucket 6: 70%
+  bucket 1: 100%
+  Sorting block of length 51626823 for bucket 1
+  (Using difference cover)
+  bucket 2: 90%
+  bucket 7: 90%
+  bucket 2: 100%
+  Sorting block of length 25289603 for bucket 2
+  (Using difference cover)
+  bucket 3: 40%
+  bucket 4: 60%
+  bucket 6: 80%
+  bucket 7: 100%
+  Sorting block of length 47172551 for bucket 7
+  (Using difference cover)
+  bucket 5: 50%
+  bucket 6: 90%
+  bucket 3: 50%
+  Sorting block time: 00:00:04
+Returning block of 12301925 for bucket 8
+  bucket 4: 70%
+  bucket 6: 100%
+  Sorting block of length 23512590 for bucket 6
+  (Using difference cover)
+  bucket 5: 60%
+  bucket 3: 60%
+  bucket 5: 70%
+  bucket 4: 80%
+  bucket 5: 80%
+  bucket 3: 70%
+  bucket 4: 90%
+  bucket 5: 90%
+  bucket 5: 100%
+  Sorting block of length 49441000 for bucket 5
+  (Using difference cover)
+  bucket 3: 80%
+  bucket 4: 100%
+  Sorting block of length 45361809 for bucket 4
+  (Using difference cover)
+  bucket 3: 90%
+  bucket 3: 100%
+  Sorting block of length 46306317 for bucket 3
+  (Using difference cover)
+  Sorting block time: 00:00:09
+Returning block of 25289604 for bucket 2
+  Sorting block time: 00:00:08
+Returning block of 23512591 for bucket 6
+  Sorting block time: 00:00:17
+Returning block of 47172552 for bucket 7
+  Sorting block time: 00:00:18
+Returning block of 51626824 for bucket 1
+  Sorting block time: 00:00:18
+Returning block of 46306318 for bucket 3
+  Sorting block time: 00:00:18
+Returning block of 45361810 for bucket 4
+  Sorting block time: 00:00:20
+Returning block of 49441001 for bucket 5
+[2025-06-06 09:24:14] Hisat2 index done.
+[2025-06-06 09:26:49] Alignment for XC174YL_Macrogen done.
+[2025-06-06 09:28:11] Samtools conversion to bam, sorting and indexing for XC174YL_Macrogen done.
+'XC174YL_Macrogen_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/XC174YL_Macrogen_trimmed_sorted.bam'
+'XC174YL_Macrogen_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/XC174YL_Macrogen_trimmed_sorted.bam.bai'
+[2025-06-06 09:28:16] Copying output files for XC174YL_Macrogen done.
+[2025-06-06 09:31:21] Alignment for XC174_OL done.
+[2025-06-06 09:32:56] Samtools conversion to bam, sorting and indexing for XC174_OL done.
+'XC174_OL_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/XC174_OL_trimmed_sorted.bam'
+'XC174_OL_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/XC174_OL_trimmed_sorted.bam.bai'
+[2025-06-06 09:33:01] Copying output files for XC174_OL done.
+[2025-06-06 09:35:27] Alignment for XC174_R done.
+[2025-06-06 09:36:48] Samtools conversion to bam, sorting and indexing for XC174_R done.
+'XC174_R_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/XC174_R_trimmed_sorted.bam'
+'XC174_R_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/XC174_R_trimmed_sorted.bam.bai'
+[2025-06-06 09:36:52] Copying output files for XC174_R done.
+[2025-06-06 09:39:26] Alignment for XC174_S done.
+[2025-06-06 09:40:50] Samtools conversion to bam, sorting and indexing for XC174_S done.
+'XC174_S_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/XC174_S_trimmed_sorted.bam'
+'XC174_S_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/XC174_S_trimmed_sorted.bam.bai'
+[2025-06-06 09:40:54] Copying output files for XC174_S done.
+[2025-06-06 09:43:40] Alignment for XC174_YL done.
+[2025-06-06 09:45:12] Samtools conversion to bam, sorting and indexing for XC174_YL done.
+'XC174_YL_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/XC174_YL_trimmed_sorted.bam'
+'XC174_YL_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/XC174_YL_trimmed_sorted.bam.bai'
+[2025-06-06 09:45:16] Copying output files for XC174_YL done.
+[2025-06-06 09:49:21] Alignment for XC618_FB_MKRN250017681-1A_22VTVNLT4_L6 done.
+[2025-06-06 09:51:18] Samtools conversion to bam, sorting and indexing for XC618_FB_MKRN250017681-1A_22VTVNLT4_L6 done.
+'XC618_FB_MKRN250017681-1A_22VTVNLT4_L6_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/XC618_FB_MKRN250017681-1A_22VTVNLT4_L6_trimmed_sorted.bam'
+'XC618_FB_MKRN250017681-1A_22VTVNLT4_L6_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/XC618_FB_MKRN250017681-1A_22VTVNLT4_L6_trimmed_sorted.bam.bai'
+[2025-06-06 09:51:23] Copying output files for XC618_FB_MKRN250017681-1A_22VTVNLT4_L6 done.
+[2025-06-06 09:56:57] Alignment for XC618_F_MKRN250017680-1A_22VTVNLT4_L4 done.
+[2025-06-06 09:59:33] Samtools conversion to bam, sorting and indexing for XC618_F_MKRN250017680-1A_22VTVNLT4_L4 done.
+'XC618_F_MKRN250017680-1A_22VTVNLT4_L4_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/XC618_F_MKRN250017680-1A_22VTVNLT4_L4_trimmed_sorted.bam'
+'XC618_F_MKRN250017680-1A_22VTVNLT4_L4_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/XC618_F_MKRN250017680-1A_22VTVNLT4_L4_trimmed_sorted.bam.bai'
+[2025-06-06 09:59:39] Copying output files for XC618_F_MKRN250017680-1A_22VTVNLT4_L4 done.
+'RNAseq_trimmed_merged.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/RNAseq_trimmed_merged.bam'
+'RNAseq_trimmed_merged.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/3_aligned_reads/RNAseq_trimmed_merged.bam.bai'
+[2025-06-06 10:06:14] Merging of bams done.
+
+**********************************************************************************************************
+
+The SCRATCHes have been SUCCESSFULLY cleaned...

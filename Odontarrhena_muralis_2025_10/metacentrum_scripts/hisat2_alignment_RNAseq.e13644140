@@ -1,0 +1,213 @@
+Loading samtools/1.14-intel-19.0.4-nlgg3wv
+  Loading requirement: bzip2/1.0.8-intel-19.0.4-m3g3uba
+    krb5/1.16.1-intel-19.0.4-vwr4xry libssh/0.8.5-intel-19.0.4-nzv5x46
+    libssh2/1.8.0-intel-19.0.4-aep2y4j python/3.7.7-intel-19.0.4-mgiwa7z
+    py-cython/0.29.16-intel-19.0.4-r7ip4qx nghttp2/1.26.0-intel-19.0.4-h2wnklc
+    openssl/1.1.1g-intel-19.0.4-pchs7lg zlib/1.2.11-intel-19.0.4-73hpask
+    curl/7.68.0-intel-19.0.4-bsdbasn xz/5.2.5-intel-19.0.4-refcw6s
+    htslib/1.14-intel-19.0.4-3fnio77 ncurses/6.2-intel-19.0.4-hbeh6ew
+    perl/5.30.3-intel-19.0.4-ww4zelp
+Settings:
+  Output files: "hisat2_index.*.ht2"
+  Line rate: 6 (line is 64 bytes)
+  Lines per side: 1 (side is 64 bytes)
+  Offset rate: 4 (one in 16)
+  FTable chars: 10
+  Strings: unpacked
+  Local offset rate: 3 (one in 8)
+  Local fTable chars: 6
+  Local sequence length: 57344
+  Local sequence overlap between two consecutive indexes: 1024
+  Endianness: little
+  Actual local endianness: little
+  Sanity checking: disabled
+  Assertions: disabled
+  Random seed: 0
+  Sizeofs: void*:8, int:4, long:8, size_t:8
+Input files DNA, FASTA:
+  Odontarrhena_muralis_CUNI_V1_2025_05_masked.fa
+Reading reference sizes
+  Time reading reference sizes: 00:00:01
+Calculating joined length
+Writing header
+Reserving space for joined string
+Joining reference sequences
+  Time to join reference sequences: 00:00:00
+  Time to read SNPs and splice sites: 00:00:00
+Using parameters --bmax 46536405 --dcv 1024
+  Doing ahead-of-time memory usage test
+  Passed!  Constructing with these parameters: --bmax 46536405 --dcv 1024
+Constructing suffix-array element generator
+Converting suffix-array elements to index image
+Allocating ftab, absorbFtab
+Entering GFM loop
+Exited GFM loop
+fchr[A]: 0
+fchr[C]: 77462863
+fchr[G]: 124149184
+fchr[T]: 170784883
+fchr[$]: 248194162
+Exiting GFM::buildToDisk()
+Returning from initFromVector
+Wrote 86927700 bytes to primary GFM file: hisat2_index.1.ht2
+Wrote 62048548 bytes to secondary GFM file: hisat2_index.2.ht2
+Re-opening _in1 and _in2 as input streams
+Returning from GFM constructor
+Returning from initFromVector
+Wrote 109134279 bytes to primary GFM file: hisat2_index.5.ht2
+Wrote 63178314 bytes to secondary GFM file: hisat2_index.6.ht2
+Re-opening _in5 and _in5 as input streams
+Returning from HierEbwt constructor
+Headers:
+    len: 248194162
+    gbwtLen: 248194163
+    nodes: 248194163
+    sz: 62048541
+    gbwtSz: 62048541
+    lineRate: 6
+    offRate: 4
+    offMask: 0xfffffff0
+    ftabChars: 10
+    eftabLen: 0
+    eftabSz: 0
+    ftabLen: 1048577
+    ftabSz: 4194308
+    offsLen: 15512136
+    offsSz: 62048544
+    lineSz: 64
+    sideSz: 64
+    sideGbwtSz: 48
+    sideGbwtLen: 192
+    numSides: 1292678
+    numLines: 1292678
+    gbwtTotLen: 82731392
+    gbwtTotSz: 82731392
+    reverse: 0
+    linearFM: Yes
+Total time for call to driver() for forward index: 00:01:11
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:02:21
+16618381 reads; of these:
+  16618381 (100.00%) were paired; of these:
+    3801536 (22.88%) aligned concordantly 0 times
+    12357745 (74.36%) aligned concordantly exactly 1 time
+    459100 (2.76%) aligned concordantly >1 times
+    ----
+    3801536 pairs aligned concordantly 0 times; of these:
+      192007 (5.05%) aligned discordantly 1 time
+    ----
+    3609529 pairs aligned 0 times concordantly or discordantly; of these:
+      7219058 mates make up the pairs; of these:
+        6102747 (84.54%) aligned 0 times
+        1060517 (14.69%) aligned exactly 1 time
+        55794 (0.77%) aligned >1 times
+81.64% overall alignment rate
+Time searching: 00:02:21
+Overall time: 00:02:21
+[bam_sort_core] merging from 16 files and 16 in-memory blocks...
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:03:05
+21605194 reads; of these:
+  21605194 (100.00%) were paired; of these:
+    3338537 (15.45%) aligned concordantly 0 times
+    17696728 (81.91%) aligned concordantly exactly 1 time
+    569929 (2.64%) aligned concordantly >1 times
+    ----
+    3338537 pairs aligned concordantly 0 times; of these:
+      198135 (5.93%) aligned discordantly 1 time
+    ----
+    3140402 pairs aligned 0 times concordantly or discordantly; of these:
+      6280804 mates make up the pairs; of these:
+        3956163 (62.99%) aligned 0 times
+        2205995 (35.12%) aligned exactly 1 time
+        118646 (1.89%) aligned >1 times
+90.84% overall alignment rate
+Time searching: 00:03:05
+Overall time: 00:03:05
+[bam_sort_core] merging from 16 files and 16 in-memory blocks...
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:02:43
+18756121 reads; of these:
+  18756121 (100.00%) were paired; of these:
+    2797602 (14.92%) aligned concordantly 0 times
+    15449886 (82.37%) aligned concordantly exactly 1 time
+    508633 (2.71%) aligned concordantly >1 times
+    ----
+    2797602 pairs aligned concordantly 0 times; of these:
+      96635 (3.45%) aligned discordantly 1 time
+    ----
+    2700967 pairs aligned 0 times concordantly or discordantly; of these:
+      5401934 mates make up the pairs; of these:
+        3598811 (66.62%) aligned 0 times
+        1722109 (31.88%) aligned exactly 1 time
+        81014 (1.50%) aligned >1 times
+90.41% overall alignment rate
+Time searching: 00:02:43
+Overall time: 00:02:43
+[bam_sort_core] merging from 16 files and 16 in-memory blocks...
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:02:48
+19411064 reads; of these:
+  19411064 (100.00%) were paired; of these:
+    2769810 (14.27%) aligned concordantly 0 times
+    16155901 (83.23%) aligned concordantly exactly 1 time
+    485353 (2.50%) aligned concordantly >1 times
+    ----
+    2769810 pairs aligned concordantly 0 times; of these:
+      132723 (4.79%) aligned discordantly 1 time
+    ----
+    2637087 pairs aligned 0 times concordantly or discordantly; of these:
+      5274174 mates make up the pairs; of these:
+        3326236 (63.07%) aligned 0 times
+        1872102 (35.50%) aligned exactly 1 time
+        75836 (1.44%) aligned >1 times
+91.43% overall alignment rate
+Time searching: 00:02:49
+Overall time: 00:02:49
+[bam_sort_core] merging from 16 files and 16 in-memory blocks...
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:02:43
+19005912 reads; of these:
+  19005912 (100.00%) were paired; of these:
+    2602491 (13.69%) aligned concordantly 0 times
+    15892198 (83.62%) aligned concordantly exactly 1 time
+    511223 (2.69%) aligned concordantly >1 times
+    ----
+    2602491 pairs aligned concordantly 0 times; of these:
+      83543 (3.21%) aligned discordantly 1 time
+    ----
+    2518948 pairs aligned 0 times concordantly or discordantly; of these:
+      5037896 mates make up the pairs; of these:
+        3275689 (65.02%) aligned 0 times
+        1681754 (33.38%) aligned exactly 1 time
+        80453 (1.60%) aligned >1 times
+91.38% overall alignment rate
+Time searching: 00:02:43
+Overall time: 00:02:43
+[bam_sort_core] merging from 16 files and 16 in-memory blocks...
+Time loading forward index: 00:00:00
+Time loading reference: 00:00:00
+Multiseed full-index search: 00:05:06
+35689676 reads; of these:
+  35689676 (100.00%) were paired; of these:
+    13288979 (37.23%) aligned concordantly 0 times
+    21453231 (60.11%) aligned concordantly exactly 1 time
+    947466 (2.65%) aligned concordantly >1 times
+    ----
+    13288979 pairs aligned concordantly 0 times; of these:
+      265102 (1.99%) aligned discordantly 1 time
+    ----
+    13023877 pairs aligned 0 times concordantly or discordantly; of these:
+      26047754 mates make up the pairs; of these:
+        20142255 (77.33%) aligned 0 times
+        5670181 (21.77%) aligned exactly 1 time
+        235318 (0.90%) aligned >1 times
+71.78% overall alignment rate
+Time searching: 00:05:06
+Overall time: 00:05:06
+[bam_sort_core] merging from 32 files and 16 in-memory blocks...

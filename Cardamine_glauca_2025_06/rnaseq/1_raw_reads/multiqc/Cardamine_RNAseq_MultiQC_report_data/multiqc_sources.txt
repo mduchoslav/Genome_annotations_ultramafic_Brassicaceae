@@ -1,0 +1,15 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	XC174_YL_2	/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/fastqc/XC174_YL_2_fastqc.zip
+FastQC	all_sections	XC174_YL_1	/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/fastqc/XC174_YL_1_fastqc.zip
+FastQC	all_sections	XC618_F_MKRN250017680-1A_22VTVNLT4_L4_2	/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/fastqc/XC618_F_MKRN250017680-1A_22VTVNLT4_L4_2_fastqc.zip
+FastQC	all_sections	XC174YL_Macrogen_1	/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/fastqc/XC174YL_Macrogen_1_fastqc.zip
+FastQC	all_sections	XC174_R_2	/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/fastqc/XC174_R_2_fastqc.zip
+FastQC	all_sections	XC174_S_2	/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/fastqc/XC174_S_2_fastqc.zip
+FastQC	all_sections	XC174_OL_2	/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/fastqc/XC174_OL_2_fastqc.zip
+FastQC	all_sections	XC618_FB_MKRN250017681-1A_22VTVNLT4_L6_1	/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/fastqc/XC618_FB_MKRN250017681-1A_22VTVNLT4_L6_1_fastqc.zip
+FastQC	all_sections	XC174_OL_1	/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/fastqc/XC174_OL_1_fastqc.zip
+FastQC	all_sections	XC174_S_1	/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/fastqc/XC174_S_1_fastqc.zip
+FastQC	all_sections	XC618_FB_MKRN250017681-1A_22VTVNLT4_L6_2	/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/fastqc/XC618_FB_MKRN250017681-1A_22VTVNLT4_L6_2_fastqc.zip
+FastQC	all_sections	XC174YL_Macrogen_2	/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/fastqc/XC174YL_Macrogen_2_fastqc.zip
+FastQC	all_sections	XC174_R_1	/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/fastqc/XC174_R_1_fastqc.zip
+FastQC	all_sections	XC618_F_MKRN250017680-1A_22VTVNLT4_L4_1	/storage/brno12-cerit/home/duchmil/annotations/Cardamine_glauca_2025_06/rnaseq/1_raw_reads/fastqc/XC618_F_MKRN250017680-1A_22VTVNLT4_L4_1_fastqc.zip

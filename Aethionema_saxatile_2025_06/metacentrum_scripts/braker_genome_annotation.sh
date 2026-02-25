@@ -1,0 +1,46 @@
+### Script for Metacentrum
+
+#PBS -N braker_genome_annotation
+#PBS -l select=1:ncpus=8:mem=96gb:scratch_local=1000gb
+#PBS -l walltime=24:00:00 
+#PBS -m ae
+
+# define a DATADIR variable: directory where the input files are taken from and where output will be copied to
+DATADIR=/storage/brno12-cerit/home/duchmil/annotations/Aethionema_saxatile_2025_06
+# Name of genome assembly
+genome_assembly="Aethionema_saxatile_CUNI_V1_2025_05_masked.fa"
+
+# append a line to a file "jobs_info.txt" containing the ID of the job, the hostname of node it is run on and the path to a scratch directory
+# this information helps to find a scratch directory in case the job fails and you need to remove the scratch directory manually 
+echo "$PBS_JOBID is running on node `hostname -f` in a scratch directory $SCRATCHDIR" | ts '[%Y-%m-%d %H:%M:%S]' >> $PBS_O_WORKDIR/jobs_info.txt
+
+# test if scratch directory is set
+# if scratch directory is not set, issue error message and exit
+test -n "$SCRATCHDIR" || { echo >&2 "Variable SCRATCHDIR is not set!"; exit 1; }
+
+# copy files
+cp -r $DATADIR/rnaseq/3_aligned_reads/RNAseq_trimmed_merged.bam $SCRATCHDIR || { echo >&2 "Error while copying input file(s)!"; exit 2; }
+cp -r /storage/brno12-cerit/home/duchmil/annotations/OrthoDB_proteins/Viridiplantae.fa $SCRATCHDIR || { echo >&2 "Error while copying input file(s)!"; exit 2; }
+cp -r $DATADIR/genome_assembly/$genome_assembly $SCRATCHDIR || { echo >&2 "Error while copying input file(s)!"; exit 2; }
+
+
+# move into scratch directory
+cd $SCRATCHDIR 
+mkdir results_braker_01
+
+# running BRAKER
+export BRAKER_SIF=/storage/brno12-cerit/home/duchmil/SW/braker_sw/braker3.sif
+
+singularity exec -B ${PWD}:${PWD} ${BRAKER_SIF} braker.pl --bam=RNAseq_trimmed_merged.bam --genome=$genome_assembly --prot_seq=Viridiplantae.fa --threads=8 --species=Aethionema_saxatile --workingdir=$SCRATCHDIR/results_braker_01 --AUGUSTUS_CONFIG_PATH=/storage/brno12-cerit/home/duchmil/.augustus/
+# Note: Protein sequences shouldn't be compressed. It should be plain fasta.
+# I added '--AUGUSTUS_CONFIG_PATH=/storage/brno12-cerit/home/duchmil/.augustus/' when the job failed due to low amount of space where the script wanted to copy the config data. I don't know if it will work in a case that the path set will not exist. In such case you can try to delete it, it worked many times without for me.
+
+
+# move the output to user's DATADIR or exit in case of failure
+cp -r results_braker_01 $DATADIR/ || { echo >&2 "Result file(s) copying failed (with a code $?) !!"; exit 4; }
+
+# clean the SCRATCH directory
+clean_scratch
+
+# Resources: The job was running 8 h, using 93 GB memory and 30% of CPU time.
+

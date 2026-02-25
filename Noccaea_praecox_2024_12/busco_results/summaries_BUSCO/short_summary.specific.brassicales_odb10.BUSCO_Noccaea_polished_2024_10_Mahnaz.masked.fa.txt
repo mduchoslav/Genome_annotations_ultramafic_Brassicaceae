@@ -1,0 +1,32 @@
+# BUSCO version is: 5.7.1 
+# The lineage dataset is: brassicales_odb10 (Creation date: 2024-01-08, number of genomes: 10, number of BUSCOs: 4596)
+# Summarized benchmarking in BUSCO notation for file /scratch.ssd/duchmil/job_7847401.pbs-m1.metacentrum.cz/Noccaea_polished_2024_10_Mahnaz.masked.fa
+# BUSCO was run in mode: euk_genome_min
+# Gene predictor used: miniprot
+
+	***** Results: *****
+
+	C:99.2%[S:94.4%,D:4.8%],F:0.2%,M:0.6%,n:4596,E:1.8%	   
+	4558	Complete BUSCOs (C)	(of which 83 contain internal stop codons)		   
+	4337	Complete and single-copy BUSCOs (S)	   
+	221	Complete and duplicated BUSCOs (D)	   
+	11	Fragmented BUSCOs (F)			   
+	27	Missing BUSCOs (M)			   
+	4596	Total BUSCO groups searched		   
+
+Assembly Statistics:
+	49	Number of scaffolds
+	52	Number of contigs
+	253532312	Total length
+	0.000%	Percent gaps
+	33 MB	Scaffold N50
+	31 MB	Contigs N50
+
+
+Dependencies and versions:
+	hmmsearch: 3.1
+	bbtools: 39.01
+	miniprot_index: 0.13-r248
+	miniprot_align: 0.13-r248
+	python: sys.version_info(major=3, minor=9, micro=19, releaselevel='final', serial=0)
+	busco: 5.7.1

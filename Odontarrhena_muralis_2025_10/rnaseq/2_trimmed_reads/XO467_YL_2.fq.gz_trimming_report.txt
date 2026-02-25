@@ -1,0 +1,207 @@
+
+SUMMARISING RUN PARAMETERS
+==========================
+Input filename: /storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/1_raw_reads/XO467_YL_2.fq.gz
+Trimming mode: paired-end
+Trim Galore version: 0.6.2
+Cutadapt version: 2.3
+Python version: 3.4.1
+Number of cores used for trimming: 4
+Quality Phred score cutoff: 20
+Quality encoding type selected: ASCII+33
+Adapter sequence: 'AGATCGGAAGAGC' (Illumina TruSeq, Sanger iPCR; auto-detected)
+Maximum trimming error rate: 0.1 (default)
+Minimum required adapter overlap (stringency): 1 bp
+Minimum required sequence length for both reads before a sequence pair gets removed: 20 bp
+Output file will be GZIP compressed
+
+
+This is cutadapt 2.3 with Python 3.4.1
+Command line parameters: -j 4 -e 0.1 -q 20 -O 1 -a AGATCGGAAGAGC /storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/1_raw_reads/XO467_YL_2.fq.gz
+Processing reads on 4 cores in single-end mode ...
+Finished in 140.59 s (7 us/read; 8.11 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:              19,010,625
+Reads with adapters:                 6,957,878 (36.6%)
+Reads written (passing filters):    19,010,625 (100.0%)
+
+Total basepairs processed: 2,851,593,750 bp
+Quality-trimmed:               4,383,535 bp (0.2%)
+Total written (filtered):  2,824,492,154 bp (99.0%)
+
+=== Adapter 1 ===
+
+Sequence: AGATCGGAAGAGC; Type: regular 3'; Length: 13; Trimmed: 6957878 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-13 bp: 1
+
+Bases preceding removed adapters:
+  A: 33.1%
+  C: 26.6%
+  G: 24.1%
+  T: 16.2%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+1	4643493	4752656.2	0	4643493
+2	1290007	1188164.1	0	1290007
+3	469388	297041.0	0	469388
+4	119316	74260.3	0	119316
+5	42184	18565.1	0	42184
+6	15719	4641.3	0	15719
+7	12255	1160.3	0	12255
+8	11899	290.1	0	11899
+9	10140	72.5	0	9276 864
+10	11268	18.1	1	9856 1412
+11	10520	4.5	1	9341 1179
+12	9560	1.1	1	9002 558
+13	9058	0.3	1	8646 412
+14	9226	0.3	1	8806 420
+15	8056	0.3	1	7699 357
+16	8413	0.3	1	8067 346
+17	9415	0.3	1	9016 399
+18	6663	0.3	1	6358 305
+19	9676	0.3	1	9281 395
+20	6440	0.3	1	6158 282
+21	6672	0.3	1	6379 293
+22	7049	0.3	1	6712 337
+23	6889	0.3	1	6594 295
+24	7868	0.3	1	7515 353
+25	6891	0.3	1	6656 235
+26	5520	0.3	1	5299 221
+27	5862	0.3	1	5556 306
+28	6176	0.3	1	5931 245
+29	5997	0.3	1	5729 268
+30	5841	0.3	1	5643 198
+31	5415	0.3	1	5180 235
+32	5523	0.3	1	5336 187
+33	5234	0.3	1	5034 200
+34	5230	0.3	1	5007 223
+35	5508	0.3	1	5263 245
+36	5045	0.3	1	4846 199
+37	4816	0.3	1	4605 211
+38	4889	0.3	1	4703 186
+39	4604	0.3	1	4385 219
+40	5439	0.3	1	5215 224
+41	3512	0.3	1	3382 130
+42	4216	0.3	1	4044 172
+43	4194	0.3	1	4035 159
+44	4189	0.3	1	4037 152
+45	3745	0.3	1	3595 150
+46	3765	0.3	1	3620 145
+47	3784	0.3	1	3605 179
+48	4126	0.3	1	3940 186
+49	3315	0.3	1	3147 168
+50	3582	0.3	1	3424 158
+51	3594	0.3	1	3425 169
+52	3070	0.3	1	2919 151
+53	3319	0.3	1	3199 120
+54	3197	0.3	1	3060 137
+55	2974	0.3	1	2880 94
+56	3163	0.3	1	3062 101
+57	2601	0.3	1	2488 113
+58	2732	0.3	1	2604 128
+59	3248	0.3	1	3084 164
+60	2298	0.3	1	2153 145
+61	2426	0.3	1	2312 114
+62	2653	0.3	1	2515 138
+63	2103	0.3	1	2024 79
+64	2213	0.3	1	2088 125
+65	3473	0.3	1	3354 119
+66	1740	0.3	1	1666 74
+67	1602	0.3	1	1530 72
+68	1820	0.3	1	1746 74
+69	2043	0.3	1	1938 105
+70	2047	0.3	1	1937 110
+71	1718	0.3	1	1637 81
+72	1988	0.3	1	1890 98
+73	1850	0.3	1	1767 83
+74	1775	0.3	1	1689 86
+75	2807	0.3	1	2701 106
+76	2169	0.3	1	2055 114
+77	2571	0.3	1	2480 91
+78	1312	0.3	1	1268 44
+79	627	0.3	1	533 94
+80	836	0.3	1	785 51
+81	868	0.3	1	801 67
+82	905	0.3	1	835 70
+83	972	0.3	1	887 85
+84	991	0.3	1	857 134
+85	915	0.3	1	866 49
+86	898	0.3	1	824 74
+87	854	0.3	1	801 53
+88	859	0.3	1	782 77
+89	797	0.3	1	723 74
+90	769	0.3	1	706 63
+91	864	0.3	1	768 96
+92	890	0.3	1	805 85
+93	700	0.3	1	666 34
+94	671	0.3	1	615 56
+95	526	0.3	1	474 52
+96	511	0.3	1	455 56
+97	529	0.3	1	473 56
+98	505	0.3	1	429 76
+99	500	0.3	1	434 66
+100	493	0.3	1	431 62
+101	516	0.3	1	454 62
+102	481	0.3	1	405 76
+103	503	0.3	1	319 184
+104	302	0.3	1	241 61
+105	239	0.3	1	191 48
+106	233	0.3	1	172 61
+107	209	0.3	1	151 58
+108	179	0.3	1	165 14
+109	174	0.3	1	137 37
+110	169	0.3	1	106 63
+111	110	0.3	1	75 35
+112	133	0.3	1	77 56
+113	87	0.3	1	40 47
+114	134	0.3	1	35 99
+115	106	0.3	1	40 66
+116	73	0.3	1	28 45
+117	72	0.3	1	19 53
+118	127	0.3	1	10 117
+119	49	0.3	1	9 40
+120	60	0.3	1	9 51
+121	38	0.3	1	2 36
+122	55	0.3	1	9 46
+123	63	0.3	1	3 60
+124	43	0.3	1	8 35
+125	67	0.3	1	1 66
+126	46	0.3	1	4 42
+127	37	0.3	1	2 35
+128	44	0.3	1	6 38
+129	48	0.3	1	0 48
+130	34	0.3	1	4 30
+131	42	0.3	1	2 40
+132	29	0.3	1	3 26
+133	40	0.3	1	4 36
+134	68	0.3	1	4 64
+135	31	0.3	1	0 31
+136	41	0.3	1	0 41
+137	45	0.3	1	5 40
+138	44	0.3	1	4 40
+139	34	0.3	1	3 31
+140	31	0.3	1	1 30
+141	134	0.3	1	2 132
+142	57	0.3	1	1 56
+143	17	0.3	1	0 17
+144	27	0.3	1	3 24
+145	26	0.3	1	1 25
+146	19	0.3	1	0 19
+147	107	0.3	1	4 103
+148	35	0.3	1	3 32
+149	25	0.3	1	0 25
+150	17	0.3	1	7 10
+
+RUN STATISTICS FOR INPUT FILE: /storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/1_raw_reads/XO467_YL_2.fq.gz
+=============================================
+19010625 sequences processed in total
+
+Total number of sequences analysed for the sequence pair length validation: 19010625
+
+Number of sequence pairs removed because at least one read was shorter than the length cutoff (20 bp): 4713 (0.02%)

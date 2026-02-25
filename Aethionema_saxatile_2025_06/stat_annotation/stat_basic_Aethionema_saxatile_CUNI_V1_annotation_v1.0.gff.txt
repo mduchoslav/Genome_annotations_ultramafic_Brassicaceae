@@ -1,0 +1,23 @@
+
+ ------------------------------------------------------------------------------
+|   Another GFF Analysis Toolkit (AGAT) - Version: v1.4.0                      |
+|   https://github.com/NBISweden/AGAT                                          |
+|   National Bioinformatics Infrastructure Sweden (NBIS) - www.nbis.se         |
+ ------------------------------------------------------------------------------
+=> Using standard /usr/local/lib/perl5/site_perl/auto/share/dist/AGAT/agat_config.yaml config file
+Total sequence length                        274283000
+Reading ../annot_processing/Aethionema_saxatile_CUNI_V1_annotation_v1.0.gff
+544746 line to process...
+Progress : 100 %
+Type (3rd column)	Number	Size total (kb)	Size mean (bp)	% of the genome	/!\Results are rounding to two decimal places 
+cds	145408	33913.54	233.23	12.36
+exon	161556	41040.70	254.03	14.96
+gene	25353	50891.74	2007.33	18.55
+intron	117138	25488.07	217.59	9.29
+ncrna	5976	13728.02	2297.19	5.01
+ncrna_gene	4458	8676.27	1946.22	3.16
+start_codon	28260	84.76	3.00	0.03
+stop_codon	28260	84.76	3.00	0.03
+transcript	28270	59401.61	2101.22	21.66
+Total	544679	233309.47	428.34	85.06
+Job done in 40 seconds

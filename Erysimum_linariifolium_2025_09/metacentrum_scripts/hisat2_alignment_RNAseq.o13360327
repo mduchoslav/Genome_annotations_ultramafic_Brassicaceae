@@ -1,0 +1,244 @@
+/cvmfs/software.metacentrum.cz/spack1/software/hisat2/linux-debian10-x86_64/2.1.0-intel-itifoz/bin/hisat2-align-s version 2.1.0
+64-bit
+Built on metasw11.grid.cesnet.cz
+Thu Oct 27 11:46:07 CEST 2022
+Compiler: gcc version 8.3.0 (Debian 8.3.0-6) 
+Options: -O3 -m64 -msse2 -funroll-loops -g3 -DPOPCNT_CAPABILITY
+Sizeof {int, long, long long, void*, size_t, off_t}: {4, 8, 8, 8, 8, 8}
+samtools 1.14
+Using htslib 1.14
+Copyright (C) 2021 Genome Research Ltd.
+
+Samtools compilation details:
+    Features:       build=configure curses=yes 
+    CC:             /cvmfs/software.metacentrum.cz/software_basics/spack/0.15/lib/spack/env/intel/icc
+    CPPFLAGS:       
+    CFLAGS:         -Wall -g -O2
+    LDFLAGS:        
+    HTSDIR:         
+    LIBS:           
+    CURSES_LIB:     -lncursesw -ltinfow
+
+HTSlib compilation details:
+    Features:       build=configure plugins=no libcurl=yes S3=yes GCS=yes libdeflate=no lzma=yes bzip2=yes htscodecs=1.1.1-1-ged325d7
+    CC:             /cvmfs/software.metacentrum.cz/software_basics/spack/0.15/lib/spack/env/intel/icc
+    CPPFLAGS:       
+    CFLAGS:         -Wall -g -O2 -fvisibility=hidden
+    LDFLAGS:        -fvisibility=hidden 
+
+HTSlib URL scheme handlers present:
+    built-in:	 preload, data, file
+    S3 Multipart Upload:	 s3w, s3w+https, s3w+http
+    Amazon S3:	 s3+https, s3+http, s3
+    Google Cloud Storage:	 gs+http, gs+https, gs
+    libcurl:	 imaps, pop3, http, smb, gopher, sftp, ftps, imap, smtp, smtps, rtsp, scp, ftp, telnet, https, smbs, tftp, pop3s, dict
+    crypt4gh-needed:	 crypt4gh
+    mem:	 mem
+[2025-10-01 15:59:50] Modules loaded
+'/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/genome_assembly/Erysimum_linariifolium_CUNI_V1_2024_09_masked.fa' -> '/scratch.ssd/duchmil/job_13360327.pbs-m1/Erysimum_linariifolium_CUNI_V1_2024_09_masked.fa'
+'/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/2_trimmed_reads/XE263OL_Macrogen_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_13360327.pbs-m1/XE263OL_Macrogen_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/2_trimmed_reads/XE263OL_Macrogen_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_13360327.pbs-m1/XE263OL_Macrogen_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/2_trimmed_reads/XE263_OL_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_13360327.pbs-m1/XE263_OL_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/2_trimmed_reads/XE263_OL_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_13360327.pbs-m1/XE263_OL_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/2_trimmed_reads/XE263_R_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_13360327.pbs-m1/XE263_R_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/2_trimmed_reads/XE263_R_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_13360327.pbs-m1/XE263_R_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/2_trimmed_reads/XE263_S_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_13360327.pbs-m1/XE263_S_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/2_trimmed_reads/XE263_S_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_13360327.pbs-m1/XE263_S_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/2_trimmed_reads/XE263_YL_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_13360327.pbs-m1/XE263_YL_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/2_trimmed_reads/XE263_YL_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_13360327.pbs-m1/XE263_YL_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/2_trimmed_reads/XE774_F_MKRN250017682-1A_22VTVNLT4_L4_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_13360327.pbs-m1/XE774_F_MKRN250017682-1A_22VTVNLT4_L4_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/2_trimmed_reads/XE774_F_MKRN250017682-1A_22VTVNLT4_L4_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_13360327.pbs-m1/XE774_F_MKRN250017682-1A_22VTVNLT4_L4_2_val_2.fq.gz'
+[2025-10-01 16:02:00] Input files copied.
+Building DifferenceCoverSample
+  Building sPrime
+  Building sPrimeOrder
+  V-Sorting samples
+  V-Sorting samples time: 00:00:02
+  Allocating rank array
+  Ranking v-sort output
+  Ranking v-sort output time: 00:00:00
+  Invoking Larsson-Sadakane on ranks
+  Invoking Larsson-Sadakane on ranks time: 00:00:01
+  Sanity-checking and returning
+Building samples
+Reserving space for 12 sample suffixes
+Generating random suffixes
+QSorting 12 sample offsets, eliminating duplicates
+QSorting sample offsets, eliminating duplicates time: 00:00:00
+Multikey QSorting 12 samples
+  (Using difference cover)
+  Multikey QSorting samples time: 00:00:00
+Calculating bucket sizes
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Split 2, merged 7; iterating...
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Split 1, merged 2; iterating...
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Avg bucket size: 2.71182e+07 (target: 35592692)
+Getting block 1 of 7
+  Reserving size (35592693) for bucket 1
+Getting block 2 of 7
+  Reserving size (35592693) for bucket 2
+  Calculating Z arrays for bucket 1
+  Entering block accumulator loop for bucket 1:
+  Calculating Z arrays for bucket 2
+  Entering block accumulator loop for bucket 2:
+Getting block 3 of 7
+  Reserving size (35592693) for bucket 3
+Getting block 4 of 7
+  Reserving size (35592693) for bucket 4
+  Calculating Z arrays for bucket 3
+  Entering block accumulator loop for bucket 3:
+  Calculating Z arrays for bucket 4
+  Entering block accumulator loop for bucket 4:
+Getting block 5 of 7
+  Reserving size (35592693) for bucket 5
+Getting block 6 of 7
+  Reserving size (35592693) for bucket 6
+Getting block 7 of 7
+  Reserving size (35592693) for bucket 7
+  Calculating Z arrays for bucket 5
+  Entering block accumulator loop for bucket 5:
+  Calculating Z arrays for bucket 7
+  Entering block accumulator loop for bucket 7:
+  Calculating Z arrays for bucket 6
+  Entering block accumulator loop for bucket 6:
+  bucket 1: 10%
+  bucket 7: 10%
+  bucket 2: 10%
+  bucket 4: 10%
+  bucket 1: 20%
+  bucket 7: 20%
+  bucket 2: 20%
+  bucket 1: 30%
+  bucket 3: 10%
+  bucket 6: 10%
+  bucket 7: 30%
+  bucket 4: 20%
+  bucket 1: 40%
+  bucket 2: 30%
+  bucket 5: 10%
+  bucket 7: 40%
+  bucket 1: 50%
+  bucket 4: 30%
+  bucket 2: 40%
+  bucket 7: 50%
+  bucket 1: 60%
+  bucket 3: 20%
+  bucket 6: 20%
+  bucket 7: 60%
+  bucket 1: 70%
+  bucket 2: 50%
+  bucket 4: 40%
+  bucket 1: 80%
+  bucket 7: 70%
+  bucket 5: 20%
+  bucket 2: 60%
+  bucket 4: 50%
+  bucket 3: 30%
+  bucket 1: 90%
+  bucket 7: 80%
+  bucket 6: 30%
+  bucket 2: 70%
+  bucket 1: 100%
+  Sorting block of length 35544797 for bucket 1
+  (Using difference cover)
+  bucket 7: 90%
+  bucket 4: 60%
+  bucket 2: 80%
+  bucket 7: 100%
+  Sorting block of length 17114186 for bucket 7
+  (Using difference cover)
+  bucket 3: 40%
+  bucket 2: 90%
+  bucket 6: 40%
+  bucket 5: 30%
+  bucket 4: 70%
+  bucket 2: 100%
+  Sorting block of length 32009822 for bucket 2
+  (Using difference cover)
+  bucket 4: 80%
+  bucket 3: 50%
+  bucket 6: 50%
+  bucket 5: 40%
+  bucket 4: 90%
+  bucket 6: 60%
+  bucket 3: 60%
+  bucket 4: 100%
+  Sorting block of length 10120332 for bucket 4
+  (Using difference cover)
+  bucket 5: 50%
+  bucket 6: 70%
+  bucket 3: 70%
+  bucket 6: 80%
+  bucket 5: 60%
+  bucket 3: 80%
+  bucket 6: 90%
+  bucket 3: 90%
+  bucket 5: 70%
+  bucket 6: 100%
+  Sorting block of length 31994878 for bucket 6
+  (Using difference cover)
+  bucket 5: 80%
+  bucket 3: 100%
+  Sorting block of length 29417302 for bucket 3
+  (Using difference cover)
+  bucket 5: 90%
+  bucket 5: 100%
+  Sorting block of length 33626375 for bucket 5
+  (Using difference cover)
+  Sorting block time: 00:00:04
+Returning block of 10120333 for bucket 4
+  Sorting block time: 00:00:06
+Returning block of 17114187 for bucket 7
+  Sorting block time: 00:00:12
+Returning block of 32009823 for bucket 2
+  Sorting block time: 00:00:12
+Returning block of 35544798 for bucket 1
+  Sorting block time: 00:00:11
+Returning block of 31994879 for bucket 6
+  Sorting block time: 00:00:11
+Returning block of 29417303 for bucket 3
+  Sorting block time: 00:00:12
+Returning block of 33626376 for bucket 5
+[2025-10-01 16:02:46] Hisat2 index done.
+[2025-10-01 16:06:24] Alignment for XE263OL_Macrogen done.
+[2025-10-01 16:07:51] Samtools conversion to bam, sorting and indexing for XE263OL_Macrogen done.
+'XE263OL_Macrogen_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/3_aligned_reads/XE263OL_Macrogen_trimmed_sorted.bam'
+'XE263OL_Macrogen_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/3_aligned_reads/XE263OL_Macrogen_trimmed_sorted.bam.bai'
+[2025-10-01 16:07:57] Copying output files for XE263OL_Macrogen done.
+[2025-10-01 16:11:19] Alignment for XE263_OL done.
+[2025-10-01 16:12:49] Samtools conversion to bam, sorting and indexing for XE263_OL done.
+'XE263_OL_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/3_aligned_reads/XE263_OL_trimmed_sorted.bam'
+'XE263_OL_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/3_aligned_reads/XE263_OL_trimmed_sorted.bam.bai'
+[2025-10-01 16:12:57] Copying output files for XE263_OL done.
+[2025-10-01 16:16:00] Alignment for XE263_R done.
+[2025-10-01 16:17:25] Samtools conversion to bam, sorting and indexing for XE263_R done.
+'XE263_R_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/3_aligned_reads/XE263_R_trimmed_sorted.bam'
+'XE263_R_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/3_aligned_reads/XE263_R_trimmed_sorted.bam.bai'
+[2025-10-01 16:17:37] Copying output files for XE263_R done.
+[2025-10-01 16:20:50] Alignment for XE263_S done.
+[2025-10-01 16:22:26] Samtools conversion to bam, sorting and indexing for XE263_S done.
+'XE263_S_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/3_aligned_reads/XE263_S_trimmed_sorted.bam'
+'XE263_S_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/3_aligned_reads/XE263_S_trimmed_sorted.bam.bai'
+[2025-10-01 16:22:38] Copying output files for XE263_S done.
+[2025-10-01 16:25:47] Alignment for XE263_YL done.
+[2025-10-01 16:27:23] Samtools conversion to bam, sorting and indexing for XE263_YL done.
+'XE263_YL_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/3_aligned_reads/XE263_YL_trimmed_sorted.bam'
+'XE263_YL_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/3_aligned_reads/XE263_YL_trimmed_sorted.bam.bai'
+[2025-10-01 16:27:32] Copying output files for XE263_YL done.
+[2025-10-01 16:34:42] Alignment for XE774_F_MKRN250017682-1A_22VTVNLT4_L4 done.
+[2025-10-01 16:37:50] Samtools conversion to bam, sorting and indexing for XE774_F_MKRN250017682-1A_22VTVNLT4_L4 done.
+'XE774_F_MKRN250017682-1A_22VTVNLT4_L4_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/3_aligned_reads/XE774_F_MKRN250017682-1A_22VTVNLT4_L4_trimmed_sorted.bam'
+'XE774_F_MKRN250017682-1A_22VTVNLT4_L4_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/3_aligned_reads/XE774_F_MKRN250017682-1A_22VTVNLT4_L4_trimmed_sorted.bam.bai'
+[2025-10-01 16:38:02] Copying output files for XE774_F_MKRN250017682-1A_22VTVNLT4_L4 done.
+'RNAseq_trimmed_merged.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/3_aligned_reads/RNAseq_trimmed_merged.bam'
+'RNAseq_trimmed_merged.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/3_aligned_reads/RNAseq_trimmed_merged.bam.bai'
+[2025-10-01 16:44:20] Merging of bams done.
+
+**********************************************************************************************************
+
+The SCRATCHes have been SUCCESSFULLY cleaned...

@@ -1,0 +1,241 @@
+/cvmfs/software.metacentrum.cz/spack1/software/hisat2/linux-debian10-x86_64/2.1.0-intel-itifoz/bin/hisat2-align-s version 2.1.0
+64-bit
+Built on metasw11.grid.cesnet.cz
+Thu Oct 27 11:46:07 CEST 2022
+Compiler: gcc version 8.3.0 (Debian 8.3.0-6) 
+Options: -O3 -m64 -msse2 -funroll-loops -g3 -DPOPCNT_CAPABILITY
+Sizeof {int, long, long long, void*, size_t, off_t}: {4, 8, 8, 8, 8, 8}
+samtools 1.14
+Using htslib 1.14
+Copyright (C) 2021 Genome Research Ltd.
+
+Samtools compilation details:
+    Features:       build=configure curses=yes 
+    CC:             /cvmfs/software.metacentrum.cz/software_basics/spack/0.15/lib/spack/env/intel/icc
+    CPPFLAGS:       
+    CFLAGS:         -Wall -g -O2
+    LDFLAGS:        
+    HTSDIR:         
+    LIBS:           
+    CURSES_LIB:     -lncursesw -ltinfow
+
+HTSlib compilation details:
+    Features:       build=configure plugins=no libcurl=yes S3=yes GCS=yes libdeflate=no lzma=yes bzip2=yes htscodecs=1.1.1-1-ged325d7
+    CC:             /cvmfs/software.metacentrum.cz/software_basics/spack/0.15/lib/spack/env/intel/icc
+    CPPFLAGS:       
+    CFLAGS:         -Wall -g -O2 -fvisibility=hidden
+    LDFLAGS:        -fvisibility=hidden 
+
+HTSlib URL scheme handlers present:
+    built-in:	 preload, data, file
+    S3 Multipart Upload:	 s3w, s3w+https, s3w+http
+    Amazon S3:	 s3+https, s3+http, s3
+    Google Cloud Storage:	 gs+http, gs+https, gs
+    libcurl:	 imaps, pop3, http, smb, gopher, sftp, ftps, imap, smtp, smtps, rtsp, scp, ftp, telnet, https, smbs, tftp, pop3s, dict
+    crypt4gh-needed:	 crypt4gh
+    mem:	 mem
+[2025-10-13 13:54:23] Modules loaded
+'/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/genome_assembly/Odontarrhena_muralis_CUNI_V1_2025_05_masked.fa' -> '/scratch.ssd/duchmil/job_13644140.pbs-m1/Odontarrhena_muralis_CUNI_V1_2025_05_masked.fa'
+'/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/2_trimmed_reads/XO467R_Macrogen_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_13644140.pbs-m1/XO467R_Macrogen_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/2_trimmed_reads/XO467R_Macrogen_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_13644140.pbs-m1/XO467R_Macrogen_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/2_trimmed_reads/XO467_OL_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_13644140.pbs-m1/XO467_OL_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/2_trimmed_reads/XO467_OL_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_13644140.pbs-m1/XO467_OL_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/2_trimmed_reads/XO467_R_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_13644140.pbs-m1/XO467_R_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/2_trimmed_reads/XO467_R_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_13644140.pbs-m1/XO467_R_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/2_trimmed_reads/XO467_S_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_13644140.pbs-m1/XO467_S_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/2_trimmed_reads/XO467_S_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_13644140.pbs-m1/XO467_S_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/2_trimmed_reads/XO467_YL_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_13644140.pbs-m1/XO467_YL_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/2_trimmed_reads/XO467_YL_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_13644140.pbs-m1/XO467_YL_2_val_2.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/2_trimmed_reads/XO772_F_MKRN250017683-1A_22VTVNLT4_L4_1_val_1.fq.gz' -> '/scratch.ssd/duchmil/job_13644140.pbs-m1/XO772_F_MKRN250017683-1A_22VTVNLT4_L4_1_val_1.fq.gz'
+'/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/2_trimmed_reads/XO772_F_MKRN250017683-1A_22VTVNLT4_L4_2_val_2.fq.gz' -> '/scratch.ssd/duchmil/job_13644140.pbs-m1/XO772_F_MKRN250017683-1A_22VTVNLT4_L4_2_val_2.fq.gz'
+[2025-10-13 13:55:02] Input files copied.
+Building DifferenceCoverSample
+  Building sPrime
+  Building sPrimeOrder
+  V-Sorting samples
+  V-Sorting samples time: 00:00:02
+  Allocating rank array
+  Ranking v-sort output
+  Ranking v-sort output time: 00:00:02
+  Invoking Larsson-Sadakane on ranks
+  Invoking Larsson-Sadakane on ranks time: 00:00:02
+  Sanity-checking and returning
+Building samples
+Reserving space for 12 sample suffixes
+Generating random suffixes
+QSorting 12 sample offsets, eliminating duplicates
+QSorting sample offsets, eliminating duplicates time: 00:00:00
+Multikey QSorting 12 samples
+  (Using difference cover)
+  Multikey QSorting samples time: 00:00:00
+Calculating bucket sizes
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Split 1, merged 6; iterating...
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Avg bucket size: 3.54563e+07 (target: 46536404)
+Getting block 1 of 7
+  Reserving size (46536405) for bucket 1
+Getting block 2 of 7
+  Reserving size (46536405) for bucket 2
+  Calculating Z arrays for bucket 1
+Getting block 3 of 7
+  Reserving size (46536405) for bucket 3
+  Calculating Z arrays for bucket 2
+  Entering block accumulator loop for bucket 1:
+Getting block 4 of 7
+  Calculating Z arrays for bucket 3
+Getting block 5 of 7
+  Entering block accumulator loop for bucket 2:
+  Reserving size (46536405) for bucket 5
+  Entering block accumulator loop for bucket 3:
+  Reserving size (46536405) for bucket 4
+Getting block 6 of 7
+  Calculating Z arrays for bucket 5
+  Calculating Z arrays for bucket 4
+  Reserving size (46536405) for bucket 6
+  Entering block accumulator loop for bucket 5:
+Getting block 7 of 7
+  Reserving size (46536405) for bucket 7
+  Entering block accumulator loop for bucket 4:
+  Calculating Z arrays for bucket 6
+  Calculating Z arrays for bucket 7
+  Entering block accumulator loop for bucket 7:
+  Entering block accumulator loop for bucket 6:
+  bucket 1: 10%
+  bucket 1: 20%
+  bucket 7: 10%
+  bucket 2: 10%
+  bucket 3: 10%
+  bucket 5: 10%
+  bucket 4: 10%
+  bucket 1: 30%
+  bucket 6: 10%
+  bucket 1: 40%
+  bucket 7: 20%
+  bucket 2: 20%
+  bucket 1: 50%
+  bucket 3: 20%
+  bucket 5: 20%
+  bucket 4: 20%
+  bucket 1: 60%
+  bucket 7: 30%
+  bucket 6: 20%
+  bucket 1: 70%
+  bucket 2: 30%
+  bucket 3: 30%
+  bucket 1: 80%
+  bucket 5: 30%
+  bucket 7: 40%
+  bucket 4: 30%
+  bucket 1: 90%
+  bucket 2: 40%
+  bucket 6: 30%
+  bucket 1: 100%
+  Sorting block of length 22933341 for bucket 1
+  (Using difference cover)
+  bucket 3: 40%
+  bucket 7: 50%
+  bucket 5: 40%
+  bucket 4: 40%
+  bucket 2: 50%
+  bucket 7: 60%
+  bucket 6: 40%
+  bucket 3: 50%
+  bucket 5: 50%
+  bucket 4: 50%
+  bucket 2: 60%
+  bucket 7: 70%
+  bucket 3: 60%
+  bucket 6: 50%
+  bucket 5: 60%
+  bucket 2: 70%
+  bucket 7: 80%
+  bucket 4: 60%
+  bucket 3: 70%
+  bucket 5: 70%
+  bucket 7: 90%
+  bucket 2: 80%
+  bucket 6: 60%
+  bucket 4: 70%
+  bucket 7: 100%
+  Sorting block of length 42912327 for bucket 7
+  (Using difference cover)
+  bucket 3: 80%
+  bucket 2: 90%
+  bucket 5: 80%
+  bucket 6: 70%
+  bucket 4: 80%
+  bucket 6: 80%
+  bucket 2: 100%
+  Sorting block of length 37405094 for bucket 2
+  (Using difference cover)
+  bucket 3: 90%
+  bucket 5: 90%
+  bucket 6: 90%
+  bucket 3: 100%
+  Sorting block of length 30206509 for bucket 3
+  (Using difference cover)
+  bucket 4: 90%
+  bucket 6: 100%
+  Sorting block of length 39199073 for bucket 6
+  (Using difference cover)
+  bucket 5: 100%
+  Sorting block of length 31443737 for bucket 5
+  (Using difference cover)
+  bucket 4: 100%
+  Sorting block of length 44094075 for bucket 4
+  (Using difference cover)
+  Sorting block time: 00:00:10
+Returning block of 22933342 for bucket 1
+  Sorting block time: 00:00:13
+Returning block of 30206510 for bucket 3
+  Sorting block time: 00:00:16
+Returning block of 31443738 for bucket 5
+  Sorting block time: 00:00:17
+Returning block of 37405095 for bucket 2
+  Sorting block time: 00:00:18
+Returning block of 39199074 for bucket 6
+  Sorting block time: 00:00:19
+Returning block of 42912328 for bucket 7
+  Sorting block time: 00:00:22
+Returning block of 44094076 for bucket 4
+[2025-10-13 13:56:14] Hisat2 index done.
+[2025-10-13 13:58:35] Alignment for XO467R_Macrogen done.
+[2025-10-13 13:59:46] Samtools conversion to bam, sorting and indexing for XO467R_Macrogen done.
+'XO467R_Macrogen_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/3_aligned_reads/XO467R_Macrogen_trimmed_sorted.bam'
+'XO467R_Macrogen_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/3_aligned_reads/XO467R_Macrogen_trimmed_sorted.bam.bai'
+[2025-10-13 13:59:49] Copying output files for XO467R_Macrogen done.
+[2025-10-13 14:02:54] Alignment for XO467_OL done.
+[2025-10-13 14:04:27] Samtools conversion to bam, sorting and indexing for XO467_OL done.
+'XO467_OL_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/3_aligned_reads/XO467_OL_trimmed_sorted.bam'
+'XO467_OL_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/3_aligned_reads/XO467_OL_trimmed_sorted.bam.bai'
+[2025-10-13 14:04:32] Copying output files for XO467_OL done.
+[2025-10-13 14:07:15] Alignment for XO467_R done.
+[2025-10-13 14:08:40] Samtools conversion to bam, sorting and indexing for XO467_R done.
+'XO467_R_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/3_aligned_reads/XO467_R_trimmed_sorted.bam'
+'XO467_R_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/3_aligned_reads/XO467_R_trimmed_sorted.bam.bai'
+[2025-10-13 14:08:45] Copying output files for XO467_R done.
+[2025-10-13 14:11:34] Alignment for XO467_S done.
+[2025-10-13 14:13:00] Samtools conversion to bam, sorting and indexing for XO467_S done.
+'XO467_S_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/3_aligned_reads/XO467_S_trimmed_sorted.bam'
+'XO467_S_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/3_aligned_reads/XO467_S_trimmed_sorted.bam.bai'
+[2025-10-13 14:13:05] Copying output files for XO467_S done.
+[2025-10-13 14:15:48] Alignment for XO467_YL done.
+[2025-10-13 14:17:11] Samtools conversion to bam, sorting and indexing for XO467_YL done.
+'XO467_YL_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/3_aligned_reads/XO467_YL_trimmed_sorted.bam'
+'XO467_YL_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/3_aligned_reads/XO467_YL_trimmed_sorted.bam.bai'
+[2025-10-13 14:17:16] Copying output files for XO467_YL done.
+[2025-10-13 14:22:22] Alignment for XO772_F_MKRN250017683-1A_22VTVNLT4_L4 done.
+[2025-10-13 14:24:43] Samtools conversion to bam, sorting and indexing for XO772_F_MKRN250017683-1A_22VTVNLT4_L4 done.
+'XO772_F_MKRN250017683-1A_22VTVNLT4_L4_trimmed_sorted.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/3_aligned_reads/XO772_F_MKRN250017683-1A_22VTVNLT4_L4_trimmed_sorted.bam'
+'XO772_F_MKRN250017683-1A_22VTVNLT4_L4_trimmed_sorted.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/3_aligned_reads/XO772_F_MKRN250017683-1A_22VTVNLT4_L4_trimmed_sorted.bam.bai'
+[2025-10-13 14:24:49] Copying output files for XO772_F_MKRN250017683-1A_22VTVNLT4_L4 done.
+'RNAseq_trimmed_merged.bam' -> '/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/3_aligned_reads/RNAseq_trimmed_merged.bam'
+'RNAseq_trimmed_merged.bam.bai' -> '/storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/rnaseq/3_aligned_reads/RNAseq_trimmed_merged.bam.bai'
+[2025-10-13 14:30:06] Merging of bams done.
+
+**********************************************************************************************************
+
+The SCRATCHes have been SUCCESSFULLY cleaned...

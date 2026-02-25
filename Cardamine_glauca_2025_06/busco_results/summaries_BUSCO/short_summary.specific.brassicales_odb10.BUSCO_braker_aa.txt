@@ -1,0 +1,19 @@
+# BUSCO version is: 5.7.1 
+# The lineage dataset is: brassicales_odb10 (Creation date: 2024-01-08, number of genomes: 10, number of BUSCOs: 4596)
+# Summarized benchmarking in BUSCO notation for file /scratch/duchmil/job_11134357.pbs-m1/braker.aa
+# BUSCO was run in mode: proteins
+
+	***** Results: *****
+
+	C:98.1%[S:83.9%,D:14.2%],F:0.1%,M:1.8%,n:4596	   
+	4506	Complete BUSCOs (C)			   
+	3854	Complete and single-copy BUSCOs (S)	   
+	652	Complete and duplicated BUSCOs (D)	   
+	6	Fragmented BUSCOs (F)			   
+	84	Missing BUSCOs (M)			   
+	4596	Total BUSCO groups searched		   
+
+Dependencies and versions:
+	hmmsearch: 3.1
+	python: sys.version_info(major=3, minor=9, micro=19, releaselevel='final', serial=0)
+	busco: 5.7.1

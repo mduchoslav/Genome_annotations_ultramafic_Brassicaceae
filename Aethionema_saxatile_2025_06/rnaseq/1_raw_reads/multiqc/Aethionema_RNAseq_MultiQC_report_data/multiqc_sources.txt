@@ -1,0 +1,11 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	XA472_L_1	/storage/brno12-cerit/home/duchmil/annotations/Aethionema_saxatile_2025_06/rnaseq/1_raw_reads/fastqc/XA472_L_1_fastqc.zip
+FastQC	all_sections	XA691_F_MKRN250017679-1A_22VTVNLT4_L4_2	/storage/brno12-cerit/home/duchmil/annotations/Aethionema_saxatile_2025_06/rnaseq/1_raw_reads/fastqc/XA691_F_MKRN250017679-1A_22VTVNLT4_L4_2_fastqc.zip
+FastQC	all_sections	XA472_S_1	/storage/brno12-cerit/home/duchmil/annotations/Aethionema_saxatile_2025_06/rnaseq/1_raw_reads/fastqc/XA472_S_1_fastqc.zip
+FastQC	all_sections	XA691_F_MKRN250017679-1A_22VTVNLT4_L4_1	/storage/brno12-cerit/home/duchmil/annotations/Aethionema_saxatile_2025_06/rnaseq/1_raw_reads/fastqc/XA691_F_MKRN250017679-1A_22VTVNLT4_L4_1_fastqc.zip
+FastQC	all_sections	XA472_S_2	/storage/brno12-cerit/home/duchmil/annotations/Aethionema_saxatile_2025_06/rnaseq/1_raw_reads/fastqc/XA472_S_2_fastqc.zip
+FastQC	all_sections	XA472_R_2	/storage/brno12-cerit/home/duchmil/annotations/Aethionema_saxatile_2025_06/rnaseq/1_raw_reads/fastqc/XA472_R_2_fastqc.zip
+FastQC	all_sections	XA472_L_2	/storage/brno12-cerit/home/duchmil/annotations/Aethionema_saxatile_2025_06/rnaseq/1_raw_reads/fastqc/XA472_L_2_fastqc.zip
+FastQC	all_sections	XA472L_Macrogen_2	/storage/brno12-cerit/home/duchmil/annotations/Aethionema_saxatile_2025_06/rnaseq/1_raw_reads/fastqc/XA472L_Macrogen_2_fastqc.zip
+FastQC	all_sections	XA472L_Macrogen_1	/storage/brno12-cerit/home/duchmil/annotations/Aethionema_saxatile_2025_06/rnaseq/1_raw_reads/fastqc/XA472L_Macrogen_1_fastqc.zip
+FastQC	all_sections	XA472_R_1	/storage/brno12-cerit/home/duchmil/annotations/Aethionema_saxatile_2025_06/rnaseq/1_raw_reads/fastqc/XA472_R_1_fastqc.zip
