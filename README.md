@@ -32,13 +32,13 @@ If you want to get inspired and do such annotation for other species, I recommen
 
 The `final_files` folder for each species contains:
 
-- Soft-masked reference genome (`*_masked.fa.gz`)
+- **Soft-masked reference genome** (`*_masked.fa.gz`)
 	- This is version used for annotation, note that the version in GenBank database has different scaffold names.
-- Genome annotation (`*.gff.gz`)
+- **Genome annotation** (`*.gff.gz`)
 	- The genome annotation contains protein-coding genes (*gene* feature with *transcript* as a child feature) and non-coding RNA genes (*ncrna_gene* feature with *ncrna* as a child feature). The non-coding RNA genes are derived from assembled transcripts that don't have any overlap with predicted protein-coding genes.
-- Coding sequences (CDS) for protein-coding genes (`*_cds.fasta.gz`)
-- Protein sequences for protein-coding genes (`*_proteins.fasta.gz`)
-- Table with external evidence for protein-coding genes (`*_protein_coding_genes_support.tsv`)
+- **Coding sequences (CDS)** for protein-coding genes (`*_cds.fasta.gz`)
+- **Protein sequences** for protein-coding genes (`*_proteins.fasta.gz`)
+- **Table with external evidence** for protein-coding genes (`*_protein_coding_genes_support.tsv`)
 	- Table shows for each gene if there is overlap with transcripts assembled from RNA-seq data used for annotation or with aligned protein sequences from *Arabidopsis thaliana*, *Arabidopsis lyrata* and *Brassica rapa*).
 	
 Link to final results for each species:
