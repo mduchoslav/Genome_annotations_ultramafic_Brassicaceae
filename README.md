@@ -1,12 +1,3 @@
-# Genome_annotations_ultramafic_Brassicaceae
-
-Repository for code and results for a publication.
-
-Final results Rmd files with code used are available in respective folders.
-
-This README file will be updated soon to contain better description and links to files.
-
-
 Annotation of ultramafic Brassicaceae genomes
 ================
 Miloš Duchoslav
@@ -37,6 +28,8 @@ If you want to get inspired and do such annotation for other species, I recommen
 
 ## Final results
 
+### Results for each species
+
 The `final_files` folder for each species contains:
 
 - Soft-masked reference genome (`*_masked.fa.gz`)
@@ -54,6 +47,10 @@ Link to final results for each species:
 - [*Erysimum linariifolium*](Erysimum_linariifolium_2025_09/final_files)
 - [*Noccaea praecox*](Noccaea_praecox_2024_12/final_files)
 - [*Odontarrhena muralis*](Odontarrhena_muralis_2025_10/final_files)
+
+### Statistics for all species
+
+Multi-species comparison of number of predicted potein-coding genes and their support by external evidence is in table [prot_coding_genes_support.tsv](01_multispecies_stats/prot_coding_genes_support.tsv).
 
 ## Orthology and functional annotations
 
