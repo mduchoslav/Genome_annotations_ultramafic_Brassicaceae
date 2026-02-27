@@ -1,5 +1,5 @@
 ---
-title: "Annotation - Odontarrhena muralis"
+title: "Annotation - *Odontarrhena muralis*"
 author: "Miloš Duchoslav"
 date: "2025-10-13"
 output:
@@ -10,9 +10,28 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r setup, include=FALSE}
+# Setting NO evaluation of code chunks as default
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+# Introduction
+
+This RMarkdown file (or its markdown version for GitHub) documents the annotation of the newly assembled genome of *Odontarrhena muralis*.
+
+This file includes:
+
+1. BASH code that I ran at MetaCentrum (Czech national grid infrastructure) running PBS scheduling system for batch jobs.
+2. R code that I ran locally.
+
+### SW installation and versions
+
+The SW installation instructions and versions of SW used is described in [Installation_of_SW.md](../Installation_of_SW.md).
+
 # Instructions for use for different species
 
 If you want to run this for new species, here is a (partial) list of what you should change:
+
 - Change the name of this file (`annotation_Odontarrhena_muralis.rmd`) throughout the document.
 - Change folder for the species (`Odontarrhena_muralis_2025_10`) throughout the document.
 - Change genome_assembly variable (`genome_assembly="Odontarrhena_muralis_CUNI_V1_2025_05_masked.fa"`) throughout the document.
@@ -491,6 +510,8 @@ paste <(grep 'Alignment for ' $o_file | sed 's/^.*Alignment for //' | sed 's/ do
 
 
 ```
+
+```
 Odontarrhena
 
 XO467R_Macrogen                        81.64%  overall  alignment  rate  12357745  (74.36%)  aligned  concordantly  exactly  1  time  459100  (2.76%)  aligned  concordantly  >1  times
@@ -553,6 +574,7 @@ AM08N_OF        68.77% overall alignment rate       12482837 (59.82%) aligned co
 AM08N_OL        71.28% overall alignment rate       12701049 (59.93%) aligned concordantly exactly 1 time           1622373 (7.66%) aligned concordantly >1 times
 AM08N_RO        75.34% overall alignment rate       13749781 (67.05%) aligned concordantly exactly 1 time           790056 (3.85%) aligned concordantly >1 times
 AM08N_YL        69.47% overall alignment rate       12755339 (60.27%) aligned concordantly exactly 1 time           1153072 (5.45%) aligned concordantly >1 times
+```
 
 
 
@@ -648,23 +670,33 @@ awk '/^>/ { if(NR>1) print "";  printf("%s\n",$0); next; } { printf("%s",$0);}  
 
 ## Alignment of protein sequences to the genome assembly
 Miniprot
+
 <https://github.com/lh3/miniprot>
+
 The alignment of the proteins will be needed to check the annotation by Braker.
 
 Generally proteins of closely related species with good annotation should be used.
 We used protein sequences of B. rapa, A. thaliana and A. lyrata.
 
 Data:
+
 B. rapa web page: <http://brassicadb.cn>
+
 <http://39.100.233.196:82/download_genome/Brassica_Genome_data/Brara_Chiifu_V3.0/Brapa_genome_v3.0_pep.fasta.gz>
+
 <http://39.100.233.196:82/download_genome/Brassica_Genome_data/Brara_Chiifu_V4.1/Brapa_chiifu_v41_gene20230413.gff3.pep.fa.gz>
+
 A. thaliana
+
 <https://www.arabidopsis.org/download/file?path=Proteins/Araport11_protein_lists/Araport11_pep_20220914.gz>
+
 A. lyrata NCBI 101 annotation
+
 <https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/004/255/GCF_000004255.2_v.1.0/GCF_000004255.2_v.1.0_protein.faa.gz>
 
 
 ### Getting protein sequences
+
 ```{sh}
 cd /storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/
 mkdir -p protein_seqs_input
@@ -773,12 +805,14 @@ clean_scratch
 ## Assembly of transcripts from RNAseq alignment
 
 The assembled transcripts will be used to:
+
 - check Braker annotation visually using IGV,
 - extract sequences from them using AGAT and run Busco on them,
 - check the overlaps of them with annotated genes,
 - add non-coding RNA (ncRNA) genes.
 
 stringtie to produce transcripts from aligned RNAseq reads
+
 - default parameters should be fine
 - set the number of threads
 
@@ -841,6 +875,7 @@ clean_scratch
 ```
 
 ## Extraction of transcript sequences
+
 Extracted transcript sequences will be used to run Busco on them.
 
 
@@ -1078,11 +1113,15 @@ grep -P -c "\ttranscript\t" braker_without_genes_with_internal_stop_codons.gff
 
 
 # Adding unknown expressed features
+
 Bedtools subtract
+
 https://bedtools.readthedocs.io/en/latest/content/tools/subtract.html
+
 I will use -A option to get only transcripts with no overlap with Braker annotation.
 
 ### Note for future
+
 Some tools used to annotate noncoding genes in A. thaliana genomes are descibed in this publication:
 
 Lian, Qichao, Bruno Huettel, Birgit Walkemeier, Baptiste Mayjonade, Céline Lopez-Roques, Lisa Gil, Fabrice Roux, Korbinian Schneeberger, and Raphael Mercier. “A Pan-Genome of 69 Arabidopsis Thaliana Accessions Reveals a Conserved Genome Structure throughout the Global Species Range.” Nature Genetics 56, no. 5 (May 2024): 982–91. https://doi.org/10.1038/s41588-024-01715-9.
@@ -1260,6 +1299,7 @@ gff.2[grepl(pattern = "gene", x = gff.2$V3) & gff.2$V2 == "StringTie", 9] <- gen
 ```
 
 ### Changing IDs
+
 ```{r}
 # old gene names
 old.genes <- gsub(pattern = "ID=|;gene_id.*$", replacement = "", x = gff.2[grepl(pattern = "gene", x = gff.2$V3), "V9"])
@@ -1521,6 +1561,7 @@ agat_sp_statistics.pl -i ../annot_processing/Odontarrhena_muralis_CUNI_V1_annota
 tail -n +11 stat_basic_Odontarrhena_muralis_CUNI_V1_annotation_v1.0.gff.txt | column -s $'\t' -t -R 2,3,4,5
 ```
 
+```
 Type (3rd column)  Number  Size total (kb)  Size mean (bp)  % of the genome
 cds                160645         39506.04          245.92            15.92
 exon               188953         48483.67          256.59            19.53
@@ -1532,6 +1573,7 @@ start_codon         33343           100.00            3.00             0.04
 stop_codon          33339           100.00            3.00             0.04
 transcript          33349         63481.96         1903.56            25.58
 Total              624782        261687.39          418.85           105.44
+```
 
 It is needed to go back, fill this in the GFF header and export again the final GFF.
 
@@ -1646,7 +1688,9 @@ grep -P "\ttranscript\t" ../rnaseq/4_assembled_transcripts/Assembled_transcripts
 grep -P -c "\tgene\t" braker_annotation_x_Assembled_transcripts.gtf_intersect.tab # 20792
 
 ```
+
 **Note**
+
 There is a problem that some of the assembled transcripts have long introns. If the whole gene predicted by Braker falls within intron of assembled transcript, it is still reported as supported, even if no reads map to this region. I don't have any easy solution how to solve this for now.
 
 ### Checking the outputs
@@ -1819,14 +1863,14 @@ write.table(x = gene_counts_3, file = "../01_multispecies_stats/prot_coding_gene
 ```
 
 Results:
-
+```
                        genes_prot_coding support_Assembled_transcripts support_A.lyrata.pep support_A.thaliana.pep support_B.rapa.pep support_any_protein support_any support_all
 Aethionema_saxatile                25353                         19189                17199                  17158              16271               18200       21293       13717
 Cardamine_glauca                   24828                         20452                20208                  20119              18238               21365       23307       15249
 Erysimum_linariifolium             30393                         22625                20846                  20563              18359               22348       26422       14793
 Noccaea_praecox                    30370                         21522                19412                  19254              18205               21042       25080       14242
 Odontarrhena_muralis               29940                         20841                18843                  18686              17619               20261       24066       14110
-
+```
 
 # Visual check of annotation in IGV
 
@@ -1854,187 +1898,6 @@ genome_assembly="Odontarrhena_muralis_CUNI_V1_2025_05_masked.fa"
 ```
 
 
-
-# Notes
-
-- Aethionema: According to visual check in IGV, there are many short one-exon genes predicted by Braker that does not have any support. Maybe I can do some histogram of length of genes and compare that with other species.
-
-# To do
-
-- maybe remove too short proteins/exons
-- add protein length to the reliability table or functional annotation (which is done later)
-
-
-- Add repeat regions
-	- http://www.sequenceontology.org/browser/current_release/term/SO:0000657
-	- Provide that as a separate file (bed file?)
-
-
-
-
-
-
-
-
-
-
-# Old parts of script
-
-## Old statistics of intersects - only aligned proteins
-
-**Odontarrhena:**
-braker_annotation_x_A.lyrata.pep.gff_intersect.tab 18619
-braker_annotation_x_A.thaliana.pep.gff_intersect.tab 18468
-braker_annotation_x_Assembled_transcripts.gtf_intersect.tab 20792
-braker_annotation_x_B.rapa.pep.gff_intersect.tab 17396
-braker_annotation_x_all.pep.gff_intersect.tab 20044
-
-**Erysimum:**
-braker_annotation_x_A.lyrata.pep.gff_intersect.tab 20563
-braker_annotation_x_A.thaliana.pep.gff_intersect.tab 20287
-braker_annotation_x_Assembled_transcripts.gtf_intersect.tab 22574
-braker_annotation_x_B.rapa.pep.gff_intersect.tab 18081
-braker_annotation_x_all.pep.gff_intersect.tab 22069
-
-**Aethionema:**
-braker_annotation_x_A.lyrata.pep.gff_intersect.tab 17002
-braker_annotation_x_A.thaliana.pep.gff_intersect.tab 16967
-braker_annotation_x_B.rapa.pep.gff_intersect.tab 16089
-braker_annotation_x_all.pep.gff_intersect.tab 18019
-
-**Cardamine:**
-braker_annotation_x_A.lyrata.pep.gff_intersect.tab 19974
-braker_annotation_x_A.thaliana.pep.gff_intersect.tab 19889
-braker_annotation_x_B.rapa.pep.gff_intersect.tab 18005
-braker_annotation_x_all.pep.gff_intersect.tab 21160
-
-**Cardamine (older run without RNA from flowers and flower buds):**
-braker_annotation_x_A.lyrata.pep.gff_intersect.tab 19833
-braker_annotation_x_A.thaliana.pep.gff_intersect.tab 19751
-braker_annotation_x_B.rapa.pep.gff_intersect.tab 17925
-braker_annotation_x_all.pep.gff_intersect.tab 20990
-
-All of the numbers increased in the current run compared to previous run.
-
-
-**Noccaea:**
-braker_annotation_x_A.lyrata.pep.gff_intersect.tab 19105
-braker_annotation_x_A.thaliana.pep.gff_intersect.tab 18949
-braker_annotation_x_B.rapa.pep.gff_intersect.tab 17914
-braker_annotation_x_all.pep.gff_intersect.tab 20757
-
-
-**Alyssum:**
-braker_annotation_x_A.alpina.pep.gff_intersect.tab 16637
-braker_annotation_x_A.lyrata.pep.gff_intersect.tab 18772
-braker_annotation_x_A.saxatilis.pep.gff_intersect.tab 17095
-braker_annotation_x_A.thaliana.pep.gff_intersect.tab 18676
-braker_annotation_x_B.rapa.pep.gff_intersect.tab 17642
-braker_annotation_x_all.pep.gff_intersect.tab 21660
-
-Comment:
-The intersects for Noccaea are higher than for Alyssum.
-
-### Results of intersects
-
-Aethionema:
-Genes predicted by Braker                                                                              25353
-Genes predicted by Braker supported by aligned proteins                                                18019
-Genes predicted by Braker supported by transcripts assembled from RNAseq                               19145
-Genes predicted by Braker supported by both aligned proteins and transcripts assembled from RNAseq     15913
-Genes predicted by Braker supported by either aligned proteins or transcripts assembled from RNAseq    21251
-
-Cardamine:
-Genes predicted by Braker                                                                              24828
-Genes predicted by Braker supported by aligned proteins                                                21160
-Genes predicted by Braker supported by transcripts assembled from RNAseq                               20404
-Genes predicted by Braker supported by both aligned proteins and transcripts assembled from RNAseq     18298
-Genes predicted by Braker supported by either aligned proteins or transcripts assembled from RNAseq    23266
-
-Cardamine (older run without RNA from flowers and flower buds):
-Genes predicted by Braker                                                                              24376
-Genes predicted by Braker supported by aligned proteins                                                20990
-Genes predicted by Braker supported by transcripts assembled from RNAseq                               18050
-Genes predicted by Braker supported by both aligned proteins and transcripts assembled from RNAseq     16457
-Genes predicted by Braker supported by either aligned proteins or transcripts assembled from RNAseq    22583
-
-Noccaea:
-Genes predicted by Braker                                                                              30373
-Genes predicted by Braker supported by aligned proteins                                                20757
-Genes predicted by Braker supported by transcripts assembled from RNAseq                               21454
-Genes predicted by Braker supported by both aligned proteins and transcripts assembled from RNAseq     17177
-Genes predicted by Braker supported by either aligned proteins or transcripts assembled from RNAseq    25034
-
-Alyssum:
-Genes predicted by Braker                                                                              32073
-Genes predicted by Braker supported by aligned proteins                                                21660
-Genes predicted by Braker supported by transcripts assembled from RNAseq                               21841
-Genes predicted by Braker supported by both aligned proteins and transcripts assembled from RNAseq     16978
-Genes predicted by Braker supported by either aligned proteins or transcripts assembled from RNAseq    26523
-
-
-
-### Intersect of intersects
-```{sh}
-# intersect between two intersects: (1) intersect between annotation and protein alignments and (2) intersect between annotation and transcripts
-bedtools intersect -a braker_annotation_x_Assembled_transcripts.gtf_intersect.tab -b braker_annotation_x_all.pep.gff_intersect.tab -u -f 1.0 -r > braker_transcript_and_braker_protein_meta_intersect.tab
-grep -P -c "\tgene\t" braker_transcript_and_braker_protein_meta_intersect.tab # 15913
-# There should be '-f 1.0', because we are comparing genes, mRNAs and exons from the same Braker prediction. If there is 0.9, the number of genes is slightly higher than it should be, because it probably takes also some intersects of genes with transcripts or something like that.
-
-# Alternative way to calculate number of genes in intersect of intersects (metaintersect):
-comm -12 <(grep -P "\tgene\t" braker_annotation_x_all.pep.gff_intersect.tab | cut -f 9 | sort -u) <(grep -P "\tgene\t" braker_annotation_x_Assembled_transcripts.gtf_intersect.tab | cut -f 9 | sort -u) | wc -l # 15913
-
-```
-
-We will rather take union of the two intersects than the intersect of them as the "confident" set of gene models.
-These will be gene models that are either supported by RNAseq reads (more precisely assembled transcripts) or by proteins from related species.
-
-## Getting the list of "reliable" genes
-Genes that are either supported by RNAseq reads (more precisely assembled transcripts) or by proteins from related species.
-```{sh}
-# checks
-grep -P "\tgene\t" braker_annotation_x_all.pep.gff_intersect.tab | cut -f 9 | sort | head -n 20
-grep -P "\tgene\t" braker_annotation_x_Assembled_transcripts.gtf_intersect.tab | cut -f 9 | sort | head -n 20
-
-cat <(grep -P "\tgene\t" braker_annotation_x_all.pep.gff_intersect.tab | cut -f 9) <(grep -P "\tgene\t" braker_annotation_x_Assembled_transcripts.gtf_intersect.tab | cut -f 9) | sort -u | head -n 20
-
-cat <(grep -P "\tgene\t" braker_annotation_x_all.pep.gff_intersect.tab | cut -f 9) <(grep -P "\tgene\t" braker_annotation_x_Assembled_transcripts.gtf_intersect.tab | cut -f 9) | sort -u | wc -l
-
-# List of reliable genes (union)
-cat <(grep -P "\tgene\t" braker_annotation_x_all.pep.gff_intersect.tab | cut -f 9) <(grep -P "\tgene\t" braker_annotation_x_Assembled_transcripts.gtf_intersect.tab | cut -f 9) | sort -u > reliable_genes.txt
-
-wc -l reliable_genes.txt # 21251
-
-
-```
-
-
-
-Udělat
-- predict lncRNAs?
-  - nebo "expressed features"?
-- přejmenovat
-- převést na gff3
-- kvalita predikovaných genů
-  - expressed
-  - protein support
-- znovu RNAseq pro další anotaci?
-- Orthofinder
-
-- prozkoumat PsbO - jen 1x?
-
-
-
-
-To do:
-Možná upravit parents pro transcript ještě v gtf? A změnit id v GTF? Odstranit mRNA, které vypadají redundantně?
-
-Links for GTF and GFF specs: https://www.ncbi.nlm.nih.gov/genbank/genomes_gff/
-
-1. Zjistit, jestli je mRNA redundantní s transkriptem. Pokud ano, odstranit.
-2. Druhý sloupec - přidat BRAKER
-3. DOplnit hlavičku.
-4. Vyměnit ID genů a dalších
 
 
 

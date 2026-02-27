@@ -1,54 +1,111 @@
----
-title: "Annotation - *Erysimum linariifolium*"
-author: "Miloš Duchoslav"
-date: "2025-09-30"
-output:
-  github_document:
-    toc: true
-    toc_depth: 2
-editor_options: 
-  chunk_output_type: console
----
+Annotation - *Erysimum linariifolium*
+================
+Miloš Duchoslav
+2025-09-30
 
-```{r setup, include=FALSE}
-# Setting NO evaluation of code chunks as default
-knitr::opts_chunk$set(eval = FALSE)
-```
+- [Introduction](#introduction)
+- [Instructions for use for different
+  species](#instructions-for-use-for-different-species)
+- [Export of Metacentrum scripts from this
+  file](#export-of-metacentrum-scripts-from-this-file)
+- [Making new folders](#making-new-folders)
+- [Preparation for annotation using
+  Braker](#preparation-for-annotation-using-braker)
+  - [Genome assembly](#genome-assembly)
+  - [Preparation of RNAseq data](#preparation-of-rnaseq-data)
+  - [Alignment of RNAseq reads with
+    HISAT2](#alignment-of-rnaseq-reads-with-hisat2)
+  - [Preparation of protein
+    sequences](#preparation-of-protein-sequences)
+- [Running Braker](#running-braker)
+- [Quality check of the Braker
+  annotation](#quality-check-of-the-braker-annotation)
+  - [Running IGV on Metacentrum](#running-igv-on-metacentrum)
+  - [Number of genes](#number-of-genes)
+  - [Checking proteins predicted by Braker for stop
+    codons](#checking-proteins-predicted-by-braker-for-stop-codons)
+  - [Alignment of protein sequences to the genome
+    assembly](#alignment-of-protein-sequences-to-the-genome-assembly)
+  - [Assembly of transcripts from RNAseq
+    alignment](#assembly-of-transcripts-from-rnaseq-alignment)
+  - [Extraction of transcript
+    sequences](#extraction-of-transcript-sequences)
+  - [Busco](#busco)
+- [Removing genes with internal stop
+  codons](#removing-genes-with-internal-stop-codons)
+  - [Conversion of Braker GTF to GFF](#conversion-of-braker-gtf-to-gff)
+  - [Remove genes with internal stop
+    codons](#remove-genes-with-internal-stop-codons)
+- [Adding unknown expressed
+  features](#adding-unknown-expressed-features)
+  - [Merging annotations](#merging-annotations)
+- [Changing IDs in R](#changing-ids-in-r)
+  - [Statistics of annotation using
+    AGAT](#statistics-of-annotation-using-agat)
+  - [Extraction of protein and coding sequences using
+    AGAT](#extraction-of-protein-and-coding-sequences-using-agat)
+- [Final files](#final-files)
+- [Reliability of the predicted
+  genes](#reliability-of-the-predicted-genes)
+  - [Intersect between gene models and aligned
+    proteins](#intersect-between-gene-models-and-aligned-proteins)
+  - [Intersect between gene models and assembled
+    transcripts](#intersect-between-gene-models-and-assembled-transcripts)
+  - [Generating table of reliability of
+    genes](#generating-table-of-reliability-of-genes)
+  - [Analysis of reliability (support) table in
+    R](#analysis-of-reliability-support-table-in-r)
+- [Notes](#notes)
 
 # Introduction
 
-This RMarkdown file (or its markdown version for GitHub) documents the annotation of the newly assembled genome of *Erysimum linariifolium*.
+This RMarkdown file (or its markdown version for GitHub) documents the
+annotation of the newly assembled genome of *Erysimum linariifolium*.
 
 This file includes:
 
-1. BASH code that I ran at MetaCentrum (Czech national grid infrastructure) running PBS scheduling system for batch jobs.
-2. R code that I ran locally.
+1.  BASH code that I ran at MetaCentrum (Czech national grid
+    infrastructure) running PBS scheduling system for batch jobs.
+2.  R code that I ran locally.
 
 ### SW installation and versions
 
-The SW installation instructions and versions of SW used is described in [Installation_of_SW.md](../Installation_of_SW.md).
+The SW installation instructions and versions of SW used is described in
+[Installation_of_SW.md](../Installation_of_SW.md).
 
 # Instructions for use for different species
 
-If you want to run this for new species, here is a (partial) list of what you should change:
+If you want to run this for new species, here is a (partial) list of
+what you should change:
 
-- Change the name of this file (`annotation_Erysimum_linariifolium.rmd`) throughout the document.
-- Change folder for the species (`Erysimum_linariifolium_2025_09`) throughout the document.
-- Change genome_assembly variable (`genome_assembly="Erysimum_linariifolium_CUNI_V1_2024_09_masked.fa"`) throughout the document.
+- Change the name of this file (`annotation_Erysimum_linariifolium.rmd`)
+  throughout the document.
+- Change folder for the species (`Erysimum_linariifolium_2025_09`)
+  throughout the document.
+- Change genome_assembly variable
+  (`genome_assembly="Erysimum_linariifolium_CUNI_V1_2024_09_masked.fa"`)
+  throughout the document.
 - Change pattern for finding of RNAseq data (`-iname XC*.gz`).
-- Check if some RNAseq data for this species are downloadable from SRA/ENA.
-- Change report names for MultiQC (`report_name="Erysimum_RNAseq_MultiQC_report"`, `report_name="Erysimum_RNAseq_MultiQC_report_after_trimming"`).
-- Consider changing of species with good genomes selected for validation by alignment of protein sequences.
+- Check if some RNAseq data for this species are downloadable from
+  SRA/ENA.
+- Change report names for MultiQC
+  (`report_name="Erysimum_RNAseq_MultiQC_report"`,
+  `report_name="Erysimum_RNAseq_MultiQC_report_after_trimming"`).
+- Consider changing of species with good genomes selected for validation
+  by alignment of protein sequences.
 - Change species in Braker run (`--species=Erysimum_linariifolium`).
 - Change prefix for gene IDs (`species.code <- "El"`).
 - Adjust GFF header.
-- Change the pattern for GFF file name (`Erysimum_linariifolium_CUNI_V1_annotation_v1.0`).
+- Change the pattern for GFF file name
+  (`Erysimum_linariifolium_CUNI_V1_annotation_v1.0`).
 
 # Export of Metacentrum scripts from this file
 
-This awk script will extract all sh code blocks from this file that begin with `### Script for Metacentrum` and save them as `.sh` files in folder `metacentrum_scripts`.
+This awk script will extract all sh code blocks from this file that
+begin with `### Script for Metacentrum` and save them as `.sh` files in
+folder `metacentrum_scripts`.
 
-```{sh}
+``` sh
 mkdir -p metacentrum_scripts
 
 awk '
@@ -91,13 +148,11 @@ in_block && valid_block {
     code = code line "\n"
 }
 ' annotation_Erysimum_linariifolium.rmd
-
 ```
-
 
 # Making new folders
 
-```{sh}
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/
 # make new folder and subfolders
 mkdir -p Erysimum_linariifolium_2025_09
@@ -107,24 +162,24 @@ mkdir -p rnaseq
 mkdir -p metacentrum_scripts
 ```
 
-
-
-
 # Preparation for annotation using Braker
 
 ## Genome assembly
 
-In the previous version of this script, I used assembly named `$genome_assembly`. This was now renamed to `Erysimum_linariifolium_CUNI_V1_2024_09_masked.fa`, but it is the same assembly.
+In the previous version of this script, I used assembly named
+`$genome_assembly`. This was now renamed to
+`Erysimum_linariifolium_CUNI_V1_2024_09_masked.fa`, but it is the same
+assembly.
 
-```{sh}
+``` sh
 # Copying assembly from Mahnaz
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/genome_assembly
 # Assembly copied from google drive through my PC.
-
 ```
 
 ### Checking assembly statistics
-```{sh}
+
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/genome_assembly
 genome_assembly="Erysimum_linariifolium_CUNI_V1_2024_09_masked.fa"
 
@@ -141,44 +196,38 @@ module load seqtk
 seqtk comp
 # info about sequences
 seqtk comp $genome_assembly | column -t
-
-
 ```
 
-
-```
-Assembly                    Erysimum_linariifolium_CUNI_V1_2024_09_masked
-# contigs (>= 0 bp)         68
-# contigs (>= 1000 bp)      68
-# contigs (>= 5000 bp)      68
-# contigs (>= 10000 bp)     68
-# contigs (>= 25000 bp)     67
-# contigs (>= 50000 bp)     54
-Total length (>= 0 bp)      189828498
-Total length (>= 1000 bp)   189828498
-Total length (>= 5000 bp)   189828498
-Total length (>= 10000 bp)  189828498
-Total length (>= 25000 bp)  189811911
-Total length (>= 50000 bp)  189301768
-# contigs                   68
-Largest contig              36182933
-Total length                189828498
-GC (%)                      36.43
-N50                         23580521
-N75                         20905539
-L50                         4
-L75                         6
-# N's per 100 kbp           0.42
-```
-
-
+    Assembly                    Erysimum_linariifolium_CUNI_V1_2024_09_masked
+    # contigs (>= 0 bp)         68
+    # contigs (>= 1000 bp)      68
+    # contigs (>= 5000 bp)      68
+    # contigs (>= 10000 bp)     68
+    # contigs (>= 25000 bp)     67
+    # contigs (>= 50000 bp)     54
+    Total length (>= 0 bp)      189828498
+    Total length (>= 1000 bp)   189828498
+    Total length (>= 5000 bp)   189828498
+    Total length (>= 10000 bp)  189828498
+    Total length (>= 25000 bp)  189811911
+    Total length (>= 50000 bp)  189301768
+    # contigs                   68
+    Largest contig              36182933
+    Total length                189828498
+    GC (%)                      36.43
+    N50                         23580521
+    N75                         20905539
+    L50                         4
+    L75                         6
+    # N's per 100 kbp           0.42
 
 ## Preparation of RNAseq data
+
 ### Copying our RNAseq data
 
 One sample was sequenced both by Macrogen and Novogene to compare them.
 
-```{sh}
+``` sh
 # Copy RNAseq data
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq
 mkdir -p 1_raw_reads
@@ -194,12 +243,9 @@ mv XE263OL_1.fastq.gz XE263OL_Macrogen_1.fastq.gz
 mv XE263OL_2.fastq.gz XE263OL_Macrogen_2.fastq.gz
 ```
 
-
-
-
-
 ### Script to run both FastQC and MultiQC on RNAseq data
-```{sh}
+
+``` sh
 ### Script for Metacentrum
 
 #!/bin/bash
@@ -253,38 +299,45 @@ time multiqc --filename $report_name --outdir $OUTDIR/multiqc $OUTDIR/fastqc
 # Resources: 12 min, 19 GB memory, 81 % CPU.
 ```
 
-
-```{sh}
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/metacentrum_scripts
 qsub FastQC_RNAseq.sh
 ```
 
 #### Result of FastQC - comparison of Macrogen and Novogene
-Quality scores are higher for Macrogen and new Novogene data (from flowers).
 
-Macrogen has ~ 19 % of reads with adapters and some overrepresented sequences.
-As Novogene has no reads with adapters, I suspect that they filtered the results and thus it is not well comparable.
+Quality scores are higher for Macrogen and new Novogene data (from
+flowers).
 
-Macrogen and XE263_S Novogene data (from stem) does not have nice smooth curve in "Per Sequence GC Content".
+Macrogen has ~ 19 % of reads with adapters and some overrepresented
+sequences. As Novogene has no reads with adapters, I suspect that they
+filtered the results and thus it is not well comparable.
 
-The "Per Sequence GC Content" for the same sample sequenced by Novogene and Macrogen differs, Novogene has slightly more lower-GC-content sequences.
+Macrogen and XE263_S Novogene data (from stem) does not have nice smooth
+curve in “Per Sequence GC Content”.
 
-
-
+The “Per Sequence GC Content” for the same sample sequenced by Novogene
+and Macrogen differs, Novogene has slightly more lower-GC-content
+sequences.
 
 ### Trimming
-Trimming based on quality, removal of the adaptors.
-Adaptors are there only in case that the insert is too short and it is read through. It means that they are usually at the 3' terminus.
 
-**Warning: Trim Galore uses the first 1 million sequences of the first file to detect adapter type. If there are files from different sources (with different adapters), they should be run separately!**
+Trimming based on quality, removal of the adaptors. Adaptors are there
+only in case that the insert is too short and it is read through. It
+means that they are usually at the 3’ terminus.
 
-```{sh}
+**Warning: Trim Galore uses the first 1 million sequences of the first
+file to detect adapter type. If there are files from different sources
+(with different adapters), they should be run separately!**
+
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/
 mkdir -p 2_trimmed_reads
 ```
 
 Trimming and FastQC and MultiQC after trimming
-```{sh}
+
+``` sh
 ### Script for Metacentrum
 
 #PBS -N trim_galore_for_RNAseq
@@ -374,38 +427,43 @@ clean_scratch
 
 #### Checking trimming reports
 
-```{sh}
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/2_trimmed_reads
 grep 'Reads with adapters:' *trimming_report.txt # 52 % for Macrogen, 34-36 % for Novogene
 grep 'Total written (filtered):' *trimming_report.txt # 94-95 % for Macrogen, over 99 % for Novogene
 ```
 
-MultiQC report:
-Adapters from Macrogen samples were succesfully removed.
-
+MultiQC report: Adapters from Macrogen samples were succesfully removed.
 
 ## Alignment of RNAseq reads with HISAT2
-Braker instructions (https://github.com/Gaius-Augustus/BRAKER#braker-with-rna-seq-and-protein-data):
 
-"GeneMark-ETP utilizes Stringtie2 to assemble RNA-Seq data, which requires that the aligned reads (BAM files) contain the XS (strand) tag for spliced reads. Therefore, if you align your reads with HISAT2, you must enable the --dta option."
+Braker instructions
+(<https://github.com/Gaius-Augustus/BRAKER#braker-with-rna-seq-and-protein-data>):
+
+“GeneMark-ETP utilizes Stringtie2 to assemble RNA-Seq data, which
+requires that the aligned reads (BAM files) contain the XS (strand) tag
+for spliced reads. Therefore, if you align your reads with HISAT2, you
+must enable the –dta option.”
 
 HISAT2 manual
 
-http://daehwankimlab.github.io/hisat2/manual/
-
-
+<http://daehwankimlab.github.io/hisat2/manual/>
 
 Folder for results
-```{sh}
+
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq
 mkdir -p 3_aligned_reads
 ```
 
 ### Running mapping with Hisat2
-Conversion to bam, sorting, indexing and merging of the bam and indexing of the merged bam using samtools is included in the script.
+
+Conversion to bam, sorting, indexing and merging of the bam and indexing
+of the merged bam using samtools is included in the script.
 
 Test
-```{sh}
+
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq/2_trimmed_reads
 find . -type f -name "*_2_val_2.fq.gz" | sort | sed 's,./,,' | sed 's,_2_val_2.fq.gz,,' | while read my_sample
 do
@@ -413,8 +471,7 @@ echo $my_sample
 done
 ```
 
-
-```{sh}
+``` sh
 ### Script for Metacentrum
 
 #PBS -N hisat2_alignment_RNAseq
@@ -504,82 +561,79 @@ clean_scratch
 # Resources: 44 min, 72 % CPU, 100 % memory
 ```
 
-
 ### Checking logs
+
 Output statistics: hisat2_alignment_RNAseq.e11116576
-```{sh}
+
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/metacentrum_scripts
 # Most important statistics
 o_file=hisat2_alignment_RNAseq.o*
 e_file=hisat2_alignment_RNAseq.e*
 paste <(grep 'Alignment for ' $o_file | sed 's/^.*Alignment for //' | sed 's/ done.//') <(grep 'overall alignment rate' $e_file)  <(grep 'aligned concordantly exactly 1 time' $e_file) <(grep 'aligned concordantly >1 times' $e_file) | column -t | less -S
-
-
 ```
 
-```
-Erysimum
+    Erysimum
 
-XE263OL_Macrogen                       77.40%  overall  alignment  rate  14805890  (70.13%)  aligned  concordantly  exactly  1  time  832494   (3.94%)  aligned  concordantly  >1  times
-XE263_OL                               85.91%  overall  alignment  rate  13714742  (73.78%)  aligned  concordantly  exactly  1  time  452550   (2.43%)  aligned  concordantly  >1  times
-XE263_R                                84.13%  overall  alignment  rate  12599224  (72.94%)  aligned  concordantly  exactly  1  time  531358   (3.08%)  aligned  concordantly  >1  times
-XE263_S                                81.55%  overall  alignment  rate  12992887  (71.81%)  aligned  concordantly  exactly  1  time  416606   (2.30%)  aligned  concordantly  >1  times
-XE263_YL                               88.15%  overall  alignment  rate  13230396  (75.36%)  aligned  concordantly  exactly  1  time  621943   (3.54%)  aligned  concordantly  >1  times
-XE774_F_MKRN250017682-1A_22VTVNLT4_L4  78.94%  overall  alignment  rate  29556458  (69.99%)  aligned  concordantly  exactly  1  time  1397950  (3.31%)  aligned  concordantly  >1  times
+    XE263OL_Macrogen                       77.40%  overall  alignment  rate  14805890  (70.13%)  aligned  concordantly  exactly  1  time  832494   (3.94%)  aligned  concordantly  >1  times
+    XE263_OL                               85.91%  overall  alignment  rate  13714742  (73.78%)  aligned  concordantly  exactly  1  time  452550   (2.43%)  aligned  concordantly  >1  times
+    XE263_R                                84.13%  overall  alignment  rate  12599224  (72.94%)  aligned  concordantly  exactly  1  time  531358   (3.08%)  aligned  concordantly  >1  times
+    XE263_S                                81.55%  overall  alignment  rate  12992887  (71.81%)  aligned  concordantly  exactly  1  time  416606   (2.30%)  aligned  concordantly  >1  times
+    XE263_YL                               88.15%  overall  alignment  rate  13230396  (75.36%)  aligned  concordantly  exactly  1  time  621943   (3.54%)  aligned  concordantly  >1  times
+    XE774_F_MKRN250017682-1A_22VTVNLT4_L4  78.94%  overall  alignment  rate  29556458  (69.99%)  aligned  concordantly  exactly  1  time  1397950  (3.31%)  aligned  concordantly  >1  times
 
-Aethionema
+    Aethionema
 
-XA472L_Macrogen                        78.18%  overall  alignment  rate  12409818  (66.65%)  aligned  concordantly  exactly  1  time  1789313  (9.61%)  aligned  concordantly  >1  times
-XA472_L                                86.99%  overall  alignment  rate  13906675  (74.09%)  aligned  concordantly  exactly  1  time  554935   (2.96%)  aligned  concordantly  >1  times
-XA472_R                                95.30%  overall  alignment  rate  17728627  (88.89%)  aligned  concordantly  exactly  1  time  432265   (2.17%)  aligned  concordantly  >1  times
-XA472_S                                96.22%  overall  alignment  rate  18433102  (88.82%)  aligned  concordantly  exactly  1  time  478837   (2.31%)  aligned  concordantly  >1  times
-XA691_F_MKRN250017679-1A_22VTVNLT4_L4  73.21%  overall  alignment  rate  60022344  (65.47%)  aligned  concordantly  exactly  1  time  3827811  (4.18%)  aligned  concordantly  >1  times
+    XA472L_Macrogen                        78.18%  overall  alignment  rate  12409818  (66.65%)  aligned  concordantly  exactly  1  time  1789313  (9.61%)  aligned  concordantly  >1  times
+    XA472_L                                86.99%  overall  alignment  rate  13906675  (74.09%)  aligned  concordantly  exactly  1  time  554935   (2.96%)  aligned  concordantly  >1  times
+    XA472_R                                95.30%  overall  alignment  rate  17728627  (88.89%)  aligned  concordantly  exactly  1  time  432265   (2.17%)  aligned  concordantly  >1  times
+    XA472_S                                96.22%  overall  alignment  rate  18433102  (88.82%)  aligned  concordantly  exactly  1  time  478837   (2.31%)  aligned  concordantly  >1  times
+    XA691_F_MKRN250017679-1A_22VTVNLT4_L4  73.21%  overall  alignment  rate  60022344  (65.47%)  aligned  concordantly  exactly  1  time  3827811  (4.18%)  aligned  concordantly  >1  times
 
-Cardamine
+    Cardamine
 
-XC174YL_Macrogen                        88.61%  overall  alignment  rate  15073594  (80.53%)  aligned  concordantly  exactly  1  time  821422   (4.39%)  aligned  concordantly  >1  times
-XC174_OL                                89.65%  overall  alignment  rate  16788949  (78.12%)  aligned  concordantly  exactly  1  time  644914   (3.00%)  aligned  concordantly  >1  times
-XC174_R                                 88.84%  overall  alignment  rate  13775354  (79.71%)  aligned  concordantly  exactly  1  time  460806   (2.67%)  aligned  concordantly  >1  times
-XC174_S                                 88.40%  overall  alignment  rate  13977235  (76.99%)  aligned  concordantly  exactly  1  time  543087   (2.99%)  aligned  concordantly  >1  times
-XC174_YL                                89.91%  overall  alignment  rate  14933580  (77.70%)  aligned  concordantly  exactly  1  time  581419   (3.03%)  aligned  concordantly  >1  times
-XC618_FB_MKRN250017681-1A_22VTVNLT4_L6  87.68%  overall  alignment  rate  22868036  (77.23%)  aligned  concordantly  exactly  1  time  827162   (2.79%)  aligned  concordantly  >1  times
-XC618_F_MKRN250017680-1A_22VTVNLT4_L4   85.99%  overall  alignment  rate  29896456  (75.43%)  aligned  concordantly  exactly  1  time  1160215  (2.93%)  aligned  concordantly  >1  times
-
-
-Noccaea
-
-SRR24947461  62.94%  overall  alignment  rate  52688337  (52.47%)  aligned  concordantly  exactly  1  time  3947151   (3.93%)   aligned  concordantly  >1  times
-SRR24947462  62.06%  overall  alignment  rate  65494606  (52.63%)  aligned  concordantly  exactly  1  time  3078652   (2.47%)   aligned  concordantly  >1  times
-SRR24947463  57.88%  overall  alignment  rate  61563211  (50.41%)  aligned  concordantly  exactly  1  time  2530332   (2.07%)   aligned  concordantly  >1  times
-SRR24947464  74.88%  overall  alignment  rate  75143196  (65.64%)  aligned  concordantly  exactly  1  time  3670500   (3.21%)   aligned  concordantly  >1  times
-SRR24947465  78.91%  overall  alignment  rate  73881131  (69.84%)  aligned  concordantly  exactly  1  time  3821305   (3.61%)   aligned  concordantly  >1  times
-SRR24947466  70.50%  overall  alignment  rate  59916569  (49.11%)  aligned  concordantly  exactly  1  time  20972725  (17.19%)  aligned  concordantly  >1  times
-XN580_FB     80.79%  overall  alignment  rate  13836893  (68.56%)  aligned  concordantly  exactly  1  time  470979    (2.33%)   aligned  concordantly  >1  times
-XN580_F      80.49%  overall  alignment  rate  11639449  (68.42%)  aligned  concordantly  exactly  1  time  416401    (2.45%)   aligned  concordantly  >1  times
-XN580_L      81.19%  overall  alignment  rate  12380457  (68.45%)  aligned  concordantly  exactly  1  time  547587    (3.03%)   aligned  concordantly  >1  times
-XN580_R      76.58%  overall  alignment  rate  11855116  (64.63%)  aligned  concordantly  exactly  1  time  390891    (2.13%)   aligned  concordantly  >1  times
-XN580_S      80.39%  overall  alignment  rate  11335150  (68.29%)  aligned  concordantly  exactly  1  time  370158    (2.23%)   aligned  concordantly  >1  times
+    XC174YL_Macrogen                        88.61%  overall  alignment  rate  15073594  (80.53%)  aligned  concordantly  exactly  1  time  821422   (4.39%)  aligned  concordantly  >1  times
+    XC174_OL                                89.65%  overall  alignment  rate  16788949  (78.12%)  aligned  concordantly  exactly  1  time  644914   (3.00%)  aligned  concordantly  >1  times
+    XC174_R                                 88.84%  overall  alignment  rate  13775354  (79.71%)  aligned  concordantly  exactly  1  time  460806   (2.67%)  aligned  concordantly  >1  times
+    XC174_S                                 88.40%  overall  alignment  rate  13977235  (76.99%)  aligned  concordantly  exactly  1  time  543087   (2.99%)  aligned  concordantly  >1  times
+    XC174_YL                                89.91%  overall  alignment  rate  14933580  (77.70%)  aligned  concordantly  exactly  1  time  581419   (3.03%)  aligned  concordantly  >1  times
+    XC618_FB_MKRN250017681-1A_22VTVNLT4_L6  87.68%  overall  alignment  rate  22868036  (77.23%)  aligned  concordantly  exactly  1  time  827162   (2.79%)  aligned  concordantly  >1  times
+    XC618_F_MKRN250017680-1A_22VTVNLT4_L4   85.99%  overall  alignment  rate  29896456  (75.43%)  aligned  concordantly  exactly  1  time  1160215  (2.93%)  aligned  concordantly  >1  times
 
 
+    Noccaea
 
-Alyssum
-AM08M_CF        82.26% overall alignment rate       15395977 (72.53%) aligned concordantly exactly 1 time           1103653 (5.20%) aligned concordantly >1 times
-AM08M_RO        80.78% overall alignment rate       14909449 (72.43%) aligned concordantly exactly 1 time           710062 (3.45%) aligned concordantly >1 times
-AM08N_CF        75.13% overall alignment rate       13619900 (66.20%) aligned concordantly exactly 1 time           987032 (4.80%) aligned concordantly >1 times
-AM08N_OF        68.77% overall alignment rate       12482837 (59.82%) aligned concordantly exactly 1 time           1164331 (5.58%) aligned concordantly >1 times
-AM08N_OL        71.28% overall alignment rate       12701049 (59.93%) aligned concordantly exactly 1 time           1622373 (7.66%) aligned concordantly >1 times
-AM08N_RO        75.34% overall alignment rate       13749781 (67.05%) aligned concordantly exactly 1 time           790056 (3.85%) aligned concordantly >1 times
-AM08N_YL        69.47% overall alignment rate       12755339 (60.27%) aligned concordantly exactly 1 time           1153072 (5.45%) aligned concordantly >1 times
-```
+    SRR24947461  62.94%  overall  alignment  rate  52688337  (52.47%)  aligned  concordantly  exactly  1  time  3947151   (3.93%)   aligned  concordantly  >1  times
+    SRR24947462  62.06%  overall  alignment  rate  65494606  (52.63%)  aligned  concordantly  exactly  1  time  3078652   (2.47%)   aligned  concordantly  >1  times
+    SRR24947463  57.88%  overall  alignment  rate  61563211  (50.41%)  aligned  concordantly  exactly  1  time  2530332   (2.07%)   aligned  concordantly  >1  times
+    SRR24947464  74.88%  overall  alignment  rate  75143196  (65.64%)  aligned  concordantly  exactly  1  time  3670500   (3.21%)   aligned  concordantly  >1  times
+    SRR24947465  78.91%  overall  alignment  rate  73881131  (69.84%)  aligned  concordantly  exactly  1  time  3821305   (3.61%)   aligned  concordantly  >1  times
+    SRR24947466  70.50%  overall  alignment  rate  59916569  (49.11%)  aligned  concordantly  exactly  1  time  20972725  (17.19%)  aligned  concordantly  >1  times
+    XN580_FB     80.79%  overall  alignment  rate  13836893  (68.56%)  aligned  concordantly  exactly  1  time  470979    (2.33%)   aligned  concordantly  >1  times
+    XN580_F      80.49%  overall  alignment  rate  11639449  (68.42%)  aligned  concordantly  exactly  1  time  416401    (2.45%)   aligned  concordantly  >1  times
+    XN580_L      81.19%  overall  alignment  rate  12380457  (68.45%)  aligned  concordantly  exactly  1  time  547587    (3.03%)   aligned  concordantly  >1  times
+    XN580_R      76.58%  overall  alignment  rate  11855116  (64.63%)  aligned  concordantly  exactly  1  time  390891    (2.13%)   aligned  concordantly  >1  times
+    XN580_S      80.39%  overall  alignment  rate  11335150  (68.29%)  aligned  concordantly  exactly  1  time  370158    (2.23%)   aligned  concordantly  >1  times
 
 
+
+    Alyssum
+    AM08M_CF        82.26% overall alignment rate       15395977 (72.53%) aligned concordantly exactly 1 time           1103653 (5.20%) aligned concordantly >1 times
+    AM08M_RO        80.78% overall alignment rate       14909449 (72.43%) aligned concordantly exactly 1 time           710062 (3.45%) aligned concordantly >1 times
+    AM08N_CF        75.13% overall alignment rate       13619900 (66.20%) aligned concordantly exactly 1 time           987032 (4.80%) aligned concordantly >1 times
+    AM08N_OF        68.77% overall alignment rate       12482837 (59.82%) aligned concordantly exactly 1 time           1164331 (5.58%) aligned concordantly >1 times
+    AM08N_OL        71.28% overall alignment rate       12701049 (59.93%) aligned concordantly exactly 1 time           1622373 (7.66%) aligned concordantly >1 times
+    AM08N_RO        75.34% overall alignment rate       13749781 (67.05%) aligned concordantly exactly 1 time           790056 (3.85%) aligned concordantly >1 times
+    AM08N_YL        69.47% overall alignment rate       12755339 (60.27%) aligned concordantly exactly 1 time           1153072 (5.45%) aligned concordantly >1 times
 
 ## Preparation of protein sequences
 
-Protein sequences downloaded from https://bioinf.uni-greifswald.de/bioinf/partitioned_odb11/ (https://bioinf.uni-greifswald.de/bioinf/partitioned_odb11/Viridiplantae.fa.gz).
+Protein sequences downloaded from
+<https://bioinf.uni-greifswald.de/bioinf/partitioned_odb11/>
+(<https://bioinf.uni-greifswald.de/bioinf/partitioned_odb11/Viridiplantae.fa.gz>).
 Protein sequences should be decompressed (it should be normal fasta).
 
-```{sh}
+``` sh
 # OrthoDB Viridiplantae proteins are already downloaded (they are shared for all species)
 
 # cd /storage/brno12-cerit/home/duchmil/annotations/OrthoDB_proteins/
@@ -587,12 +641,9 @@ Protein sequences should be decompressed (it should be normal fasta).
 # gunzip Viridiplantae.fa.gz
 ```
 
-
 # Running Braker
 
-
-
-```{sh}
+``` sh
 ### Script for Metacentrum
 
 #PBS -N braker_genome_annotation
@@ -640,14 +691,11 @@ clean_scratch
 # Resources: The job was running 12 h, using 87 GB memory and 30% of CPU time.
 ```
 
-
-
-
-
 # Quality check of the Braker annotation
 
 ## Running IGV on Metacentrum
-```{sh}
+
+``` sh
 # Download IGV
 wget https://data.broadinstitute.org/igv/projects/downloads/2.16/IGV_2.16.2.zip
 # Unzip IGV
@@ -670,32 +718,31 @@ module load openjdk
 ```
 
 ## Number of genes
-```{sh}
+
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/results_braker_01/
 grep -c -P "\tgene\t" braker.gtf # 30393
 ```
 
-
 ## Checking proteins predicted by Braker for stop codons
-```{sh}
+
+``` sh
 # converting from folded fasta to unfolded fasta for better counting and counting internal stop codons
 awk '/^>/ { if(NR>1) print "";  printf("%s\n",$0); next; } { printf("%s",$0);}  END {printf("\n");}' < braker.aa | grep \*[[:alpha:]] | wc -l # 0
 
 awk '/^>/ { if(NR>1) print "";  printf("%s\n",$0); next; } { printf("%s",$0);}  END {printf("\n");}' < braker.aa | grep -B1 '\*[[:alpha:]]'
 ```
 
-
-
 ## Alignment of protein sequences to the genome assembly
-Miniprot
-<https://github.com/lh3/miniprot>
-The alignment of the proteins will be needed to check the annotation by Braker.
 
-Generally proteins of closely related species with good annotation should be used.
-We used protein sequences of B. rapa, A. thaliana and A. lyrata.
+Miniprot <https://github.com/lh3/miniprot> The alignment of the proteins
+will be needed to check the annotation by Braker.
 
-Data:
-B. rapa web page: <http://brassicadb.cn>
+Generally proteins of closely related species with good annotation
+should be used. We used protein sequences of B. rapa, A. thaliana and A.
+lyrata.
+
+Data: B. rapa web page: <http://brassicadb.cn>
 <http://39.100.233.196:82/download_genome/Brassica_Genome_data/Brara_Chiifu_V3.0/Brapa_genome_v3.0_pep.fasta.gz>
 <http://39.100.233.196:82/download_genome/Brassica_Genome_data/Brara_Chiifu_V4.1/Brapa_chiifu_v41_gene20230413.gff3.pep.fa.gz>
 A. thaliana
@@ -703,9 +750,9 @@ A. thaliana
 A. lyrata NCBI 101 annotation
 <https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/004/255/GCF_000004255.2_v.1.0/GCF_000004255.2_v.1.0_protein.faa.gz>
 
-
 ### Getting protein sequences
-```{sh}
+
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/
 mkdir -p protein_seqs_input
 cd protein_seqs_input
@@ -745,10 +792,9 @@ cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09
 mkdir 2_aligned
 ```
 
-
 ### Miniprot alignment
 
-```{sh}
+``` sh
 ### Script for Metacentrum
 
 #PBS -N miniprot_protein_alignment
@@ -824,15 +870,13 @@ stringtie to produce transcripts from aligned RNAseq reads
 - default parameters should be fine
 - set the number of threads
 
-
-```{sh}
+``` sh
 # folder for results
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/rnaseq
 mkdir 4_assembled_transcripts
 ```
 
-
-```{sh}
+``` sh
 ### Script for Metacentrum
 
 #PBS -N stringtie_transcript_assembly
@@ -883,11 +927,12 @@ clean_scratch
 ```
 
 ## Extraction of transcript sequences
+
 Extracted transcript sequences will be used to run Busco on them.
 
-
 ### Extraction of transcript (mRNA) sequences
-```{sh}
+
+``` sh
 # interactive job
 qsub -I -l select=1:ncpus=1:mem=8gb:scratch_local=10gb -l walltime=2:00:00
 
@@ -915,22 +960,17 @@ grep -P '\ttranscript\t' Assembled_transcripts.gtf | cut -f 9 | sed 's/; transcr
 grep -P '\ttranscript\t' Assembled_transcripts.gtf | cut -f 9 | sed 's/; transcript_id.*$//' | tail # the highest number is 31544
 ```
 
-
-
 ## Busco
 
-
-```{sh}
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/
 mkdir busco_results
 cd busco_results
-
-
 ```
 
 ### Running Busco
 
-```{sh}
+``` sh
 ### Script for Metacentrum
 
 #PBS -N Busco_proteins_CDS_assembly_transcripts
@@ -998,10 +1038,9 @@ clean_scratch
 # Resources: The script ran 2,5 h, with 73 % CPU time and 100% memory used.
 ```
 
-
-
 ### Plot Busco results
-```{sh}
+
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/busco_results/
 
 mkdir -p summaries_BUSCO
@@ -1022,59 +1061,61 @@ source /storage/brno2/home/duchmil/SW/mambaforge/bin/activate busco_5_7_1
 generate_plot.py -wd .
 ```
 
-
-
-
 ### Busco results
 
 #### Assembly
 
-	C:99.8%[S:95.6%,D:4.2%],F:0.1%,M:0.1%,n:4596,E:1.5%	   
-	4585	Complete BUSCOs (C)	(of which 70 contain internal stop codons)		   
-	4394	Complete and single-copy BUSCOs (S)	   
-	191	Complete and duplicated BUSCOs (D)	   
-	5	Fragmented BUSCOs (F)			   
-	6	Missing BUSCOs (M)			   
-	4596	Total BUSCO groups searched
-	
+    C:99.8%[S:95.6%,D:4.2%],F:0.1%,M:0.1%,n:4596,E:1.5%    
+    4585    Complete BUSCOs (C) (of which 70 contain internal stop codons)         
+    4394    Complete and single-copy BUSCOs (S)    
+    191 Complete and duplicated BUSCOs (D)     
+    5   Fragmented BUSCOs (F)              
+    6   Missing BUSCOs (M)             
+    4596    Total BUSCO groups searched
+
 #### Transcripts (RNAseq reads aligned to genome and assembled to transcripts)
 
-	C:90.8%[S:61.3%,D:29.5%],F:2.0%,M:7.2%,n:4596	   
-	4172	Complete BUSCOs (C)			   
-	2816	Complete and single-copy BUSCOs (S)	   
-	1356	Complete and duplicated BUSCOs (D)	   
-	92	Fragmented BUSCOs (F)			   
-	332	Missing BUSCOs (M)			   
-	4596	Total BUSCO groups searched	
-	
+    C:90.8%[S:61.3%,D:29.5%],F:2.0%,M:7.2%,n:4596      
+    4172    Complete BUSCOs (C)            
+    2816    Complete and single-copy BUSCOs (S)    
+    1356    Complete and duplicated BUSCOs (D)     
+    92  Fragmented BUSCOs (F)              
+    332 Missing BUSCOs (M)             
+    4596    Total BUSCO groups searched 
+
 #### Annotation (proteins predicted by Braker)
 
-	C:98.5%[S:85.6%,D:12.9%],F:0.2%,M:1.3%,n:4596	   
-	4528	Complete BUSCOs (C)			   
-	3934	Complete and single-copy BUSCOs (S)	   
-	594	Complete and duplicated BUSCOs (D)	   
-	11	Fragmented BUSCOs (F)			   
-	57	Missing BUSCOs (M)			   
-	4596	Total BUSCO groups searched	
-	
+    C:98.5%[S:85.6%,D:12.9%],F:0.2%,M:1.3%,n:4596      
+    4528    Complete BUSCOs (C)            
+    3934    Complete and single-copy BUSCOs (S)    
+    594 Complete and duplicated BUSCOs (D)     
+    11  Fragmented BUSCOs (F)              
+    57  Missing BUSCOs (M)             
+    4596    Total BUSCO groups searched 
+
 #### Annotation (CDS predicted by Braker)
 
-	C:98.5%[S:85.7%,D:12.8%],F:0.2%,M:1.3%,n:4596	   
-	4528	Complete BUSCOs (C)			   
-	3940	Complete and single-copy BUSCOs (S)	   
-	588	Complete and duplicated BUSCOs (D)	   
-	10	Fragmented BUSCOs (F)			   
-	58	Missing BUSCOs (M)			   
-	4596	Total BUSCO groups searched		 
-	
+    C:98.5%[S:85.7%,D:12.8%],F:0.2%,M:1.3%,n:4596      
+    4528    Complete BUSCOs (C)            
+    3940    Complete and single-copy BUSCOs (S)    
+    588 Complete and duplicated BUSCOs (D)     
+    10  Fragmented BUSCOs (F)              
+    58  Missing BUSCOs (M)             
+    4596    Total BUSCO groups searched      
 
 # Removing genes with internal stop codons
 
 ## Conversion of Braker GTF to GFF
-There should be script for conversion in Augustus, but it seems that it does not work well (https://github.com/Gaius-Augustus/BRAKER/issues/275). Thus, I will rather use AGAT.
 
-This is not needed as I will use the original gtf as input for removal of genes with internal stop codons.
-```{sh}
+There should be script for conversion in Augustus, but it seems that it
+does not work well
+(<https://github.com/Gaius-Augustus/BRAKER/issues/275>). Thus, I will
+rather use AGAT.
+
+This is not needed as I will use the original gtf as input for removal
+of genes with internal stop codons.
+
+``` sh
 # # interactive job
 # qsub -I -l select=1:ncpus=1:mem=8gb:scratch_local=10gb -l walltime=2:00:00
 # 
@@ -1090,11 +1131,16 @@ This is not needed as I will use the original gtf as input for removal of genes 
 
 ## Remove genes with internal stop codons
 
-Sometimes there are several genes with internal stop codons. These genes come always from "GeneMark.hmm3".
+Sometimes there are several genes with internal stop codons. These genes
+come always from “GeneMark.hmm3”.
 
-There is a script "fix_in_frame_stop_codon_genes.py" that should take care of this, but according to the log this script is used only for the Augustus output, before Tsebra combines it with the GeneMark output. So, if some GeneMark gene models contain internal stop codons, they might be retained in the final gene set.
+There is a script “fix_in_frame_stop_codon_genes.py” that should take
+care of this, but according to the log this script is used only for the
+Augustus output, before Tsebra combines it with the GeneMark output. So,
+if some GeneMark gene models contain internal stop codons, they might be
+retained in the final gene set.
 
-```{sh}
+``` sh
 mkdir -p /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/annot_processing
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/annot_processing
 
@@ -1124,26 +1170,30 @@ grep -P -c "\tgene\t" braker_without_genes_with_internal_stop_codons.gff # 30393
 grep -P -c "\ttranscript\t" braker_without_genes_with_internal_stop_codons.gff # 33688
 ```
 
-
-
 # Adding unknown expressed features
+
 Bedtools subtract
 
-https://bedtools.readthedocs.io/en/latest/content/tools/subtract.html
+<https://bedtools.readthedocs.io/en/latest/content/tools/subtract.html>
 
-I will use -A option to get only transcripts with no overlap with Braker annotation.
+I will use -A option to get only transcripts with no overlap with Braker
+annotation.
 
 ### Note for future
-Some tools used to annotate noncoding genes in A. thaliana genomes are descibed in this publication:
 
-Lian, Qichao, Bruno Huettel, Birgit Walkemeier, Baptiste Mayjonade, Céline Lopez-Roques, Lisa Gil, Fabrice Roux, Korbinian Schneeberger, and Raphael Mercier. “A Pan-Genome of 69 Arabidopsis Thaliana Accessions Reveals a Conserved Genome Structure throughout the Global Species Range.” Nature Genetics 56, no. 5 (May 2024): 982–91. https://doi.org/10.1038/s41588-024-01715-9.
+Some tools used to annotate noncoding genes in A. thaliana genomes are
+descibed in this publication:
+
+Lian, Qichao, Bruno Huettel, Birgit Walkemeier, Baptiste Mayjonade,
+Céline Lopez-Roques, Lisa Gil, Fabrice Roux, Korbinian Schneeberger, and
+Raphael Mercier. “A Pan-Genome of 69 Arabidopsis Thaliana Accessions
+Reveals a Conserved Genome Structure throughout the Global Species
+Range.” Nature Genetics 56, no. 5 (May 2024): 982–91.
+<https://doi.org/10.1038/s41588-024-01715-9>.
 
 It might be good to try them.
 
-
-
-
-```{sh}
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/annot_processing
 
 
@@ -1193,16 +1243,11 @@ agat_sp_filter_feature_from_kill_list.pl --gff Assembled_transcripts_with_no_ann
 grep -P -c "\ttranscript\t" Assembled_transcripts_with_no_annotation_overlap_clean.gff # 9396
 grep -P -c "\tRNA\t" Assembled_transcripts_with_no_annotation_overlap_clean.gff # 0
 # Now the RNA features and their exons should be removed, there shouldn't be any transcripts overlapping with Braker annotation.
-
-
-
 ```
 
-
-
-
 ## Merging annotations
-```{sh}
+
+``` sh
 # interactive job
 qsub -I -l select=1:ncpus=1:mem=8gb:scratch_local=10gb -l walltime=2:00:00
 
@@ -1226,21 +1271,16 @@ grep -P -c "\tmRNA\t" merged_annotation_01.gff # 2265
 grep -P -v -c "^#" braker_without_genes_with_internal_stop_codons.gff # 593858
 grep -P -v -c "^#" Assembled_transcripts_with_no_annotation_overlap_clean.gff # 44140
 grep -P -v -c "^#" merged_annotation_01.gff # 637998
-
 ```
 
-```{r}
+``` r
 # Check whether the number of lines of merged annotation is sum of the files that were merged
 593858 + 44140 == 637998 # TRUE
 ```
 
-
-
-
 # Changing IDs in R
 
-
-```{r}
+``` r
 setwd("D:/!ecolgen/annotations/Erysimum_linariifolium_2025_09")
 
 # read the gff file
@@ -1254,7 +1294,7 @@ gff.1[1:50, ]
 
 ### What feature types are there?
 
-```{r}
+``` r
 # Types of features
 levels(as.factor(gff.1$V3))
 table(as.factor(gff.1$V3))
@@ -1265,7 +1305,7 @@ levels(as.factor(gff.1$V1))
 
 ### Adjusting column 2 and 3
 
-```{r}
+``` r
 ## Changes in column 3
 
 # mRNA is there only for genes predicted by GeneMark.hmm3
@@ -1312,7 +1352,8 @@ gff.2[grepl(pattern = "gene", x = gff.2$V3) & gff.2$V2 == "StringTie", 9] <- gen
 ```
 
 ### Changing IDs
-```{r}
+
+``` r
 # old gene names
 old.genes <- gsub(pattern = "ID=|;gene_id.*$", replacement = "", x = gff.2[grepl(pattern = "gene", x = gff.2$V3), "V9"])
 scaff.genes <- as.integer(gsub(pattern = "scaffold_", replacement = "", x = gff.2[grepl(pattern = "gene", x = gff.2$V3), "V1"]))
@@ -1435,7 +1476,7 @@ tail(gff.3, n = 40)
 
 ### Further adjustments in column 3
 
-```{r}
+``` r
 gff.4 <- gff.3
 
 # Changing feature names
@@ -1450,9 +1491,10 @@ table(gff.4$V3)
 
 ### Preparing header of GFF file
 
-It is needed to produce statistics (that are computed later) and then to get back here and update the statistics in the header.
+It is needed to produce statistics (that are computed later) and then to
+get back here and update the statistics in the header.
 
-```{r}
+``` r
 # read the header of gff file
 gff.raw <- readLines(con = "annot_processing/merged_annotation_01.gff" 
                      , n = 1500
@@ -1535,7 +1577,7 @@ gff.header.3 <- c("##gff-version 3",
 
 ### Writing GFF file
 
-```{r eval=FALSE}
+``` r
 # write header to file
 write.table(x = gff.header.3, 
             file = "annot_processing/Erysimum_linariifolium_CUNI_V1_annotation_v1.0.gff", 
@@ -1549,7 +1591,8 @@ write.table(x = gff.4,
 ```
 
 ## Statistics of annotation using AGAT
-```{sh}
+
+``` sh
 # interactive job
 qsub -I -l select=1:ncpus=1:mem=8gb:scratch_local=10gb -l walltime=2:00:00
 
@@ -1572,24 +1615,22 @@ agat_sp_statistics.pl -i ../annot_processing/Erysimum_linariifolium_CUNI_V1_anno
 # view the basic statistics
 tail -n +11 stat_basic_Erysimum_linariifolium_CUNI_V1_annotation_v1.0.gff.txt | column -s $'\t' -t -R 2,3,4,5
 ```
-```
-Type (3rd column)     Number  Size total (kb)  Size mean (bp)  % of the genome
-cds                   164612         40184.92          244.12            21.17
-exon                  192085         48942.13          254.79            25.78
-gene                   30393         58392.38         1921.24            30.76
-intron                130924         27141.06          207.30            14.30
-ncrna                   9396         16978.63         1807.01             8.94
-ncrna_gene              7271         11673.97         1605.55             6.15
-start_codon            33686           101.03            3.00             0.05
-stop_codon             33678           101.02            3.00             0.05
-transcript             33688         67325.98         1998.52            35.47
-Total                 635733        270841.12          426.03           142.68
-```
 
+    Type (3rd column)     Number  Size total (kb)  Size mean (bp)  % of the genome
+    cds                   164612         40184.92          244.12            21.17
+    exon                  192085         48942.13          254.79            25.78
+    gene                   30393         58392.38         1921.24            30.76
+    intron                130924         27141.06          207.30            14.30
+    ncrna                   9396         16978.63         1807.01             8.94
+    ncrna_gene              7271         11673.97         1605.55             6.15
+    start_codon            33686           101.03            3.00             0.05
+    stop_codon             33678           101.02            3.00             0.05
+    transcript             33688         67325.98         1998.52            35.47
+    Total                 635733        270841.12          426.03           142.68
 
 ## Extraction of protein and coding sequences using AGAT
 
-```{sh}
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/annot_processing
 
 # run the container
@@ -1619,7 +1660,7 @@ awk '/^>/ { if(NR>1) print "";  printf("%s\n",$0); next; } { printf("%s",$0);}  
 
 Move the final files.
 
-```{sh}
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/annot_processing
 
 # compress the final files by gzip
@@ -1640,16 +1681,18 @@ gzip --keep $genome_assembly
 mv -t /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/final_files $genome_assembly.gz
 ```
 
-
 # Reliability of the predicted genes
 
-This is one of the quality checks. I will produce a table that will show how reliable the predicted genes are (if they have support in RNAseq data or aligned proteins from other species).
+This is one of the quality checks. I will produce a table that will show
+how reliable the predicted genes are (if they have support in RNAseq
+data or aligned proteins from other species).
 
 ## Intersect between gene models and aligned proteins
-bedtools intersect
-https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html
 
-```{sh}
+bedtools intersect
+<https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html>
+
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09
 mkdir -p intersects
 cd intersects
@@ -1667,17 +1710,21 @@ bedtools intersect -a ../annot_processing/Erysimum_linariifolium_CUNI_V1_annotat
 
 # Intersect with all proteins together
 bedtools intersect -a ../annot_processing/Erysimum_linariifolium_CUNI_V1_annotation_v1.0.gff -b ../protein_seqs_input/2_aligned/*  -u -f 0.9 -r > braker_annotation_x_all.pep.gff_intersect.tab
-
 ```
-This command finds the intersects between Braker output (`-a`) and at least one of the aligned proteins (files in `-b`).
-It will report the genes in `-a` only once (option `-u`). The overlap should be at least 90 % (`-f 0.9`) for both `-a` and `-b` (option `-r` as reciprocal). 
 
+This command finds the intersects between Braker output (`-a`) and at
+least one of the aligned proteins (files in `-b`). It will report the
+genes in `-a` only once (option `-u`). The overlap should be at least 90
+% (`-f 0.9`) for both `-a` and `-b` (option `-r` as reciprocal).
 
 ## Intersect between gene models and assembled transcripts
-Again bedtools intersect.
-This time we do not use the `-r` option - the overlap should be at least 90 % of Braker output, but not necesarilly of the Stringtie output. It is because the Stringtie tries to predict whole transcripts including UTRs.
 
-```{sh}
+Again bedtools intersect. This time we do not use the `-r` option - the
+overlap should be at least 90 % of Braker output, but not necesarilly of
+the Stringtie output. It is because the Stringtie tries to predict whole
+transcripts including UTRs.
+
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/intersects
 
 module load bedtools2/2.30.0-gcc-10.2.1-5acjqve
@@ -1696,16 +1743,24 @@ grep -P -c "\ttranscript\t" ../rnaseq/4_assembled_transcripts/Assembled_transcri
 grep -P "\ttranscript\t" ../rnaseq/4_assembled_transcripts/Assembled_transcripts.gtf | sed -E 's/.*\tgene_id//' | sed -E 's/; transcript_id.*//' | sort -u | wc -l # 31544
 # Intersect of genes predicted by Braker and transcripts assembled from RNAseq
 grep -P -c "\tgene\t" braker_annotation_x_Assembled_transcripts.gtf_intersect.tab # 22574
-
 ```
-**Note**
-There is a problem that some of the assembled transcripts have long introns. If the whole gene predicted by Braker falls within intron of assembled transcript, it is still reported as supported, even if no reads map to this region. I don't have any easy solution how to solve this for now.
+
+**Note** There is a problem that some of the assembled transcripts have
+long introns. If the whole gene predicted by Braker falls within intron
+of assembled transcript, it is still reported as supported, even if no
+reads map to this region. I don’t have any easy solution how to solve
+this for now.
 
 ### Checking the outputs
 
-Here I look at the number of genes that are reported to have intersect with some aligned protein. There is a possibility that only some shorter transcript (splicing variant) of the particular gene have overlap big enough to be reported. Later I am putting into the reliability table also these transcripts and their particular genes, so the numbers might be slightly higher.
+Here I look at the number of genes that are reported to have intersect
+with some aligned protein. There is a possibility that only some shorter
+transcript (splicing variant) of the particular gene have overlap big
+enough to be reported. Later I am putting into the reliability table
+also these transcripts and their particular genes, so the numbers might
+be slightly higher.
 
-```{sh}
+``` sh
 grep -P -c "\tgene\t" ../annot_processing/Erysimum_linariifolium_CUNI_V1_annotation_v1.0.gff # 30393
 # grep -P -c "\tmRNA\t" ../protein_seqs_input/2_aligned/A.thaliana.pep.gff # 47853
 # grep -P -c "\tgene\t" braker_annotation_x_A.thaliana.pep.gff_intersect.tab # 16967
@@ -1715,17 +1770,18 @@ do
 COUNT=$(grep -P -c "\tgene\t" $FILE)
 echo "$FILE $COUNT"
 done
-
 ```
-
 
 ## Generating table of reliability of genes
 
-Table will be generated from intersects of genes predicted by Braker and aligned RNAseq data and proteins from other Brassicaceae species. It will show which genes are supported by additional data and which not.
+Table will be generated from intersects of genes predicted by Braker and
+aligned RNAseq data and proteins from other Brassicaceae species. It
+will show which genes are supported by additional data and which not.
 
-Using only protein coding genes for now. Also other genes could be used in the future.
+Using only protein coding genes for now. Also other genes could be used
+in the future.
 
-```{sh}
+``` sh
 cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/intersects
 
 # checks
@@ -1793,14 +1849,13 @@ wc -l Erysimum_linariifolium_CUNI_V1_annotation_v1.0_protein_coding_genes_suppor
 
 # Copying the reliability table to final files
 cp -v Erysimum_linariifolium_CUNI_V1_annotation_v1.0_protein_coding_genes_support.tsv /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/final_files/
-
 ```
 
 ## Analysis of reliability (support) table in R
 
 Statistics for all species together
 
-```{r}
+``` r
 setwd("D:/!ecolgen/annotations/Erysimum_linariifolium_2025_09")
 
 # gene_counts <- data.frame()
@@ -1810,63 +1865,59 @@ dirs.list <- list.dirs(path = "../", recursive = F)
 files.list <- list.files(path = paste0(dirs.list, "/final_files/"), pattern = "_protein_coding_genes_support.tsv", full.names = T)
 
 for(i in seq_along(files.list)) {
-	
-	supp <- read.table(file = files.list[i], header = T, sep = "\t")
-	# supp <- read.table(file = "final_files/Erysimum_linariifolium_CUNI_V1_annotation_v1.0_protein_coding_genes_support.tsv", header = T, sep = "\t")
-	
-	summary(supp)
-	
-	# Genes predicted by Braker and without stop codons
-	genes_prot_coding <- nrow(supp)
-	names(genes_prot_coding) <- "genes_prot_coding"
-	
-	# Genes predicted by Braker and supported by assembled transcripts or aligned proteins
-	intersects <- colSums(supp[, -1])
-	
-	# Genes supported by proteins from at least one species
-	support_any_protein <- sum(rowSums(supp[, -c(1,2)]) >= 1)
-	names(support_any_protein) <- "support_any_protein"
-	# all.pep.table <- supp$Gene[(rowSums(supp[, -c(1,2)]) >= 1)]
-	
-	# Genes with any support (either protein from at least one species or transcripts assembled from RNAseq)
-	support_any <- sum(rowSums(supp[, -1]) >= 1)
-	names(support_any) <- "support_any"
-	
-	# Genes with support of proteins from all species and transcripts
-	support_all <- sum(rowSums(supp[, -1]) == 4)
-	names(support_all) <- "support_all"
-	
-	# Make table gene_counts in the first iteration and then add rows
-	if(i == 1) {
-		gene_counts <- as.data.frame(t(c(genes_prot_coding, intersects, support_any_protein, support_any, support_all)))
-	} else {
-			gene_counts[i, ] <- c(genes_prot_coding, intersects, support_any_protein, support_any, support_all)
-		}
-	
-	# Extract sepcies from file name
-	file.name <- gsub(pattern = "^.*/", replacement = "", x = files.list[i])
-	species <- gsub(pattern = "(^[^_]*_[^_]*).*", replacement = "\\1", x = file.name)
-	# Add species as row name
-	rownames(gene_counts)[i] <- species
-	
+    
+    supp <- read.table(file = files.list[i], header = T, sep = "\t")
+    # supp <- read.table(file = "final_files/Erysimum_linariifolium_CUNI_V1_annotation_v1.0_protein_coding_genes_support.tsv", header = T, sep = "\t")
+    
+    summary(supp)
+    
+    # Genes predicted by Braker and without stop codons
+    genes_prot_coding <- nrow(supp)
+    names(genes_prot_coding) <- "genes_prot_coding"
+    
+    # Genes predicted by Braker and supported by assembled transcripts or aligned proteins
+    intersects <- colSums(supp[, -1])
+    
+    # Genes supported by proteins from at least one species
+    support_any_protein <- sum(rowSums(supp[, -c(1,2)]) >= 1)
+    names(support_any_protein) <- "support_any_protein"
+    # all.pep.table <- supp$Gene[(rowSums(supp[, -c(1,2)]) >= 1)]
+    
+    # Genes with any support (either protein from at least one species or transcripts assembled from RNAseq)
+    support_any <- sum(rowSums(supp[, -1]) >= 1)
+    names(support_any) <- "support_any"
+    
+    # Genes with support of proteins from all species and transcripts
+    support_all <- sum(rowSums(supp[, -1]) == 4)
+    names(support_all) <- "support_all"
+    
+    # Make table gene_counts in the first iteration and then add rows
+    if(i == 1) {
+        gene_counts <- as.data.frame(t(c(genes_prot_coding, intersects, support_any_protein, support_any, support_all)))
+    } else {
+            gene_counts[i, ] <- c(genes_prot_coding, intersects, support_any_protein, support_any, support_all)
+        }
+    
+    # Extract sepcies from file name
+    file.name <- gsub(pattern = "^.*/", replacement = "", x = files.list[i])
+    species <- gsub(pattern = "(^[^_]*_[^_]*).*", replacement = "\\1", x = file.name)
+    # Add species as row name
+    rownames(gene_counts)[i] <- species
+    
 }
 
 gene_counts
-
 ```
 
 Results:
-```
-                       genes_prot_coding Assembled_transcripts A.lyrata.pep A.thaliana.pep B.rapa.pep support_any_protein support_any support_all
-Aethionema_saxatile                25353                 19189        17199          17158      16271               18200       21293       13717
-Erysimum_linariifolium             30393                 22625        20846          20563      18359               22348       26422       14793
 
-
-```
-
+                           genes_prot_coding Assembled_transcripts A.lyrata.pep A.thaliana.pep B.rapa.pep support_any_protein support_any support_all
+    Aethionema_saxatile                25353                 19189        17199          17158      16271               18200       21293       13717
+    Erysimum_linariifolium             30393                 22625        20846          20563      18359               22348       26422       14793
 
 # Notes
 
-- Aethionema: According to visual check in IGV, there are many short one-exon genes predicted by Braker that does not have any support. Maybe I can do some histogram of length of genes and compare that with other species.
-
-
+- Aethionema: According to visual check in IGV, there are many short
+  one-exon genes predicted by Braker that does not have any support.
+  Maybe I can do some histogram of length of genes and compare that with
+  other species.
