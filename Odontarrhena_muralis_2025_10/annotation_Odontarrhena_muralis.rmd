@@ -1810,8 +1810,11 @@ for(i in 2:8) {
 
 gene_counts_2
 
+gene_counts_3 <- cbind(rownames(gene_counts_2), gene_counts_2)
+colnames(gene_counts_3)[1] <- "species"
 
-write.table(x = gene_counts_2, file = "../01_multispecies_stats/prot_coding_genes_support.tsv", sep = "\t", row.names = T)
+
+write.table(x = gene_counts_3, file = "../01_multispecies_stats/prot_coding_genes_support.tsv", sep = "\t", row.names = F)
 
 ```
 
