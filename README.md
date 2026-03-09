@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/1090422731.svg)](https://doi.org/10.5281/zenodo.18804552)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18924205.svg)](https://doi.org/10.5281/zenodo.18924205)
 
 Annotation of ultramafic Brassicaceae genomes
 ================
