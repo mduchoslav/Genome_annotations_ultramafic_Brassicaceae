@@ -28,6 +28,10 @@ Installation and versions of tools used:
 
 If you want to get inspired and do such annotation for other species, I recommend using my [script for annotation of *Odontarrhena muralis*](Odontarrhena_muralis_2025_10/annotation_Odontarrhena_muralis.rmd), which I run recently and which is the most developed.
 
+### Input data (RNA-seq)
+
+The RNA-seq data used for annotation (several tissues per species) are available in ENA under [PRJEB108955](https://www.ebi.ac.uk/ena/browser/view/PRJEB108955).
+
 ## Final results
 
 ### Results for each species
