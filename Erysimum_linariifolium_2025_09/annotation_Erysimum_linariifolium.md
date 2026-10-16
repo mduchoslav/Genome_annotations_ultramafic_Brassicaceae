@@ -55,6 +55,8 @@ Miloš Duchoslav
     genes](#generating-table-of-reliability-of-genes)
   - [Analysis of reliability (support) table in
     R](#analysis-of-reliability-support-table-in-r)
+  - [Generate GFF file with reliable protein coding genes
+    only](#generate-gff-file-with-reliable-protein-coding-genes-only)
 - [Notes](#notes)
 
 # Introduction
@@ -1914,6 +1916,235 @@ Results:
                            genes_prot_coding Assembled_transcripts A.lyrata.pep A.thaliana.pep B.rapa.pep support_any_protein support_any support_all
     Aethionema_saxatile                25353                 19189        17199          17158      16271               18200       21293       13717
     Erysimum_linariifolium             30393                 22625        20846          20563      18359               22348       26422       14793
+
+## Generate GFF file with reliable protein coding genes only
+
+I will generate additional GFF with protein coding genes with at least
+some support. The needed support is at least one from following:
+
+1.  Overlap with transcripts assembled from RNA-seq used for annotation
+    by StringTie (the overlap should cover at least 90 % of the gene
+    model).
+2.  Overlap with protein sequences from *Arabidopsis thaliana* (the
+    overlap should cover at least 90 % of length for both).
+3.  Overlap with protein sequences from *Arabidopsis lyrata* (the
+    overlap should cover at least 90 % of length for both).
+4.  Overlap with protein sequences from *Brassica rapa* (the overlap
+    should cover at least 90 % of length for both).
+
+The non-coding RNA genes will be also removed from this version of GFF.
+
+``` r
+setwd("D:/!ecolgen/annotations/Erysimum_linariifolium_2025_09")
+
+# read reliability table
+supp <- read.table(file = "final_files/Erysimum_linariifolium_CUNI_V1_annotation_v1.0_protein_coding_genes_support.tsv", header = T, sep = "\t")
+
+summary(supp)
+supp[1:30, ]
+
+# read gff
+gff.5 <- read.table(file = gzfile("final_files/Erysimum_linariifolium_CUNI_V1_annotation_v1.0.gff.gz"), header = F, sep = "\t", comment.char = "#" 
+                     #, nrows = 1500
+                    )
+
+# read the header of gff file
+gff.raw <- readLines(con = gzfile("final_files/Erysimum_linariifolium_CUNI_V1_annotation_v1.0.gff.gz") 
+                     , n = 1500
+                    )
+gff.header <- gff.raw[grep(pattern = "^#", x = gff.raw)]
+
+
+# Genes with any support (either protein from at least one species or transcripts assembled from RNAseq)
+sum(rowSums(supp[, -1]) >= 1)
+genes.supp <- supp$Gene[rowSums(supp[, -1]) >= 1]
+
+gff.5[1:30, ]
+row.names(gff.5[1:30, ])
+
+# remove ncRNA genes based on StringTie assembly - they have support by RNAseq data, but they are not included in the reliability table
+gff.6 <- gff.5[gff.5$V2 != "StringTie", ]
+
+table(gff.6$V2)
+table(gff.6$V3)
+
+# get gene IDs for each row of GFF
+gff.gene <- gsub(pattern = "^.+=|\\.t\\d+$", replacement = "", x = gff.6$V9)
+# check length (if everything is ok)
+table(nchar(gff.gene))
+
+# keep just genes with some support
+gff.7 <- gff.6[gff.gene %in% genes.supp, ]
+```
+
+### Preparing header of GFF file
+
+It is needed to produce statistics (that are computed later) and then to
+get back here and update the statistics in the header.
+
+``` r
+# new header
+gff.header.4 <- c("##gff-version 3",
+                  "# Erysimum linariifolium genome annotation - reliable protein coding genes only",
+                  "# Version 1.0",
+                  "# 2026-10-16",
+                  "#",
+                  "# Genome assembly (Quast statistics)",
+                  "#",
+                  "# Assembly                    Erysimum_linariifolium_CUNI_V1_2024_09_masked",
+                  "# # contigs (>= 0 bp)         68",
+                  "# # contigs (>= 1000 bp)      68",
+                  "# # contigs (>= 5000 bp)      68",
+                  "# # contigs (>= 10000 bp)     68",
+                  "# # contigs (>= 25000 bp)     67",
+                  "# # contigs (>= 50000 bp)     54",
+                  "# Total length (>= 0 bp)      189828498",
+                  "# Total length (>= 1000 bp)   189828498",
+                  "# Total length (>= 5000 bp)   189828498",
+                  "# Total length (>= 10000 bp)  189828498",
+                  "# Total length (>= 25000 bp)  189811911",
+                  "# Total length (>= 50000 bp)  189301768",
+                  "# # contigs                   68",
+                  "# Largest contig              36182933",
+                  "# Total length                189828498",
+                  "# GC (%)                      36.43",
+                  "# N50                         23580521",
+                  "# N75                         20905539",
+                  "# L50                         4",
+                  "# L75                         6",
+                  "# # N's per 100 kbp           0.42",
+                  "#",
+                  "# Annotation",
+                  "#",
+                  "# Annotation generated by Milos Duchoslav (Group of Filip Kolar, ",
+                  "# Department of Botany, Faculty of Science, Charles University, Prague, Czechia).",
+                  "# Email: duchmil[at]gmail.com",
+                  "# ",
+                  "# Protein coding genes were predicted by",
+                  "# BRAKER version 3.0.8 based on RNA-seq data from Erysimum linariifolium ",
+                  "# and OrthoDB proteins from the whole Viridiplantae.",
+                  "# Genes models with internal stop codons were removed.",
+                  "# ",
+                  "# To include non-coding RNA genes and similar features,",
+                  "# transcripts assembled from RNA-seq data using StringTie v2.2.2",
+                  "# were filtered using bedtools v2.30.0 to keep only those that",
+                  "# do not have any overlap with protein-coding gene annotations.",
+                  "# They were included in annotation as 'ncRNA_gene' and 'ncRNA'.",
+                  "# However, they are simply regions that are transcribed and ",
+                  "# probably are not protein-coding genes.",
+                  "# ",
+                  "# GTF converted to GFF using AGAT v1.4.0.",
+                  "# Feature IDs changed using custom R script.",
+                  "# ",
+                  "# THIS VERSION OF GFF CONTAINS JUST PROTEIN CODING GENES WITH SOME SUPPORT",
+                  "# (reasonable overlap with assembled transcript from this species or aligned ",
+                  "# protein sequence from Arabidopsis thaliana, Arabidopsis lyrata or Brassica rapa).",
+                  "# ",
+                  "# Annotation statistics",
+                  "# ",
+                  "# Type (3rd column)   Number  Size total (kb)  Size mean (bp)  % of the genome",
+                  "# cds                 156874         37129.15          236.68            19.56",
+                  "# exon                156874         37129.15          236.68            19.56",
+                  "# gene                 26422         54928.97         2078.91            28.94",
+                  "# intron              127391         26524.32          208.21            13.97",
+                  "# start_codon          29481            88.41            3.00             0.05",
+                  "# stop_codon           29474            88.41            3.00             0.05",
+                  "# transcript           29483         63653.47         2158.99            33.53",
+                  "# Total               555999        219541.89          394.86           115.65",
+                  "# "
+)
+
+# gff.header.2 <- gff.header
+```
+
+### Writing GFF file
+
+``` r
+# write header to file
+write.table(x = gff.header.4, 
+            file = "annot_processing/Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only.gff", 
+            sep = "\t",
+            row.names = F, col.names = F, quote = F)
+# append the gff itself
+write.table(x = gff.7, 
+            file = "annot_processing/Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only.gff", 
+            sep = "\t",
+            row.names = F, col.names = F, quote = F, append = T)
+```
+
+### Statistics of annotation using AGAT
+
+``` sh
+# interactive job
+qsub -I -l select=1:ncpus=1:mem=8gb:scratch_local=10gb -l walltime=2:00:00
+
+mkdir -p /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/stat_annotation
+
+cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/stat_annotation
+
+# run the container
+singularity run /storage/brno12-cerit/home/duchmil/SW/agat/agat_1.4.0--pl5321hdfd78af_0.sif
+
+# Name of genome assembly
+genome_assembly="Erysimum_linariifolium_CUNI_V1_2024_09_masked.fa"
+
+# basic statistics
+agat_sq_stat_basic.pl -i ../annot_processing/Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only.gff -g ../genome_assembly/$genome_assembly > stat_basic_Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only.gff.txt
+
+# detailed statistics
+agat_sp_statistics.pl -i ../annot_processing/Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only.gff -g ../genome_assembly/$genome_assembly > stat_detailed_Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only.gff.txt
+
+# view the basic statistics
+tail -n +11 stat_basic_Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only.gff.txt | column -s $'\t' -t -R 2,3,4,5
+```
+
+    Type (3rd column)                Number  Size total (kb)  Size mean (bp)  % of the genome
+    cds                              156874         37129.15          236.68            19.56
+    exon                             156874         37129.15          236.68            19.56
+    gene                              26422         54928.97         2078.91            28.94
+    intron                           127391         26524.32          208.21            13.97
+    start_codon                       29481            88.41            3.00             0.05
+    stop_codon                        29474            88.41            3.00             0.05
+    transcript                        29483         63653.47         2158.99            33.53
+    Total                            555999        219541.89          394.86           115.65
+
+### Extraction of protein and coding sequences using AGAT
+
+``` sh
+cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/annot_processing
+
+# run the container
+singularity run /storage/brno12-cerit/home/duchmil/SW/agat/agat_1.4.0--pl5321hdfd78af_0.sif
+
+# Name of genome assembly
+genome_assembly="Erysimum_linariifolium_CUNI_V1_2024_09_masked.fa"
+
+# Protein sequences
+agat_sp_extract_sequences.pl -g Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only.gff -f ../genome_assembly/$genome_assembly -p -o Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only_proteins.fasta
+# CDS
+agat_sp_extract_sequences.pl -g Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only.gff -f ../genome_assembly/$genome_assembly -t cds -o Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only_cds.fasta
+
+# counting the number of sequences
+grep -c ">" Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only_proteins.fasta
+grep -c ">" Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only_cds.fasta
+```
+
+### Final files 2 - reliable genes only
+
+Move the final files.
+
+``` sh
+cd /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/annot_processing
+
+# compress the final files by gzip
+gzip --keep Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only.gff Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only_proteins.fasta Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only_cds.fasta
+
+# directory for final files
+mkdir -p /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/final_files
+
+# move the final files
+mv -t /storage/brno12-cerit/home/duchmil/annotations/Erysimum_linariifolium_2025_09/final_files Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only.gff.gz Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only_proteins.fasta.gz Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only_cds.fasta.gz
+```
 
 # Notes
 

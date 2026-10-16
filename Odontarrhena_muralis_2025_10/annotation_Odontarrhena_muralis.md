@@ -54,6 +54,8 @@ Miloš Duchoslav
     genes](#generating-table-of-reliability-of-genes)
   - [Analysis of reliability (support) table in
     R](#analysis-of-reliability-support-table-in-r)
+  - [Generate GFF file with reliable protein coding genes
+    only](#generate-gff-file-with-reliable-protein-coding-genes-only)
 - [Visual check of annotation in
   IGV](#visual-check-of-annotation-in-igv)
   - [Running IGV on Metacentrum](#running-igv-on-metacentrum)
@@ -1923,6 +1925,235 @@ Results:
     Erysimum_linariifolium             30393                         22625                20846                  20563              18359               22348       26422       14793
     Noccaea_praecox                    30370                         21522                19412                  19254              18205               21042       25080       14242
     Odontarrhena_muralis               29940                         20841                18843                  18686              17619               20261       24066       14110
+
+## Generate GFF file with reliable protein coding genes only
+
+I will generate additional GFF with protein coding genes with at least
+some support. The needed support is at least one from following:
+
+1.  Overlap with transcripts assembled from RNA-seq used for annotation
+    by StringTie (the overlap should cover at least 90 % of the gene
+    model).
+2.  Overlap with protein sequences from *Arabidopsis thaliana* (the
+    overlap should cover at least 90 % of length for both).
+3.  Overlap with protein sequences from *Arabidopsis lyrata* (the
+    overlap should cover at least 90 % of length for both).
+4.  Overlap with protein sequences from *Brassica rapa* (the overlap
+    should cover at least 90 % of length for both).
+
+The non-coding RNA genes will be also removed from this version of GFF.
+
+``` r
+setwd("D:/!ecolgen/annotations/Odontarrhena_muralis_2025_10")
+
+# read reliability table
+supp <- read.table(file = "final_files/Odontarrhena_muralis_CUNI_V1_annotation_v1.0_protein_coding_genes_support.tsv", header = T, sep = "\t")
+
+summary(supp)
+supp[1:30, ]
+
+# read gff
+gff.5 <- read.table(file = gzfile("final_files/Odontarrhena_muralis_CUNI_V1_annotation_v1.0.gff.gz"), header = F, sep = "\t", comment.char = "#" 
+                     #, nrows = 1500
+                    )
+
+# read the header of gff file
+gff.raw <- readLines(con = gzfile("final_files/Odontarrhena_muralis_CUNI_V1_annotation_v1.0.gff.gz") 
+                     , n = 1500
+                    )
+gff.header <- gff.raw[grep(pattern = "^#", x = gff.raw)]
+
+
+# Genes with any support (either protein from at least one species or transcripts assembled from RNAseq)
+sum(rowSums(supp[, -1]) >= 1)
+genes.supp <- supp$Gene[rowSums(supp[, -1]) >= 1]
+
+gff.5[1:30, ]
+row.names(gff.5[1:30, ])
+
+# remove ncRNA genes based on StringTie assembly - they have support by RNAseq data, but they are not included in the reliability table
+gff.6 <- gff.5[gff.5$V2 != "StringTie", ]
+
+table(gff.6$V2)
+table(gff.6$V3)
+
+# get gene IDs for each row of GFF
+gff.gene <- gsub(pattern = "^.+=|\\.t\\d+$", replacement = "", x = gff.6$V9)
+# check length (if everything is ok)
+table(nchar(gff.gene))
+
+# keep just genes with some support
+gff.7 <- gff.6[gff.gene %in% genes.supp, ]
+```
+
+### Preparing header of GFF file
+
+It is needed to produce statistics (that are computed later) and then to
+get back here and update the statistics in the header.
+
+``` r
+# new header
+gff.header.4 <- c("##gff-version 3",
+                  "# Odontarrhena muralis genome annotation - reliable protein coding genes only",
+                  "# Version 1.0",
+                  "# 2025-10-13",
+                  "#",
+                  "# Genome assembly (Quast statistics)",
+                  "#",
+                  "# Assembly                    Odontarrhena_muralis_CUNI_V1_2025_05_masked",
+                  "# # contigs (>= 0 bp)         57",
+                  "# # contigs (>= 1000 bp)      57",
+                  "# # contigs (>= 5000 bp)      57",
+                  "# # contigs (>= 10000 bp)     56",
+                  "# # contigs (>= 25000 bp)     52",
+                  "# # contigs (>= 50000 bp)     44",
+                  "# Total length (>= 0 bp)      248196262",
+                  "# Total length (>= 1000 bp)   248196262",
+                  "# Total length (>= 5000 bp)   248196262",
+                  "# Total length (>= 10000 bp)  248186822",
+                  "# Total length (>= 25000 bp)  248104136",
+                  "# Total length (>= 50000 bp)  247779113",
+                  "# # contigs                   57",
+                  "# Largest contig              32465375",
+                  "# Total length                248196262",
+                  "# GC (%)                      37.60",
+                  "# N50                         29993226",
+                  "# N75                         28119971",
+                  "# L50                         4",
+                  "# L75                         7",
+                  "# # N's per 100 kbp           0.85",
+                  "#",
+                  "# Annotation",
+                  "#",
+                  "# Annotation generated by Milos Duchoslav (Group of Filip Kolar, ",
+                  "# Department of Botany, Faculty of Science, Charles University, Prague, Czechia).",
+                  "# Email: duchmil[at]gmail.com",
+                  "# ",
+                  "# Protein coding genes were predicted by",
+                  "# BRAKER version 3.0.8 based on RNA-seq data from Odontarrhena muralis ",
+                  "# and OrthoDB proteins from the whole Viridiplantae.",
+                  "# Genes models with internal stop codons were removed.",
+                  "# ",
+                  "# To include non-coding RNA genes and similar features,",
+                  "# transcripts assembled from RNA-seq data using StringTie v2.2.2",
+                  "# were filtered using bedtools v2.30.0 to keep only those that",
+                  "# do not have any overlap with protein-coding gene annotations.",
+                  "# They were included in annotation as 'ncRNA_gene' and 'ncRNA'.",
+                  "# However, they are simply regions that are transcribed and ",
+                  "# probably are not protein-coding genes.",
+                  "# ",
+                  "# GTF converted to GFF using AGAT v1.4.0.",
+                  "# Feature IDs changed using custom R script.",
+                  "# ",
+                  "# THIS VERSION OF GFF CONTAINS JUST PROTEIN CODING GENES WITH SOME SUPPORT",
+                  "# (reasonable overlap with assembled transcript from this species or aligned ",
+                  "# protein sequence from Arabidopsis thaliana, Arabidopsis lyrata or Brassica rapa).",
+                  "# ",
+                  "# Annotation statistics",
+                  "# ",
+                  "# Type (3rd column)      Number  Size total (kb)  Size mean (bp)  % of the genome",
+                  "# cds                    149812         34900.25          232.96            14.06",
+                  "# exon                   149812         34900.25          232.96            14.06",
+                  "# gene                    24066         49422.11         2053.61            19.91",
+                  "# intron                 122648         23223.75          189.35             9.36",
+                  "# start_codon             27158            81.45            3.00             0.03",
+                  "# stop_codon              27156            81.45            3.00             0.03",
+                  "# transcript              27164         58124.00         2139.74            23.42",
+                  "# Total                  527816        200733.24          380.31            80.88",
+                  "# "
+)
+
+# gff.header.2 <- gff.header
+```
+
+### Writing GFF file
+
+``` r
+# write header to file
+write.table(x = gff.header.4, 
+            file = "annot_processing/Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only.gff", 
+            sep = "\t",
+            row.names = F, col.names = F, quote = F)
+# append the gff itself
+write.table(x = gff.7, 
+            file = "annot_processing/Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only.gff", 
+            sep = "\t",
+            row.names = F, col.names = F, quote = F, append = T)
+```
+
+### Statistics of annotation using AGAT
+
+``` sh
+# interactive job
+qsub -I -l select=1:ncpus=1:mem=8gb:scratch_local=10gb -l walltime=2:00:00
+
+mkdir -p /storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/stat_annotation
+
+cd /storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/stat_annotation
+
+# run the container
+singularity run /storage/brno12-cerit/home/duchmil/SW/agat/agat_1.4.0--pl5321hdfd78af_0.sif
+
+# Name of genome assembly
+genome_assembly="Odontarrhena_muralis_CUNI_V1_2025_05_masked.fa"
+
+# basic statistics
+agat_sq_stat_basic.pl -i ../annot_processing/Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only.gff -g ../genome_assembly/$genome_assembly > stat_basic_Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only.gff.txt
+
+# detailed statistics
+agat_sp_statistics.pl -i ../annot_processing/Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only.gff -g ../genome_assembly/$genome_assembly > stat_detailed_Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only.gff.txt
+
+# view the basic statistics
+tail -n +11 stat_basic_Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only.gff.txt | column -s $'\t' -t -R 2,3,4,5
+```
+
+    Type (3rd column)                Number  Size total (kb)  Size mean (bp)  % of the genome
+    cds                              149812         34900.25          232.96            14.06
+    exon                             149812         34900.25          232.96            14.06
+    gene                              24066         49422.11         2053.61            19.91
+    intron                           122648         23223.75          189.35             9.36
+    start_codon                       27158            81.45            3.00             0.03
+    stop_codon                        27156            81.45            3.00             0.03
+    transcript                        27164         58124.00         2139.74            23.42
+    Total                            527816        200733.24          380.31            80.88
+
+### Extraction of protein and coding sequences using AGAT
+
+``` sh
+cd /storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/annot_processing
+
+# run the container
+singularity run /storage/brno12-cerit/home/duchmil/SW/agat/agat_1.4.0--pl5321hdfd78af_0.sif
+
+# Name of genome assembly
+genome_assembly="Odontarrhena_muralis_CUNI_V1_2025_05_masked.fa"
+
+# Protein sequences
+agat_sp_extract_sequences.pl -g Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only.gff -f ../genome_assembly/$genome_assembly -p -o Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only_proteins.fasta
+# CDS
+agat_sp_extract_sequences.pl -g Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only.gff -f ../genome_assembly/$genome_assembly -t cds -o Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only_cds.fasta
+
+# counting the number of sequences
+grep -c ">" Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only_proteins.fasta
+grep -c ">" Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only_cds.fasta
+```
+
+### Final files 2 - reliable genes only
+
+Move the final files.
+
+``` sh
+cd /storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/annot_processing
+
+# compress the final files by gzip
+gzip --keep Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only.gff Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only_proteins.fasta Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only_cds.fasta
+
+# directory for final files
+mkdir -p /storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/final_files
+
+# move the final files
+mv -t /storage/brno12-cerit/home/duchmil/annotations/Odontarrhena_muralis_2025_10/final_files Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only.gff.gz Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only_proteins.fasta.gz Odontarrhena_muralis_CUNI_V1_annotation_v1.0_reliable_genes_only_cds.fasta.gz
+```
 
 # Visual check of annotation in IGV
 

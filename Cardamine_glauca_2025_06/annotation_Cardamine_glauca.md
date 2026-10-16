@@ -2047,9 +2047,9 @@ get back here and update the statistics in the header.
 ``` r
 # new header
 gff.header.4 <- c("##gff-version 3",
-                  "# Cardamine glauca genome annotation",
+                  "# Cardamine glauca genome annotation - reliable protein coding genes only",
                   "# Version 1.1",
-                  "# 2025-06-10",
+                  "# 2026-10-16",
                   "#",
                   "# Version history",
                   "#",

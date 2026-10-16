@@ -2,8 +2,9 @@
 
 Annotation of ultramafic Brassicaceae genomes
 ================
+
 Miloš Duchoslav
-2026-02
+2026-10
 
 This repository contains scripts and data for annotation of the newly assembled genomes of *Aethionema saxatile*, *Cardamine glauca*, *Erysimum linariifolium*, *Noccaea praecox*, and *Odontarrhena muralis* for the following publication:
 
@@ -39,15 +40,22 @@ The RNA-seq data used for annotation (several tissues per species) are available
 The `final_files` folder for each species contains:
 
 - **Soft-masked reference genome** (`*_masked.fa.gz`)
-	- This is version used for annotation, note that the version in GenBank database has different scaffold names.
-- **Genome annotation** (`*.gff.gz`)
-	- The genome annotation contains protein-coding genes (*gene* feature with *transcript* as a child feature) and non-coding RNA genes (*ncrna_gene* feature with *ncrna* as a child feature). The non-coding RNA genes are derived from assembled transcripts that don't have any overlap with predicted protein-coding genes.
-- **Coding sequences (CDS)** for protein-coding genes (`*_cds.fasta.gz`)
-- **Protein sequences** for protein-coding genes (`*_proteins.fasta.gz`)
-- **Table with external evidence** for protein-coding genes (`*_protein_coding_genes_support.tsv`)
-	- Table shows for each gene if there is overlap with transcripts assembled from RNA-seq data used for annotation or with aligned protein sequences from *Arabidopsis thaliana*, *Arabidopsis lyrata* and *Brassica rapa*).
-	
+  - This is version used for annotation, note that the version in GenBank database has different scaffold names.
+- **Full genome annotation**
+	- **Genome annotation** (`*.gff.gz`)
+	  - The genome annotation contains protein-coding genes (*gene* feature with *transcript* as a child feature) and non-coding RNA genes (*ncrna_gene* feature with *ncrna* as a child feature). The non-coding RNA genes are derived from assembled transcripts that don't have any overlap with predicted protein-coding genes.
+	- **Coding sequences (CDS)** for protein-coding genes (`*_cds.fasta.gz`)
+	- **Protein sequences** for protein-coding genes (`*_proteins.fasta.gz`)
+	- **Table with external evidence** for protein-coding genes (`*_protein_coding_genes_support.tsv`)
+	  - Table shows for each gene if there is overlap with transcripts assembled from RNA-seq data used for annotation or with aligned protein sequences from *Arabidopsis thaliana*, *Arabidopsis lyrata* and *Brassica rapa*). Genes with at least one type of evidence are used later as "reliable genes". However, users can use more strict filtration if desired.
+- **Genome annotation with reliable protein coding genes only**
+	- **Genome annotation** (`*_reliable_genes_only.gff.gz`)
+	  - The genome annotation contains just protein-coding genes with some supporting evidence (reasonable overlap with assembled transcript from the respective species or aligned protein sequence from *Arabidopsis thaliana*, *Arabidopsis lyrata* or *Brassica rapa*).
+	- **Coding sequences (CDS)** for reliable protein-coding genes (`*_reliable_genes_only_cds.fasta.gz`)
+	- **Protein sequences** for reliable protein-coding genes (`*_reliable_genes_only_proteins.fasta.gz`)
+
 Link to final results for each species:
+
 - [*Aethionema saxatile*](Aethionema_saxatile_2025_06/final_files)
 - [*Cardamine glauca*](Cardamine_glauca_2025_06/final_files)
 - [*Erysimum linariifolium*](Erysimum_linariifolium_2025_09/final_files)
