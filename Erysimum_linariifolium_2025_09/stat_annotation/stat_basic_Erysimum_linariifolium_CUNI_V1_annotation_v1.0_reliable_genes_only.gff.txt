@@ -1,0 +1,21 @@
+
+ ------------------------------------------------------------------------------
+|   Another GFF Analysis Toolkit (AGAT) - Version: v1.4.0                      |
+|   https://github.com/NBISweden/AGAT                                          |
+|   National Bioinformatics Infrastructure Sweden (NBIS) - www.nbis.se         |
+ ------------------------------------------------------------------------------
+=> Using standard /usr/local/lib/perl5/site_perl/auto/share/dist/AGAT/agat_config.yaml config file
+Total sequence length                        189828498
+Reading ../annot_processing/Erysimum_linariifolium_CUNI_V1_annotation_v1.0_reliable_genes_only.gff
+556067 line to process...
+Progress : 74 %Progress : 100 %
+Type (3rd column)	Number	Size total (kb)	Size mean (bp)	% of the genome	/!\Results are rounding to two decimal places 
+cds	156874	37129.15	236.68	19.56
+exon	156874	37129.15	236.68	19.56
+gene	26422	54928.97	2078.91	28.94
+intron	127391	26524.32	208.21	13.97
+start_codon	29481	88.41	3.00	0.05
+stop_codon	29474	88.41	3.00	0.05
+transcript	29483	63653.47	2158.99	33.53
+Total	555999	219541.89	394.86	115.65
+Job done in 46 seconds

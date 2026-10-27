@@ -1,0 +1,21 @@
+
+ ------------------------------------------------------------------------------
+|   Another GFF Analysis Toolkit (AGAT) - Version: v1.4.0                      |
+|   https://github.com/NBISweden/AGAT                                          |
+|   National Bioinformatics Infrastructure Sweden (NBIS) - www.nbis.se         |
+ ------------------------------------------------------------------------------
+=> Using standard /usr/local/lib/perl5/site_perl/auto/share/dist/AGAT/agat_config.yaml config file
+Total sequence length                        253532312
+Reading ../annot_processing/Noccaea_praecox_CUNI_V1_annotation_v1.1_reliable_genes_only.gff
+540385 line to process...
+Progress : 80 %Progress : 100 %
+Type (3rd column)	Number	Size total (kb)	Size mean (bp)	% of the genome	/!\Results are rounding to two decimal places 
+cds	152812	35558.75	232.70	14.03
+exon	152812	35558.75	232.70	14.03
+gene	25080	53231.29	2122.46	21.00
+intron	124410	27520.10	221.20	10.85
+start_codon	28394	85.16	3.00	0.03
+stop_codon	28396	85.16	3.00	0.03
+transcript	28402	63078.85	2220.93	24.88
+Total	540306	215118.05	398.14	84.85
+Job done in 57 seconds

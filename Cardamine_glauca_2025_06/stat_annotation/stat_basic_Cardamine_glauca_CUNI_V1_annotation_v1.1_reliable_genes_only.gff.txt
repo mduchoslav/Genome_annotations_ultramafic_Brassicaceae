@@ -1,0 +1,21 @@
+
+ ------------------------------------------------------------------------------
+|   Another GFF Analysis Toolkit (AGAT) - Version: v1.4.0                      |
+|   https://github.com/NBISweden/AGAT                                          |
+|   National Bioinformatics Infrastructure Sweden (NBIS) - www.nbis.se         |
+ ------------------------------------------------------------------------------
+=> Using standard /usr/local/lib/perl5/site_perl/auto/share/dist/AGAT/agat_config.yaml config file
+Total sequence length                        301015024
+Reading ../annot_processing/Cardamine_glauca_CUNI_V1_annotation_v1.1_reliable_genes_only.gff
+524926 line to process...
+Progress : 100 %
+Type (3rd column)	Number	Size total (kb)	Size mean (bp)	% of the genome	/!\Results are rounding to two decimal places 
+cds	149698	34763.37	232.22	11.55
+exon	149698	34763.37	232.22	11.55
+gene	23307	51323.48	2202.06	17.05
+intron	123466	25875.73	209.58	8.60
+start_codon	26224	78.65	3.00	0.03
+stop_codon	26223	78.65	3.00	0.03
+transcript	26232	60639.11	2311.65	20.14
+Total	524848	207522.37	395.40	68.94
+Job done in 34 seconds
